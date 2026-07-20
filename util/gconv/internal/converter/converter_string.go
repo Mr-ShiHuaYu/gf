@@ -20,7 +20,7 @@ import (
 	"github.com/gogf/gf/v2/util/gconv/internal/localinterface"
 )
 
-func (c *Converter) String(anyInput any) (string, error) {
+func (c *Converter) String(anyInput interface{}) (string, error) {
 	if empty.IsNil(anyInput) {
 		return "", nil
 	}
@@ -106,7 +106,7 @@ func (c *Converter) String(anyInput any) (string, error) {
 			}
 		case reflect.String:
 			return rv.String(), nil
-		case reflect.Pointer:
+		case reflect.Ptr:
 			if rv.IsNil() {
 				return "", nil
 			}

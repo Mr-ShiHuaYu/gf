@@ -13,7 +13,7 @@ import (
 	"github.com/gogf/gf/v2/errors/gerror"
 )
 
-// MapToMaps converts any map type variable `params` to another map slice variable `pointer`.
+// MapToMaps converts interface{} map type variable `params` to another map slice variable `pointer`.
 //
 // The parameter `params` can be type of []map, []*map, []struct, []*struct.
 //
@@ -22,7 +22,7 @@ import (
 // The optional parameter `mapping` is used for struct attribute to map key mapping, which makes
 // sense only if the item of `params` is type struct.
 func (c *Converter) MapToMaps(
-	params any, pointer any, paramKeyToAttrMap map[string]string, option ...MapOption,
+	params interface{}, pointer interface{}, paramKeyToAttrMap map[string]string, option ...MapOption,
 ) (err error) {
 	// Params and its element type check.
 	var (
@@ -35,7 +35,7 @@ func (c *Converter) MapToMaps(
 		paramsRv = reflect.ValueOf(params)
 	}
 	paramsKind = paramsRv.Kind()
-	if paramsKind == reflect.Pointer {
+	if paramsKind == reflect.Ptr {
 		paramsRv = paramsRv.Elem()
 		paramsKind = paramsRv.Kind()
 	}
@@ -49,7 +49,7 @@ func (c *Converter) MapToMaps(
 		paramsElem     = paramsRv.Type().Elem()
 		paramsElemKind = paramsElem.Kind()
 	)
-	if paramsElemKind == reflect.Pointer {
+	if paramsElemKind == reflect.Ptr {
 		paramsElem = paramsElem.Elem()
 		paramsElemKind = paramsElem.Kind()
 	}
@@ -71,7 +71,7 @@ func (c *Converter) MapToMaps(
 		pointerRv   = reflect.ValueOf(pointer)
 		pointerKind = pointerRv.Kind()
 	)
-	for pointerKind == reflect.Pointer {
+	for pointerKind == reflect.Ptr {
 		pointerRv = pointerRv.Elem()
 		pointerKind = pointerRv.Kind()
 	}
@@ -82,7 +82,7 @@ func (c *Converter) MapToMaps(
 		pointerElemType = pointerRv.Type().Elem()
 		pointerElemKind = pointerElemType.Kind()
 	)
-	if pointerElemKind == reflect.Pointer {
+	if pointerElemKind == reflect.Ptr {
 		pointerElemKind = pointerElemType.Elem().Kind()
 	}
 	if pointerElemKind != reflect.Map {
@@ -103,7 +103,7 @@ func (c *Converter) MapToMaps(
 	)
 	for i := 0; i < paramsRv.Len(); i++ {
 		var item reflect.Value
-		if pointerElemType.Kind() == reflect.Pointer {
+		if pointerElemType.Kind() == reflect.Ptr {
 			item = reflect.New(pointerElemType.Elem())
 			if err = c.MapToMap(paramsRv.Index(i).Interface(), item, paramKeyToAttrMap, option...); err != nil {
 				return err

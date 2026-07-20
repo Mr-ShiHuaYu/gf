@@ -48,17 +48,17 @@ type DoneInfo struct {
 	// Trailer contains the metadata from the RPC's trailer, if present.
 	Trailer DoneInfoMD
 
-	// BytesSent indicates if any bytes have been sent to the server.
+	// BytesSent indicates if interface{} bytes have been sent to the server.
 	BytesSent bool
 
-	// BytesReceived indicates if any byte has been received from the server.
+	// BytesReceived indicates if interface{} byte has been received from the server.
 	BytesReceived bool
 
 	// ServerLoad is the load received from server. It's usually sent as part of
 	// trailing metadata.
 	//
 	// The only supported type now is *orca_v1.LoadReport.
-	ServerLoad any
+	ServerLoad interface{}
 }
 
 // DoneInfoMD is a mapping from metadata keys to value array.

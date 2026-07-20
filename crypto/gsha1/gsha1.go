@@ -17,9 +17,9 @@ import (
 	"github.com/gogf/gf/v2/util/gconv"
 )
 
-// Encrypt encrypts any type of variable using SHA1 algorithms.
+// Encrypt encrypts interface{} type of variable using SHA1 algorithms.
 // It uses package gconv to convert `v` to its bytes type.
-func Encrypt(v any) string {
+func Encrypt(v interface{}) string {
 	r := sha1.Sum(gconv.Bytes(v))
 	return hex.EncodeToString(r[:])
 }
@@ -42,7 +42,7 @@ func EncryptFile(path string) (encrypt string, err error) {
 }
 
 // MustEncryptFile encrypts file content of `path` using SHA1 algorithms.
-// It panics if any error occurs.
+// It panics if interface{} error occurs.
 func MustEncryptFile(path string) string {
 	result, err := EncryptFile(path)
 	if err != nil {

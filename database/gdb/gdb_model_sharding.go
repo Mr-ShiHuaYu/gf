@@ -48,9 +48,9 @@ type ShardingTableConfig struct {
 // ShardingRule defines the interface for sharding rules
 type ShardingRule interface {
 	// SchemaName returns the target schema name based on sharding value.
-	SchemaName(ctx context.Context, config ShardingSchemaConfig, value any) (string, error)
+	SchemaName(ctx context.Context, config ShardingSchemaConfig, value interface{}) (string, error)
 	// TableName returns the target table name based on sharding value.
-	TableName(ctx context.Context, config ShardingTableConfig, value any) (string, error)
+	TableName(ctx context.Context, config ShardingTableConfig, value interface{}) (string, error)
 }
 
 // DefaultShardingRule implements a simple modulo-based sharding rule
@@ -69,7 +69,7 @@ func (m *Model) Sharding(config ShardingConfig) *Model {
 }
 
 // ShardingValue sets the sharding value for routing
-func (m *Model) ShardingValue(value any) *Model {
+func (m *Model) ShardingValue(value interface{}) *Model {
 	model := m.getModel()
 	model.shardingValue = value
 	return model
@@ -113,7 +113,7 @@ func (m *Model) getActualTable(ctx context.Context, defaultTable string) (string
 }
 
 // SchemaName implements the default database sharding strategy
-func (r *DefaultShardingRule) SchemaName(ctx context.Context, config ShardingSchemaConfig, value any) (string, error) {
+func (r *DefaultShardingRule) SchemaName(ctx context.Context, config ShardingSchemaConfig, value interface{}) (string, error) {
 	if r.SchemaCount == 0 {
 		return "", gerror.NewCode(
 			gcode.CodeInvalidParameter, "schema count should not be 0 using DefaultShardingRule when schema sharding enabled",
@@ -128,7 +128,7 @@ func (r *DefaultShardingRule) SchemaName(ctx context.Context, config ShardingSch
 }
 
 // TableName implements the default table sharding strategy
-func (r *DefaultShardingRule) TableName(ctx context.Context, config ShardingTableConfig, value any) (string, error) {
+func (r *DefaultShardingRule) TableName(ctx context.Context, config ShardingTableConfig, value interface{}) (string, error) {
 	if r.TableCount == 0 {
 		return "", gerror.NewCode(
 			gcode.CodeInvalidParameter, "table count should not be 0 using DefaultShardingRule when table sharding enabled",
@@ -143,7 +143,7 @@ func (r *DefaultShardingRule) TableName(ctx context.Context, config ShardingTabl
 }
 
 // getHashValue converts sharding value to uint64 hash
-func getHashValue(value any) (uint64, error) {
+func getHashValue(value interface{}) (uint64, error) {
 	var rv = reflect.ValueOf(value)
 	switch rv.Kind() {
 	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64,

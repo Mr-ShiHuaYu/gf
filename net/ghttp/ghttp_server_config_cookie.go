@@ -11,6 +11,13 @@ import (
 	"time"
 )
 
+const (
+	sameSiteDefaultMode = 1
+	sameSiteLaxMode     = 2
+	sameSiteStrictMode  = 3
+	sameSiteNoneMode    = 4
+)
+
 // SetCookieMaxAge sets the CookieMaxAge for server.
 func (s *Server) SetCookieMaxAge(ttl time.Duration) {
 	s.config.CookieMaxAge = ttl
@@ -45,13 +52,13 @@ func (s *Server) GetCookieDomain() string {
 func (s *Server) GetCookieSameSite() http.SameSite {
 	switch s.config.CookieSameSite {
 	case "lax":
-		return http.SameSiteLaxMode
+		return sameSiteLaxMode
 	case "none":
-		return http.SameSiteNoneMode
+		return sameSiteNoneMode
 	case "strict":
-		return http.SameSiteStrictMode
+		return sameSiteStrictMode
 	default:
-		return http.SameSiteDefaultMode
+		return sameSiteDefaultMode
 	}
 }
 

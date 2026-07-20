@@ -187,13 +187,13 @@ func (e *Entry) getJobNameWithPattern() string {
 	return fmt.Sprintf(`%s(%s)`, e.jobName, e.schedule.pattern)
 }
 
-func (e *Entry) logDebugf(ctx context.Context, format string, v ...any) {
+func (e *Entry) logDebugf(ctx context.Context, format string, v ...interface{}) {
 	if logger := e.cron.GetLogger(); logger != nil {
 		logger.Debugf(ctx, format, v...)
 	}
 }
 
-func (e *Entry) logErrorf(ctx context.Context, format string, v ...any) {
+func (e *Entry) logErrorf(ctx context.Context, format string, v ...interface{}) {
 	logger := e.cron.GetLogger()
 	if logger == nil {
 		logger = glog.DefaultLogger()

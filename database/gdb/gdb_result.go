@@ -19,7 +19,7 @@ type SqlResult struct {
 	Affected int64
 }
 
-// MustGetAffected returns the affected rows count, if any error occurs, it panics.
+// MustGetAffected returns the affected rows count, if interface{} error occurs, it panics.
 func (r *SqlResult) MustGetAffected() int64 {
 	rows, err := r.RowsAffected()
 	if err != nil {
@@ -29,7 +29,7 @@ func (r *SqlResult) MustGetAffected() int64 {
 	return rows
 }
 
-// MustGetInsertId returns the last insert id, if any error occurs, it panics.
+// MustGetInsertId returns the last insert id, if interface{} error occurs, it panics.
 func (r *SqlResult) MustGetInsertId() int64 {
 	id, err := r.LastInsertId()
 	if err != nil {

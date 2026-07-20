@@ -6,12 +6,12 @@
 
 package gtype
 
-// Any is a struct for concurrent-safe operation for type any.
+// Any is a struct for concurrent-safe operation for type interface{}.
 type Any = Interface
 
-// NewAny creates and returns a concurrent-safe object for any type,
+// NewAny creates and returns a concurrent-safe object for interface{} type,
 // with given initial value `value`.
-func NewAny(value ...any) *Any {
+func NewAny(value ...interface{}) *Any {
 	t := &Any{}
 	if len(value) > 0 && value[0] != nil {
 		t.value.Store(value[0])

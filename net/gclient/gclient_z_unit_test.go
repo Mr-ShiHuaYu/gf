@@ -408,7 +408,7 @@ func Test_Client_Middleware(t *testing.T) {
 			if err != nil {
 				return nil, err
 			}
-			resp.Response.Body = io.NopCloser(bytes.NewBufferString(str2))
+			resp.Response.Body = ioutil.NopCloser(bytes.NewBufferString(str2))
 			str1 += "f"
 			return
 		})

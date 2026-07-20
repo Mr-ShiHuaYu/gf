@@ -24,25 +24,25 @@ type Pool struct {
 	list    *glist.List         // Available/idle items list.
 	closed  *gtype.Bool         // Whether the pool is closed.
 	TTL     time.Duration       // Time To Live for pool items.
-	NewFunc func() (any, error) // Callback function to create pool item.
+	NewFunc func() (interface{}, error) // Callback function to create pool item.
 	// ExpireFunc is the function for expired items destruction.
 	// This function needs to be defined when the pool items
 	// need to perform additional destruction operations.
 	// Eg: net.Conn, os.File, etc.
-	ExpireFunc func(any)
+	ExpireFunc func(interface{})
 }
 
 // Pool item.
 type poolItem struct {
-	value    any   // Item value.
+	value    interface{}   // Item value.
 	expireAt int64 // Expire timestamp in milliseconds.
 }
 
 // NewFunc Creation function for object.
-type NewFunc func() (any, error)
+type NewFunc func() (interface{}, error)
 
 // ExpireFunc Destruction function for object.
-type ExpireFunc func(any)
+type ExpireFunc func(interface{})
 
 // New creates and returns a new object pool.
 // To ensure execution efficiency, the expiration time cannot be modified once it is set.
@@ -66,7 +66,7 @@ func New(ttl time.Duration, newFunc NewFunc, expireFunc ...ExpireFunc) *Pool {
 }
 
 // Put puts an item to pool.
-func (p *Pool) Put(value any) error {
+func (p *Pool) Put(value interface{}) error {
 	if p.closed.Val() {
 		return gerror.NewCode(gcode.CodeInvalidOperation, "pool is closed")
 	}
@@ -84,8 +84,8 @@ func (p *Pool) Put(value any) error {
 	return nil
 }
 
-// MustPut puts an item to pool, it panics if any error occurs.
-func (p *Pool) MustPut(value any) {
+// MustPut puts an item to pool, it panics if interface{} error occurs.
+func (p *Pool) MustPut(value interface{}) {
 	if err := p.Put(value); err != nil {
 		panic(err)
 	}
@@ -108,7 +108,7 @@ func (p *Pool) Clear() {
 
 // Get picks and returns an item from pool. If the pool is empty and NewFunc is defined,
 // it creates and returns one from NewFunc.
-func (p *Pool) Get() (any, error) {
+func (p *Pool) Get() (interface{}, error) {
 	for !p.closed.Val() {
 		if r := p.list.PopFront(); r != nil {
 			f := r.(*poolItem)

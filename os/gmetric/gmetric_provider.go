@@ -34,27 +34,27 @@ type Meter interface {
 	ObservableGauge(name string, option MetricOption) (ObservableGauge, error)
 
 	// MustCounter creates and returns a new Counter.
-	// It panics if any error occurs.
+	// It panics if interface{} error occurs.
 	MustCounter(name string, option MetricOption) Counter
 
 	// MustUpDownCounter creates and returns a new UpDownCounter.
-	// It panics if any error occurs.
+	// It panics if interface{} error occurs.
 	MustUpDownCounter(name string, option MetricOption) UpDownCounter
 
 	// MustHistogram creates and returns a new Histogram.
-	// It panics if any error occurs.
+	// It panics if interface{} error occurs.
 	MustHistogram(name string, option MetricOption) Histogram
 
 	// MustObservableCounter creates and returns a new ObservableCounter.
-	// It panics if any error occurs.
+	// It panics if interface{} error occurs.
 	MustObservableCounter(name string, option MetricOption) ObservableCounter
 
 	// MustObservableUpDownCounter creates and returns a new ObservableUpDownCounter.
-	// It panics if any error occurs.
+	// It panics if interface{} error occurs.
 	MustObservableUpDownCounter(name string, option MetricOption) ObservableUpDownCounter
 
 	// MustObservableGauge creates and returns a new ObservableGauge.
-	// It panics if any error occurs.
+	// It panics if interface{} error occurs.
 	MustObservableGauge(name string, option MetricOption) ObservableGauge
 
 	// RegisterCallback registers callback on certain metrics.
@@ -62,7 +62,7 @@ type Meter interface {
 	// Multiple callbacks on the same component and version will be called by their registered sequence.
 	RegisterCallback(callback Callback, canBeCallbackMetrics ...ObservableMetric) error
 
-	// MustRegisterCallback performs as RegisterCallback, but it panics if any error occurs.
+	// MustRegisterCallback performs as RegisterCallback, but it panics if interface{} error occurs.
 	MustRegisterCallback(callback Callback, canBeCallbackMetrics ...ObservableMetric)
 }
 

@@ -12,7 +12,7 @@ import (
 
 // Go creates a new asynchronous goroutine function with specified recover function.
 //
-// The parameter `recoverFunc` is called when any panic during executing of `goroutineFunc`.
+// The parameter `recoverFunc` is called when interface{} panic during executing of `goroutineFunc`.
 // If `recoverFunc` is given nil, it ignores the panic from `goroutineFunc` and no panic will
 // throw to parent goroutine.
 //

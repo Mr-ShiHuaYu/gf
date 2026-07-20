@@ -21,9 +21,9 @@ import (
 // Example:
 // Fields("id", "name", "age")
 // Fields([]string{"id", "name", "age"})
-// Fields(map[string]any{"id":1, "name":"john", "age":18})
+// Fields(map[string]interface{}{"id":1, "name":"john", "age":18})
 // Fields(User{Id: 1, Name: "john", Age: 18}).
-func (m *Model) Fields(fieldNamesOrMapStruct ...any) *Model {
+func (m *Model) Fields(fieldNamesOrMapStruct ...interface{}) *Model {
 	length := len(fieldNamesOrMapStruct)
 	if length == 0 {
 		return m
@@ -37,7 +37,7 @@ func (m *Model) Fields(fieldNamesOrMapStruct ...any) *Model {
 }
 
 // FieldsPrefix performs as function Fields but add extra prefix for each field.
-func (m *Model) FieldsPrefix(prefixOrAlias string, fieldNamesOrMapStruct ...any) *Model {
+func (m *Model) FieldsPrefix(prefixOrAlias string, fieldNamesOrMapStruct ...interface{}) *Model {
 	fields := m.filterFieldsFrom(
 		m.getTableNameByPrefixOrAlias(prefixOrAlias),
 		fieldNamesOrMapStruct...,
@@ -60,13 +60,13 @@ func (m *Model) FieldsPrefix(prefixOrAlias string, fieldNamesOrMapStruct ...any)
 // Example:
 // FieldsEx("id", "name", "age")
 // FieldsEx([]string{"id", "name", "age"})
-// FieldsEx(map[string]any{"id":1, "name":"john", "age":18})
+// FieldsEx(map[string]interface{}{"id":1, "name":"john", "age":18})
 // FieldsEx(User{Id: 1, Name: "john", Age: 18}).
-func (m *Model) FieldsEx(fieldNamesOrMapStruct ...any) *Model {
+func (m *Model) FieldsEx(fieldNamesOrMapStruct ...interface{}) *Model {
 	return m.doFieldsEx(m.tablesInit, fieldNamesOrMapStruct...)
 }
 
-func (m *Model) doFieldsEx(table string, fieldNamesOrMapStruct ...any) *Model {
+func (m *Model) doFieldsEx(table string, fieldNamesOrMapStruct ...interface{}) *Model {
 	length := len(fieldNamesOrMapStruct)
 	if length == 0 {
 		return m
@@ -81,7 +81,7 @@ func (m *Model) doFieldsEx(table string, fieldNamesOrMapStruct ...any) *Model {
 }
 
 // FieldsExPrefix performs as function FieldsEx but add extra prefix for each field.
-func (m *Model) FieldsExPrefix(prefixOrAlias string, fieldNamesOrMapStruct ...any) *Model {
+func (m *Model) FieldsExPrefix(prefixOrAlias string, fieldNamesOrMapStruct ...interface{}) *Model {
 	model := m.doFieldsEx(
 		m.getTableNameByPrefixOrAlias(prefixOrAlias),
 		fieldNamesOrMapStruct...,
@@ -222,7 +222,7 @@ func (m *Model) HasField(field string) (bool, error) {
 }
 
 // getFieldsFrom retrieves, filters and returns fields name from table `table`.
-func (m *Model) filterFieldsFrom(table string, fieldNamesOrMapStruct ...any) []any {
+func (m *Model) filterFieldsFrom(table string, fieldNamesOrMapStruct ...interface{}) []interface{} {
 	length := len(fieldNamesOrMapStruct)
 	if length == 0 {
 		return nil
@@ -239,13 +239,13 @@ func (m *Model) filterFieldsFrom(table string, fieldNamesOrMapStruct ...any) []a
 		structOrMap := fieldNamesOrMapStruct[0]
 		switch r := structOrMap.(type) {
 		case string:
-			return m.mappingAndFilterToTableFields(table, []any{r}, false)
+			return m.mappingAndFilterToTableFields(table, []interface{}{r}, false)
 
 		case []string:
 			return m.mappingAndFilterToTableFields(table, gconv.Interfaces(r), true)
 
 		case Raw, *Raw:
-			return []any{structOrMap}
+			return []interface{}{structOrMap}
 
 		default:
 			return m.mappingAndFilterToTableFields(table, getFieldsFromStructOrMap(structOrMap), true)
@@ -256,7 +256,7 @@ func (m *Model) filterFieldsFrom(table string, fieldNamesOrMapStruct ...any) []a
 	}
 }
 
-func (m *Model) appendToFields(fields ...any) *Model {
+func (m *Model) appendToFields(fields ...interface{}) *Model {
 	if len(fields) == 0 {
 		return m
 	}

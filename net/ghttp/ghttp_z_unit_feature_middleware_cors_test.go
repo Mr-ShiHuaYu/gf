@@ -36,7 +36,7 @@ func Test_Middleware_CORS1(t *testing.T) {
 		t.Assert(client.GetContent(ctx, "/"), "Not Found")
 		t.Assert(client.GetContent(ctx, "/api.v2"), "Not Found")
 
-		// GET request does not any route.
+		// GET request does not interface{} route.
 		resp, err := client.Get(ctx, "/api.v2/user/list")
 		t.AssertNil(err)
 		t.Assert(len(resp.Header["Access-Control-Allow-Headers"]), 0)

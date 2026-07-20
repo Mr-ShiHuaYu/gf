@@ -16,7 +16,7 @@ package gconv
 //
 // The `paramKeyToAttrMap` parameter is used for mapping between attribute names and parameter keys.
 // TODO: change `paramKeyToAttrMap` to `ScanOption` to be more scalable; add `DeepCopy` option for `ScanOption`.
-func Scan(srcValue any, dstPointer any, paramKeyToAttrMap ...map[string]string) (err error) {
+func Scan(srcValue interface{}, dstPointer interface{}, paramKeyToAttrMap ...map[string]string) (err error) {
 	option := ScanOption{
 		ContinueOnError: true,
 	}

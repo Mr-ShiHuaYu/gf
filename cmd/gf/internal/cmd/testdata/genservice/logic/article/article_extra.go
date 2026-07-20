@@ -63,14 +63,14 @@ func (s *sArticle) T3(ctx context.Context, b *gdbas.Model) (c, d *gdbas.Model, e
  * random comment
  */
 
-// func (s *sArticle) T4(i any) any
+// func (s *sArticle) T4(i interface{}) interface{}
 // # $ % ^ & * ( ) _ + - = { } | [ ] \ : " ; ' < > ? , . /
-func (s *sArticle) T4(i any) any {
+func (s *sArticle) T4(i interface{}) interface{} {
 	return nil
 }
 
 /**
- * func (s *sArticle) T4(i any) any {
+ * func (s *sArticle) T4(i interface{}) interface{} {
  * 		return nil
  * }
  */

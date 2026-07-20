@@ -164,7 +164,7 @@ func LoadKeyCrt(crtFile, keyFile string) (*tls.Config, error) {
 	return tlsConfig, nil
 }
 
-// MustGetFreePort performs as GetFreePort, but it panics is any error occurs.
+// MustGetFreePort performs as GetFreePort, but it panics is interface{} error occurs.
 func MustGetFreePort() int {
 	port, err := GetFreePort()
 	if err != nil {

@@ -67,7 +67,7 @@ func (w *Writer) IsHijacked() bool {
 	return w.hijacked
 }
 
-// Flush sends any buffered data to the client.
+// Flush sends interface{} buffered data to the client.
 func (w *Writer) Flush() {
 	flusher, ok := w.ResponseWriter.(http.Flusher)
 	if ok {

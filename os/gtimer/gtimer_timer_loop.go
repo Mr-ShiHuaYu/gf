@@ -36,7 +36,7 @@ func (t *Timer) loop() {
 
 // proceed function proceeds the timer job checking and running logic.
 func (t *Timer) proceed(currentTimerTicks int64) {
-	var value any
+	var value interface{}
 	for {
 		value = t.queue.Pop()
 		if value == nil {

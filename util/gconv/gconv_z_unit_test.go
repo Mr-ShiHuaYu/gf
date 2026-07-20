@@ -15,13 +15,13 @@ import (
 
 type impUnmarshalValue struct{}
 
-func (*impUnmarshalValue) UnmarshalValue(any) error {
+func (*impUnmarshalValue) UnmarshalValue(interface{}) error {
 	return nil
 }
 
 func TestIUnmarshalValue(t *testing.T) {
 	gtest.C(t, func(t *gtest.T) {
-		var v any = &impUnmarshalValue{}
+		var v interface{} = &impUnmarshalValue{}
 		_, ok := (v).(gconv.IUnmarshalValue)
 		t.AssertEQ(ok, true)
 	})

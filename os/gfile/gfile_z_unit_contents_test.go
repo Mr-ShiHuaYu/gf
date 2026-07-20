@@ -7,6 +7,7 @@
 package gfile_test
 
 import (
+	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -127,7 +128,7 @@ func Test_PutContents(t *testing.T) {
 		err = gfile.PutContents(testpath()+filepaths, "test!")
 		t.AssertNil(err)
 
-		readcontent, err = os.ReadFile(testpath() + filepaths)
+		readcontent, err = ioutil.ReadFile(testpath() + filepaths)
 		t.AssertNil(err)
 		t.Assert(string(readcontent), "test!")
 
@@ -150,7 +151,7 @@ func Test_PutContentsAppend(t *testing.T) {
 		err = gfile.PutContentsAppend(testpath()+filepaths, "hello")
 		t.AssertNil(err)
 
-		readcontent, err = os.ReadFile(testpath() + filepaths)
+		readcontent, err = ioutil.ReadFile(testpath() + filepaths)
 		t.AssertNil(err)
 		t.Assert(string(readcontent), "ahello")
 
@@ -174,7 +175,7 @@ func Test_PutBinContents(t *testing.T) {
 		err = gfile.PutBytes(testpath()+filepaths, []byte("test!!"))
 		t.AssertNil(err)
 
-		readcontent, err = os.ReadFile(testpath() + filepaths)
+		readcontent, err = ioutil.ReadFile(testpath() + filepaths)
 		t.AssertNil(err)
 		t.Assert(string(readcontent), "test!!")
 
@@ -196,7 +197,7 @@ func Test_PutBinContentsAppend(t *testing.T) {
 		err = gfile.PutBytesAppend(testpath()+filepaths, []byte("word"))
 		t.AssertNil(err)
 
-		readcontent, err = os.ReadFile(testpath() + filepaths)
+		readcontent, err = ioutil.ReadFile(testpath() + filepaths)
 		t.AssertNil(err)
 		t.Assert(string(readcontent), "test!!word")
 

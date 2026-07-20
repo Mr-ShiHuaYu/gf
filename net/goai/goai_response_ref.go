@@ -26,8 +26,8 @@ type Responses map[string]ResponseRef
 
 // object could be someObject.Interface()
 // There may be some difference between someObject.Type() and reflect.TypeOf(object).
-func (oai *OpenApiV3) getResponseFromObject(data any, isDefault bool) (*Response, error) {
-	var object any
+func (oai *OpenApiV3) getResponseFromObject(data interface{}, isDefault bool) (*Response, error) {
+	var object interface{}
 	enhancedResponse, isEnhanced := data.(EnhancedStatusType)
 	if isEnhanced {
 		object = enhancedResponse.Response
@@ -68,7 +68,7 @@ func (oai *OpenApiV3) getResponseFromObject(data any, isDefault bool) (*Response
 		refInput.CommonResponseDataField = ""
 	}
 
-	// If it is not default status, check if it has any fields.
+	// If it is not default status, check if it has interface{} fields.
 	// If so, it would override the common response.
 	if !isDefault {
 		fields, _ := gstructs.Fields(gstructs.FieldsInput{
@@ -125,7 +125,7 @@ func (r ResponseRef) MarshalJSON() ([]byte, error) {
 
 type getResponseSchemaRefInput struct {
 	BusinessStructName      string // The business struct name.
-	CommonResponseObject    any    // Common response object.
+	CommonResponseObject    interface{}    // Common response object.
 	CommonResponseDataField string // Common response data field.
 }
 

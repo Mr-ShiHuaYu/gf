@@ -6,22 +6,22 @@
 
 package gconv
 
-// Map converts any variable `value` to map[string]any. If the parameter `value` is not a
+// Map converts interface{} variable `value` to map[string]interface{}. If the parameter `value` is not a
 // map/struct/*struct type, then the conversion will fail and returns nil.
 //
 // If `value` is a struct/*struct object, the second parameter `priorityTagAndFieldName` specifies the most priority
 // priorityTagAndFieldName that will be detected, otherwise it detects the priorityTagAndFieldName in order of:
 // gconv, json, field name.
-func Map(value any, option ...MapOption) map[string]any {
+func Map(value interface{}, option ...MapOption) map[string]interface{} {
 	result, _ := defaultConverter.Map(value, getUsedMapOption(option...))
 	return result
 }
 
 // MapDeep does Map function recursively, which means if the attribute of `value`
 // is also a struct/*struct, calls Map function on this attribute converting it to
-// a map[string]any type variable.
+// a map[string]interface{} type variable.
 // Deprecated: used Map instead.
-func MapDeep(value any, tags ...string) map[string]any {
+func MapDeep(value interface{}, tags ...string) map[string]interface{} {
 	result, _ := defaultConverter.Map(value, MapOption{
 		Deep:            true,
 		OmitEmpty:       false,
@@ -33,7 +33,7 @@ func MapDeep(value any, tags ...string) map[string]any {
 
 // MapStrStr converts `value` to map[string]string.
 // Note that there might be data copy for this map type converting.
-func MapStrStr(value any, option ...MapOption) map[string]string {
+func MapStrStr(value interface{}, option ...MapOption) map[string]string {
 	result, _ := defaultConverter.MapStrStr(value, getUsedMapOption(option...))
 	return result
 }
@@ -41,7 +41,7 @@ func MapStrStr(value any, option ...MapOption) map[string]string {
 // MapStrStrDeep converts `value` to map[string]string recursively.
 // Note that there might be data copy for this map type converting.
 // Deprecated: used MapStrStr instead.
-func MapStrStrDeep(value any, tags ...string) map[string]string {
+func MapStrStrDeep(value interface{}, tags ...string) map[string]string {
 	if r, ok := value.(map[string]string); ok {
 		return r
 	}

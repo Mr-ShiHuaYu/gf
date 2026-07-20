@@ -7,8 +7,8 @@
 package gclient
 
 import (
+	"io/ioutil"
 	"bytes"
-	"io"
 	"net/http"
 
 	"github.com/gogf/gf/v2/internal/intlog"
@@ -57,7 +57,7 @@ func (r *Response) ReadAll() []byte {
 	if r == nil || r.Response == nil {
 		return []byte{}
 	}
-	body, err := io.ReadAll(r.Body)
+	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		intlog.Errorf(r.request.Context(), `%+v`, err)
 		return nil
@@ -73,7 +73,7 @@ func (r *Response) ReadAllString() string {
 // SetBodyContent overwrites response content with custom one.
 func (r *Response) SetBodyContent(content []byte) {
 	buffer := bytes.NewBuffer(content)
-	r.Body = io.NopCloser(buffer)
+	r.Body = ioutil.NopCloser(buffer)
 	r.ContentLength = int64(buffer.Len())
 }
 

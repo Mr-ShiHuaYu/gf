@@ -20,11 +20,11 @@ func ExampleNew() {
 	}
 
 	dbConnPool := gpool.New(time.Hour,
-		func() (any, error) {
+		func() (interface{}, error) {
 			dbConn := new(DBConn)
 			return dbConn, nil
 		},
-		func(i any) {
+		func(i interface{}) {
 			// sample : close db conn
 			// i.(DBConn).Conn.Close()
 		})
@@ -42,12 +42,12 @@ func ExamplePool_Put() {
 	}
 
 	dbConnPool := gpool.New(time.Hour,
-		func() (any, error) {
+		func() (interface{}, error) {
 			dbConn := new(DBConn)
 			dbConn.Limit = 10
 			return dbConn, nil
 		},
-		func(i any) {
+		func(i interface{}) {
 			// sample : close db conn
 			// i.(DBConn).Conn.Close()
 		})
@@ -76,12 +76,12 @@ func ExamplePool_Clear() {
 	}
 
 	dbConnPool := gpool.New(time.Hour,
-		func() (any, error) {
+		func() (interface{}, error) {
 			dbConn := new(DBConn)
 			dbConn.Limit = 10
 			return dbConn, nil
 		},
-		func(i any) {
+		func(i interface{}) {
 			i.(*DBConn).Limit = 0
 			// sample : close db conn
 			// i.(DBConn).Conn.Close()
@@ -106,12 +106,12 @@ func ExamplePool_Get() {
 	}
 
 	dbConnPool := gpool.New(time.Hour,
-		func() (any, error) {
+		func() (interface{}, error) {
 			dbConn := new(DBConn)
 			dbConn.Limit = 10
 			return dbConn, nil
 		},
-		func(i any) {
+		func(i interface{}) {
 			// sample : close db conn
 			// i.(DBConn).Conn.Close()
 		})
@@ -132,12 +132,12 @@ func ExamplePool_Size() {
 	}
 
 	dbConnPool := gpool.New(time.Hour,
-		func() (any, error) {
+		func() (interface{}, error) {
 			dbConn := new(DBConn)
 			dbConn.Limit = 10
 			return dbConn, nil
 		},
-		func(i any) {
+		func(i interface{}) {
 			// sample : close db conn
 			// i.(DBConn).Conn.Close()
 		})
@@ -159,12 +159,12 @@ func ExamplePool_Close() {
 		Limit int
 	}
 	var (
-		newFunc = func() (any, error) {
+		newFunc = func() (interface{}, error) {
 			dbConn := new(DBConn)
 			dbConn.Limit = 10
 			return dbConn, nil
 		}
-		closeFunc = func(i any) {
+		closeFunc = func(i interface{}) {
 			fmt.Println("Close The Pool")
 			// sample : close db conn
 			// i.(DBConn).Conn.Close()

@@ -19,7 +19,7 @@ type OriginValueAndKindOutput struct {
 }
 
 // OriginValueAndKind retrieves and returns the original reflect value and kind.
-func OriginValueAndKind(value any) (out OriginValueAndKindOutput) {
+func OriginValueAndKind(value interface{}) (out OriginValueAndKindOutput) {
 	if v, ok := value.(reflect.Value); ok {
 		out.InputValue = v
 	} else {
@@ -28,7 +28,7 @@ func OriginValueAndKind(value any) (out OriginValueAndKindOutput) {
 	out.InputKind = out.InputValue.Kind()
 	out.OriginValue = out.InputValue
 	out.OriginKind = out.InputKind
-	for out.OriginKind == reflect.Pointer {
+	for out.OriginKind == reflect.Ptr {
 		out.OriginValue = out.OriginValue.Elem()
 		out.OriginKind = out.OriginValue.Kind()
 	}
@@ -43,7 +43,7 @@ type OriginTypeAndKindOutput struct {
 }
 
 // OriginTypeAndKind retrieves and returns the original reflect type and kind.
-func OriginTypeAndKind(value any) (out OriginTypeAndKindOutput) {
+func OriginTypeAndKind(value interface{}) (out OriginTypeAndKindOutput) {
 	if value == nil {
 		return
 	}
@@ -59,7 +59,7 @@ func OriginTypeAndKind(value any) (out OriginTypeAndKindOutput) {
 	out.InputKind = out.InputType.Kind()
 	out.OriginType = out.InputType
 	out.OriginKind = out.InputKind
-	for out.OriginKind == reflect.Pointer {
+	for out.OriginKind == reflect.Ptr {
 		out.OriginType = out.OriginType.Elem()
 		out.OriginKind = out.OriginType.Kind()
 	}
@@ -67,7 +67,7 @@ func OriginTypeAndKind(value any) (out OriginTypeAndKindOutput) {
 }
 
 // ValueToInterface converts reflect value to its interface type.
-func ValueToInterface(v reflect.Value) (value any, ok bool) {
+func ValueToInterface(v reflect.Value) (value interface{}, ok bool) {
 	if v.IsValid() && v.CanInterface() {
 		return v.Interface(), true
 	}
@@ -84,11 +84,50 @@ func ValueToInterface(v reflect.Value) (value any, ok bool) {
 		return v.Complex(), true
 	case reflect.String:
 		return v.String(), true
-	case reflect.Pointer:
+	case reflect.Ptr:
 		return ValueToInterface(v.Elem())
 	case reflect.Interface:
 		return ValueToInterface(v.Elem())
 	default:
 		return nil, false
+	}
+}
+
+// IsZero reports whether v is the zero value.
+// This is a compatibility function for Go < 1.13.
+func IsZero(v reflect.Value) bool {
+	switch v.Kind() {
+	case reflect.Bool:
+		return !v.Bool()
+	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+		return v.Int() == 0
+	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64, reflect.Uintptr:
+		return v.Uint() == 0
+	case reflect.Float32, reflect.Float64:
+		return v.Float() == 0
+	case reflect.Complex64, reflect.Complex128:
+		return v.Complex() == complex(0, 0)
+	case reflect.String:
+		return v.Len() == 0
+	case reflect.Chan, reflect.Func, reflect.Interface, reflect.Map, reflect.Ptr, reflect.Slice:
+		return v.IsNil()
+	case reflect.Array:
+		for i := 0; i < v.Len(); i++ {
+			if !IsZero(v.Index(i)) {
+				return false
+			}
+		}
+		return true
+	case reflect.Struct:
+		for i := 0; i < v.NumField(); i++ {
+			if !IsZero(v.Field(i)) {
+				return false
+			}
+		}
+		return true
+	case reflect.Invalid:
+		return true
+	default:
+		return false
 	}
 }

@@ -36,7 +36,7 @@ const (
 // Copied from encoding/json/tables.go.
 //
 // safeSet holds the value true if the ASCII character with the given array
-// position can be represented inside a JSON string without any further
+// position can be represented inside a JSON string without interface{} further
 // escaping.
 //
 // All values are true except for the ASCII control characters (0-31), the
@@ -196,11 +196,11 @@ func (buf *structuredBuffer) Bytes() []byte {
 	}
 	contentBytes := buf.buffer.Bytes()
 	buf.buffer.Reset()
-	contentBytes = bytes.ReplaceAll(contentBytes, []byte{'\n'}, []byte{' '})
+	contentBytes = bytes.Replace(contentBytes, []byte{'\n'}, []byte{' '}, -1)
 	return contentBytes
 }
 
-func (buf *structuredBuffer) addValue(k, v any) {
+func (buf *structuredBuffer) addValue(k, v interface{}) {
 	var (
 		ks = gconv.String(k)
 		vs = gconv.String(v)

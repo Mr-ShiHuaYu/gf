@@ -55,7 +55,7 @@ func Test_Router_ExitHook(t *testing.T) {
 			r.Response.Write("1")
 		},
 	})
-	s.BindHookHandlerByMap("/priority/*any", map[ghttp.HookName]ghttp.HandlerFunc{
+	s.BindHookHandlerByMap("/priority/*interface{}", map[ghttp.HookName]ghttp.HandlerFunc{
 		ghttp.HookBeforeServe: func(r *ghttp.Request) {
 			r.Response.Write("2")
 		},
@@ -91,7 +91,7 @@ func Test_Router_ExitAll(t *testing.T) {
 			r.Response.Write("1")
 		},
 	})
-	s.BindHookHandlerByMap("/priority/*any", map[ghttp.HookName]ghttp.HandlerFunc{
+	s.BindHookHandlerByMap("/priority/*interface{}", map[ghttp.HookName]ghttp.HandlerFunc{
 		ghttp.HookBeforeServe: func(r *ghttp.Request) {
 			r.Response.Write("2")
 		},

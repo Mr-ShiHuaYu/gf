@@ -95,7 +95,7 @@ func Test_Router_Hook_Priority(t *testing.T) {
 			r.Response.Write("1")
 		},
 	})
-	s.BindHookHandlerByMap("/priority/*any", map[ghttp.HookName]ghttp.HandlerFunc{
+	s.BindHookHandlerByMap("/priority/*interface{}", map[ghttp.HookName]ghttp.HandlerFunc{
 		ghttp.HookBeforeServe: func(r *ghttp.Request) {
 			r.Response.Write("2")
 		},
@@ -116,7 +116,7 @@ func Test_Router_Hook_Priority(t *testing.T) {
 
 		t.Assert(client.GetContent(ctx, "/"), "Not Found")
 		t.Assert(client.GetContent(ctx, "/priority/show"), "312show")
-		t.Assert(client.GetContent(ctx, "/priority/any/any"), "2")
+		t.Assert(client.GetContent(ctx, "/priority/interface{}/interface{}"), "2")
 		t.Assert(client.GetContent(ctx, "/priority/name"), "12")
 	})
 }

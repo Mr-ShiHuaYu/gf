@@ -79,7 +79,7 @@ func doZipPathWriter(srcPath string, zipWriter *zip.Writer, option ...Option) er
 			headerPrefix = gfile.Basename(absolutePath)
 		}
 	}
-	headerPrefix = strings.ReplaceAll(headerPrefix, `//`, `/`)
+	headerPrefix = strings.Replace(headerPrefix, `//`, `/`, -1)
 	for _, file := range files {
 		// It here calculates the file name prefix, especially packing the directory.
 		// Eg:
@@ -104,7 +104,7 @@ func doZipPathWriter(srcPath string, zipWriter *zip.Writer, option ...Option) er
 			tmpPath = headerPrefix
 		)
 		for {
-			name = strings.ReplaceAll(gfile.Basename(tmpPath), `\`, `/`)
+			name = strings.Replace(gfile.Basename(tmpPath), `\`, `/`, -1)
 			err = zipFileVirtual(fileinfo.New(name, 0, os.ModeDir|os.ModePerm, time.Now()), tmpPath, zipWriter)
 			if err != nil {
 				return err
@@ -121,7 +121,7 @@ func doZipPathWriter(srcPath string, zipWriter *zip.Writer, option ...Option) er
 // zipFile compresses the file of given `path` and writes the content to `zw`.
 // The parameter `prefix` indicates the path prefix for zip file.
 func zipFile(path string, prefix string, zw *zip.Writer) error {
-	prefix = strings.ReplaceAll(prefix, `//`, `/`)
+	prefix = strings.Replace(prefix, `//`, `/`, -1)
 	file, err := os.Open(path)
 	if err != nil {
 		return gerror.Wrapf(err, `os.Open failed for path "%s"`, path)
@@ -178,7 +178,7 @@ func createFileHeader(info os.FileInfo, prefix string) (*zip.FileHeader, error) 
 	}
 	if len(prefix) > 0 {
 		header.Name = prefix + `/` + header.Name
-		header.Name = strings.ReplaceAll(header.Name, `\`, `/`)
+		header.Name = strings.Replace(header.Name, `\`, `/`, -1)
 		header.Name, _ = gregex.ReplaceString(`/{2,}`, `/`, header.Name)
 	}
 	return header, nil

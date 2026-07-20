@@ -7,6 +7,7 @@
 package gclient
 
 import (
+	"time"
 	"crypto/tls"
 	"net/http"
 	"net/http/httptrace"
@@ -123,7 +124,7 @@ func (ct *clientTracerMetrics) ConnectStart(network, addr string) {
 // enabled, this may be called multiple times.
 func (ct *clientTracerMetrics) ConnectDone(network, addr string, err error) {
 	var (
-		duration       = float64(gtime.Now().Sub(ct.ConnectStartTime).Milliseconds())
+		duration       = float64(int64(gtime.Now().Sub(ct.ConnectStartTime) / time.Millisecond))
 		durationOption = metricManager.GetMetricOptionForHistogram(ct.Request)
 	)
 	metricManager.HttpClientConnectionDuration.Record(
@@ -169,7 +170,7 @@ func (ct *clientTracerMetrics) Wait100Continue() {
 }
 
 // WroteRequest is called with the result of writing the
-// request and any body. It may be called multiple times
+// request and interface{} body. It may be called multiple times
 // in the case of retried requests.
 func (ct *clientTracerMetrics) WroteRequest(info httptrace.WroteRequestInfo) {
 	ct.ClientTrace.WroteRequest(info)

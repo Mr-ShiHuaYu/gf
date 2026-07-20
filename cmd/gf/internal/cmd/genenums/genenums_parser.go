@@ -113,12 +113,12 @@ func (p *EnumsParser) ParsePackage(pkg *packages.Package) {
 }
 
 func (p *EnumsParser) Export() string {
-	var typeEnumMap = make(map[string][]any)
+	var typeEnumMap = make(map[string][]interface{})
 	for _, enum := range p.enums {
 		if typeEnumMap[enum.Type] == nil {
-			typeEnumMap[enum.Type] = make([]any, 0)
+			typeEnumMap[enum.Type] = make([]interface{}, 0)
 		}
-		var value any
+		var value interface{}
 		switch enum.Kind {
 		case constant.Int:
 			value = gconv.Int64(enum.Value)

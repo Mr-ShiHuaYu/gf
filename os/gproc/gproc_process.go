@@ -143,7 +143,7 @@ func (p *Process) Send(data []byte) error {
 	return gerror.NewCode(gcode.CodeInvalidParameter, "invalid process")
 }
 
-// Release releases any resources associated with the Process p,
+// Release releases interface{} resources associated with the Process p,
 // rendering it unusable in the future.
 // Release only needs to be called if Wait is not.
 func (p *Process) Release() error {

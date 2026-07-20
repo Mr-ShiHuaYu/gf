@@ -14,6 +14,7 @@ import (
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/internal/empty"
 	"github.com/gogf/gf/v2/internal/json"
+	"github.com/gogf/gf/v2/internal/reflection"
 	"github.com/gogf/gf/v2/internal/utils"
 	"github.com/gogf/gf/v2/util/gconv/internal/localinterface"
 	"github.com/gogf/gf/v2/util/gconv/internal/structcache"
@@ -39,8 +40,8 @@ func (c *Converter) getStructOption(option ...StructOption) StructOption {
 	return StructOption{}
 }
 
-// Struct is the core internal converting function for any data to struct.
-func (c *Converter) Struct(params, pointer any, option ...StructOption) (err error) {
+// Struct is the core internal converting function for interface{} data to struct.
+func (c *Converter) Struct(params, pointer interface{}, option ...StructOption) (err error) {
 	if params == nil {
 		// If `params` is nil, no conversion.
 		return nil
@@ -72,7 +73,7 @@ func (c *Converter) Struct(params, pointer any, option ...StructOption) (err err
 	var (
 		structOption            = c.getStructOption(option...)
 		paramsReflectValue      reflect.Value
-		paramsInterface         any // DO NOT use `params` directly as it might be type `reflect.Value`
+		paramsInterface         interface{} // DO NOT use `params` directly as it might be type `reflect.Value`
 		pointerReflectValue     reflect.Value
 		pointerReflectKind      reflect.Kind
 		pointerElemReflectValue reflect.Value // The reflection value to struct element.
@@ -89,14 +90,14 @@ func (c *Converter) Struct(params, pointer any, option ...StructOption) (err err
 	} else {
 		pointerReflectValue = reflect.ValueOf(pointer)
 		pointerReflectKind = pointerReflectValue.Kind()
-		if pointerReflectKind != reflect.Pointer {
+		if pointerReflectKind != reflect.Ptr {
 			return gerror.NewCodef(
 				gcode.CodeInvalidParameter,
 				"destination pointer should be type of '*struct', but got '%v'",
 				pointerReflectKind,
 			)
 		}
-		// Using IsNil on reflect.Pointer variable is OK.
+		// Using IsNil on reflect.Ptr variable is OK.
 		if !pointerReflectValue.IsValid() || pointerReflectValue.IsNil() {
 			return gerror.NewCode(
 				gcode.CodeInvalidParameter,
@@ -128,7 +129,7 @@ func (c *Converter) Struct(params, pointer any, option ...StructOption) (err err
 
 	// It automatically creates struct object if necessary.
 	// For example, if `pointer` is **User, then `elem` is *User, which is a pointer to User.
-	if pointerElemReflectValue.Kind() == reflect.Pointer {
+	if pointerElemReflectValue.Kind() == reflect.Ptr {
 		if !pointerElemReflectValue.IsValid() || pointerElemReflectValue.IsNil() {
 			e := reflect.New(pointerElemReflectValue.Type().Elem())
 			pointerElemReflectValue.Set(e)
@@ -149,9 +150,9 @@ func (c *Converter) Struct(params, pointer any, option ...StructOption) (err err
 		// Retrieve its element, may be struct at last.
 		pointerElemReflectValue = pointerElemReflectValue.Elem()
 	}
-	paramsMap, ok := paramsInterface.(map[string]any)
+	paramsMap, ok := paramsInterface.(map[string]interface{})
 	if !ok {
-		// paramsMap is the map[string]any type variable for params.
+		// paramsMap is the map[string]interface{} type variable for params.
 		// DO NOT use MapDeep here.
 		paramsMap, err = c.doMapConvert(paramsInterface, RecursiveTypeAuto, true, MapOption{
 			ContinueOnError: structOption.ContinueOnError,
@@ -162,7 +163,7 @@ func (c *Converter) Struct(params, pointer any, option ...StructOption) (err err
 		if paramsMap == nil {
 			return gerror.NewCodef(
 				gcode.CodeInvalidParameter,
-				`convert params from "%#v" to "map[string]any" failed`,
+				`convert params from "%#v" to "map[string]interface{}" failed`,
 				params,
 			)
 		}
@@ -188,7 +189,7 @@ func (c *Converter) Struct(params, pointer any, option ...StructOption) (err err
 		// Indicates that those values have been used and cannot be reused.
 		usedParamsKeyOrTagNameMap = structcache.GetUsedParamsKeyOrTagNameMapFromPool()
 		cachedFieldInfo           *structcache.CachedFieldInfo
-		paramsValue               any
+		paramsValue               interface{}
 	)
 	defer structcache.PutUsedParamsKeyOrTagNameMapToPool(usedParamsKeyOrTagNameMap)
 
@@ -233,7 +234,7 @@ func (c *Converter) Struct(params, pointer any, option ...StructOption) (err err
 
 func (c *Converter) setOtherSameNameField(
 	cachedFieldInfo *structcache.CachedFieldInfo,
-	srcValue any,
+	srcValue interface{},
 	structValue reflect.Value,
 	option StructOption,
 ) (err error) {
@@ -248,7 +249,7 @@ func (c *Converter) setOtherSameNameField(
 }
 
 func (c *Converter) bindStructWithLoopFieldInfos(
-	paramsMap map[string]any,
+	paramsMap map[string]interface{},
 	structValue reflect.Value,
 	usedParamsKeyOrTagNameMap map[string]struct{},
 	cachedStructInfo *structcache.CachedStructInfo,
@@ -259,7 +260,7 @@ func (c *Converter) bindStructWithLoopFieldInfos(
 		fuzzLastKey     string
 		fieldValue      reflect.Value
 		paramKey        string
-		paramValue      any
+		paramValue      interface{}
 		matched         bool
 		ok              bool
 	)
@@ -326,9 +327,9 @@ func (c *Converter) bindStructWithLoopFieldInfos(
 // to match field name and param key in case-insensitive and without symbols.
 func fuzzyMatchingFieldName(
 	fieldName string,
-	paramsMap map[string]any,
+	paramsMap map[string]interface{},
 	usedParamsKeyMap map[string]struct{},
-) (string, any) {
+) (string, interface{}) {
 	for paramKey, paramValue := range paramsMap {
 		if _, ok := usedParamsKeyMap[paramKey]; ok {
 			continue
@@ -346,7 +347,7 @@ func fuzzyMatchingFieldName(
 func (c *Converter) bindVarToStructField(
 	cachedFieldInfo *structcache.CachedFieldInfo,
 	fieldValue reflect.Value,
-	srcValue any,
+	srcValue interface{},
 	option StructOption,
 ) (err error) {
 	if !fieldValue.IsValid() {
@@ -408,9 +409,9 @@ func (c *Converter) bindVarToStructField(
 }
 
 // bindVarToReflectValueWithInterfaceCheck does bind using common interfaces checks.
-func bindVarToReflectValueWithInterfaceCheck(reflectValue reflect.Value, value any) (bool, error) {
-	var pointer any
-	if reflectValue.Kind() != reflect.Pointer && reflectValue.CanAddr() {
+func bindVarToReflectValueWithInterfaceCheck(reflectValue reflect.Value, value interface{}) (bool, error) {
+	var pointer interface{}
+	if reflectValue.Kind() != reflect.Ptr && reflectValue.CanAddr() {
 		reflectValueAddr := reflectValue.Addr()
 		if reflectValueAddr.IsNil() || !reflectValueAddr.IsValid() {
 			return false, nil
@@ -472,7 +473,7 @@ func bindVarToReflectValueWithInterfaceCheck(reflectValue reflect.Value, value a
 }
 
 // bindVarToReflectValue sets `value` to reflect value object `structFieldValue`.
-func (c *Converter) bindVarToReflectValue(structFieldValue reflect.Value, value any, option StructOption) (err error) {
+func (c *Converter) bindVarToReflectValue(structFieldValue reflect.Value, value interface{}, option StructOption) (err error) {
 	// JSON content converting.
 	ok, err := c.doConvertWithJSONCheck(value, structFieldValue)
 	if err != nil {
@@ -485,7 +486,7 @@ func (c *Converter) bindVarToReflectValue(structFieldValue reflect.Value, value 
 	kind := structFieldValue.Kind()
 	// Converting using `Set` interface implements, for some types.
 	switch kind {
-	case reflect.Slice, reflect.Array, reflect.Pointer, reflect.Interface:
+	case reflect.Slice, reflect.Array, reflect.Ptr, reflect.Interface:
 		if !structFieldValue.IsNil() {
 			if v, ok := structFieldValue.Interface().(localinterface.ISet); ok {
 				v.Set(value)
@@ -536,7 +537,7 @@ func (c *Converter) bindVarToReflectValue(structFieldValue reflect.Value, value 
 						elemTypeName = elemType.String()
 					}
 					var elem reflect.Value
-					if elemType.Kind() == reflect.Pointer {
+					if elemType.Kind() == reflect.Ptr {
 						elem = reflect.New(elemType.Elem()).Elem()
 					} else {
 						elem = reflect.New(elemType).Elem()
@@ -559,7 +560,7 @@ func (c *Converter) bindVarToReflectValue(structFieldValue reflect.Value, value 
 							return err
 						}
 					}
-					if elemType.Kind() == reflect.Pointer {
+					if elemType.Kind() == reflect.Ptr {
 						// Before it sets the `elem` to array, do pointer converting if necessary.
 						elem = elem.Addr()
 					}
@@ -576,10 +577,10 @@ func (c *Converter) bindVarToReflectValue(structFieldValue reflect.Value, value 
 			switch reflectValue.Kind() {
 			case reflect.String:
 				// Value is empty string.
-				if reflectValue.IsZero() {
+				if reflection.IsZero(reflectValue) {
 					var elemKind = elemType.Kind()
 					// Try to find the original type kind of the slice element.
-					if elemKind == reflect.Pointer {
+					if elemKind == reflect.Ptr {
 						elemKind = elemType.Elem().Kind()
 					}
 					switch elemKind {
@@ -594,7 +595,7 @@ func (c *Converter) bindVarToReflectValue(structFieldValue reflect.Value, value 
 			if elemTypeName == "" {
 				elemTypeName = elemType.String()
 			}
-			if elemType.Kind() == reflect.Pointer {
+			if elemType.Kind() == reflect.Ptr {
 				elem = reflect.New(elemType.Elem()).Elem()
 			} else {
 				elem = reflect.New(elemType).Elem()
@@ -617,7 +618,7 @@ func (c *Converter) bindVarToReflectValue(structFieldValue reflect.Value, value 
 					return err
 				}
 			}
-			if elemType.Kind() == reflect.Pointer {
+			if elemType.Kind() == reflect.Ptr {
 				// Before it sets the `elem` to array, do pointer converting if necessary.
 				elem = elem.Addr()
 			}
@@ -626,8 +627,8 @@ func (c *Converter) bindVarToReflectValue(structFieldValue reflect.Value, value 
 		}
 		structFieldValue.Set(reflectArray)
 
-	case reflect.Pointer:
-		if structFieldValue.IsNil() || structFieldValue.IsZero() {
+	case reflect.Ptr:
+		if structFieldValue.IsNil() || reflection.IsZero(structFieldValue) {
 			// Nil or empty pointer, it creates a new one.
 			item := reflect.New(structFieldValue.Type().Elem())
 			if ok, err = bindVarToReflectValueWithInterfaceCheck(item, value); ok {
@@ -647,7 +648,7 @@ func (c *Converter) bindVarToReflectValue(structFieldValue reflect.Value, value 
 	case reflect.Interface:
 		if value == nil {
 			// Specially.
-			structFieldValue.Set(reflect.ValueOf((*any)(nil)))
+			structFieldValue.Set(reflect.ValueOf((*interface{})(nil)))
 		} else {
 			// Note there's reflect conversion mechanism here.
 			structFieldValue.Set(reflect.ValueOf(value).Convert(structFieldValue.Type()))

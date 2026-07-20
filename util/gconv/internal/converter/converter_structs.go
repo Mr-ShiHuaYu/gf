@@ -26,14 +26,14 @@ func (c *Converter) getStructsOption(option ...StructsOption) StructsOption {
 	return StructsOption{}
 }
 
-// Structs converts any slice to given struct slice.
+// Structs converts interface{} slice to given struct slice.
 //
 // It automatically checks and converts json string to []map if `params` is string/[]byte.
 //
 // The parameter `pointer` should be type of pointer to slice of struct.
 // Note that if `pointer` is a pointer to another pointer of type of slice of struct,
 // it will create the struct/pointer internally.
-func (c *Converter) Structs(params any, pointer any, option ...StructsOption) (err error) {
+func (c *Converter) Structs(params interface{}, pointer interface{}, option ...StructsOption) (err error) {
 	defer func() {
 		// Catch the panic, especially the reflection operation panics.
 		if exception := recover(); exception != nil {
@@ -49,7 +49,7 @@ func (c *Converter) Structs(params any, pointer any, option ...StructsOption) (e
 	pointerRv, ok := pointer.(reflect.Value)
 	if !ok {
 		pointerRv = reflect.ValueOf(pointer)
-		if kind := pointerRv.Kind(); kind != reflect.Pointer {
+		if kind := pointerRv.Kind(); kind != reflect.Ptr {
 			return gerror.NewCodef(
 				gcode.CodeInvalidParameter,
 				"pointer should be type of pointer, but got: %v", kind,
@@ -58,18 +58,18 @@ func (c *Converter) Structs(params any, pointer any, option ...StructsOption) (e
 	}
 	// Converting `params` to map slice.
 	var (
-		paramsList    []any
+		paramsList    []interface{}
 		paramsRv      = reflect.ValueOf(params)
 		paramsKind    = paramsRv.Kind()
 		structsOption = c.getStructsOption(option...)
 	)
-	for paramsKind == reflect.Pointer {
+	for paramsKind == reflect.Ptr {
 		paramsRv = paramsRv.Elem()
 		paramsKind = paramsRv.Kind()
 	}
 	switch paramsKind {
 	case reflect.Slice, reflect.Array:
-		paramsList = make([]any, paramsRv.Len())
+		paramsList = make([]interface{}, paramsRv.Len())
 		for i := 0; i < paramsRv.Len(); i++ {
 			paramsList[i] = paramsRv.Index(i).Interface()
 		}
@@ -83,7 +83,7 @@ func (c *Converter) Structs(params any, pointer any, option ...StructsOption) (e
 		if err != nil {
 			return err
 		}
-		paramsList = make([]any, len(paramsMaps))
+		paramsList = make([]interface{}, len(paramsMaps))
 		for i := 0; i < len(paramsMaps); i++ {
 			paramsList[i] = paramsMaps[i]
 		}
@@ -99,7 +99,7 @@ func (c *Converter) Structs(params any, pointer any, option ...StructsOption) (e
 		pointerRvElem    = pointerRv.Elem()
 		pointerRvLength  = pointerRvElem.Len()
 	)
-	if itemTypeKind == reflect.Pointer {
+	if itemTypeKind == reflect.Ptr {
 		// Pointer element.
 		for i := 0; i < len(paramsList); i++ {
 			var tempReflectValue reflect.Value

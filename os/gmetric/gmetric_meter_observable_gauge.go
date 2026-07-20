@@ -43,7 +43,7 @@ func (meter *localMeter) ObservableGauge(name string, option MetricOption) (Obse
 }
 
 // MustObservableGauge creates and returns a new ObservableGauge.
-// It panics if any error occurs.
+// It panics if interface{} error occurs.
 func (meter *localMeter) MustObservableGauge(name string, option MetricOption) ObservableGauge {
 	m, err := meter.ObservableGauge(name, option)
 	if err != nil {
@@ -67,6 +67,6 @@ func (l *localObservableGauge) Init(provider Provider) (err error) {
 
 // Performer implements interface PerformerExporter, which exports internal Performer of Metric.
 // This is usually used by metric implements.
-func (l *localObservableGauge) Performer() any {
+func (l *localObservableGauge) Performer() interface{} {
 	return l.ObservableGaugePerformer
 }

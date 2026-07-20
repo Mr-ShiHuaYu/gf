@@ -7,6 +7,7 @@
 package ghttp
 
 import (
+	"time"
 	"net"
 	"net/http"
 
@@ -230,7 +231,7 @@ func (s *Server) handleMetricsAfterRequestDone(r *Request) {
 	var (
 		ctx             = r.Context()
 		attrMap         = metricManager.GetMetricAttributeMap(r)
-		durationMilli   = float64(r.LeaveTime.Sub(r.EnterTime).Milliseconds())
+		durationMilli   = float64(int64(r.LeaveTime.Sub(r.EnterTime) / time.Millisecond))
 		responseOption  = metricManager.GetMetricOptionForResponseByMap(attrMap)
 		histogramOption = metricManager.GetMetricOptionForRequestDurationByMap(attrMap)
 	)

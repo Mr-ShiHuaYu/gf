@@ -12,17 +12,19 @@ package deepcopy
 import (
 	"reflect"
 	"time"
+
+	"github.com/gogf/gf/v2/internal/reflection"
 )
 
 // Interface for delegating copy process to type
 type Interface interface {
-	DeepCopy() any
+	DeepCopy() interface{}
 }
 
 // Copy creates a deep copy of whatever is passed to it and returns the copy
-// in an any.  The returned value will need to be asserted to the
+// in an interface{}.  The returned value will need to be asserted to the
 // correct type.
-func Copy(src any) any {
+func Copy(src interface{}) interface{} {
 	if src == nil {
 		return nil
 	}
@@ -57,7 +59,7 @@ func Copy(src any) any {
 // limited support for what it can handle. Add as needed.
 func copyRecursive(original, cpy reflect.Value) {
 	// check for implement deepcopy.Interface
-	if original.CanInterface() && original.IsValid() && !original.IsZero() {
+	if original.CanInterface() && original.IsValid() && !reflection.IsZero(original) {
 		if copier, ok := original.Interface().(Interface); ok {
 			cpy.Set(reflect.ValueOf(copier.DeepCopy()))
 			return
@@ -66,7 +68,7 @@ func copyRecursive(original, cpy reflect.Value) {
 
 	// handle according to original's Kind
 	switch original.Kind() {
-	case reflect.Pointer:
+	case reflect.Ptr:
 		// Get the actual value being pointed to.
 		originalValue := original.Elem()
 

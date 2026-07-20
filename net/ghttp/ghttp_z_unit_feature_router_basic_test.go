@@ -28,8 +28,8 @@ func Test_Router_Basic1(t *testing.T) {
 	s.BindHandler("/:name/:action", func(r *ghttp.Request) {
 		r.Response.Write(r.Get("action"))
 	})
-	s.BindHandler("/:name/*any", func(r *ghttp.Request) {
-		r.Response.Write(r.Get("any"))
+	s.BindHandler("/:name/*interface{}", func(r *ghttp.Request) {
+		r.Response.Write(r.Get("interface{}"))
 	})
 	s.BindHandler("/user/list/{field}.html", func(r *ghttp.Request) {
 		r.Response.Write(r.Get("field"))

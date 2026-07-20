@@ -53,7 +53,7 @@ func newWatcher(ctx context.Context, namespace string, key string, consumer pola
 
 // Proceed returns services in the following two cases:
 // 1.the first time to watch and the service instance list is not empty.
-// 2.any service instance changes found.
+// 2.interface{} service instance changes found.
 // if the above two conditions are not met, it will block until the context deadline is exceeded or canceled
 func (w *Watcher) Proceed() ([]gsvc.Service, error) {
 	select {

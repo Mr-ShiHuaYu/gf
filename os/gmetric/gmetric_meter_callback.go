@@ -34,7 +34,7 @@ func (meter *localMeter) RegisterCallback(callback Callback, observableMetrics .
 	return nil
 }
 
-// MustRegisterCallback performs as RegisterCallback, but it panics if any error occurs.
+// MustRegisterCallback performs as RegisterCallback, but it panics if interface{} error occurs.
 func (meter *localMeter) MustRegisterCallback(callback Callback, observableMetrics ...ObservableMetric) {
 	err := meter.RegisterCallback(callback, observableMetrics...)
 	if err != nil {

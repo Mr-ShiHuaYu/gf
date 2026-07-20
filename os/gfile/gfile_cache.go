@@ -65,11 +65,11 @@ func GetBytesWithCache(path string, duration ...time.Duration) []byte {
 	if len(duration) > 0 {
 		expire = duration[0]
 	}
-	r, _ := internalCache.GetOrSetFuncLock(ctx, cacheKey, func(ctx context.Context) (any, error) {
+	r, _ := internalCache.GetOrSetFuncLock(ctx, cacheKey, func(ctx context.Context) (interface{}, error) {
 		b := GetBytes(path)
 		if b != nil {
 			// Adding this `path` to gfsnotify,
-			// it will clear its cache if there's any changes of the file.
+			// it will clear its cache if there's interface{} changes of the file.
 			_, _ = gfsnotify.Add(path, func(event *gfsnotify.Event) {
 				_, err := internalCache.Remove(ctx, cacheKey)
 				if err != nil {

@@ -100,7 +100,7 @@ func (d *detailBuffer) appendLine(indentLevel int, line string) {
 
 // replaceAllIndent replaces the tab with given indent string and prints the buffer content.
 func (d *detailBuffer) replaceAllIndent(indentStr string) string {
-	return strings.ReplaceAll(d.String(), defaultIndent, indentStr)
+	return strings.Replace(d.String(), defaultIndent, indentStr, -1)
 }
 
 // getGoFrameVersion returns the goframe version of current project using.

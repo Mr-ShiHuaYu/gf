@@ -82,14 +82,14 @@ func (v *Float32) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// UnmarshalValue is an interface implement which sets any type of value for `v`.
-func (v *Float32) UnmarshalValue(value any) error {
+// UnmarshalValue is an interface implement which sets interface{} type of value for `v`.
+func (v *Float32) UnmarshalValue(value interface{}) error {
 	v.Set(gconv.Float32(value))
 	return nil
 }
 
 // DeepCopy implements interface for deep copy of current type.
-func (v *Float32) DeepCopy() any {
+func (v *Float32) DeepCopy() interface{} {
 	if v == nil {
 		return nil
 	}

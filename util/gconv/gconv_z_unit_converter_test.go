@@ -88,7 +88,7 @@ func TestConvertWithRefer(t *testing.T) {
 	})
 }
 
-func testAnyToMyInt(from any, to reflect.Value) error {
+func testAnyToMyInt(from interface{}, to reflect.Value) error {
 	switch x := from.(type) {
 	case int:
 		to.SetInt(123456)
@@ -98,22 +98,22 @@ func testAnyToMyInt(from any, to reflect.Value) error {
 	return nil
 }
 
-func testAnyToSqlNullType(_ any, to reflect.Value) error {
-	if to.Kind() != reflect.Pointer {
+func testAnyToSqlNullType(_ interface{}, to reflect.Value) error {
+	if to.Kind() != reflect.Ptr {
 		to = to.Addr()
 	}
 	return to.Interface().(sql.Scanner).Scan(123456)
 }
 
 func TestNewConverter(t *testing.T) {
-	type Dst[T any] struct {
+	type Dst[T interface{}] struct {
 		A T
 	}
 	gtest.C(t, func(t *gtest.T) {
 		conv := gconv.NewConverter()
 		conv.RegisterAnyConverterFunc(testAnyToMyInt, reflect.TypeOf((*myInt)(nil)))
 		var dst Dst[myInt]
-		err := conv.Struct(map[string]any{
+		err := conv.Struct(map[string]interface{}{
 			"a": 1200,
 		}, &dst, gconv.StructOption{})
 		t.AssertNil(err)
@@ -125,7 +125,7 @@ func TestNewConverter(t *testing.T) {
 		conv := gconv.NewConverter()
 		conv.RegisterAnyConverterFunc(testAnyToMyInt, reflect.TypeOf((myInt)(0)))
 		var dst Dst[*myInt]
-		err := conv.Struct(map[string]any{
+		err := conv.Struct(map[string]interface{}{
 			"a": 1200,
 		}, &dst, gconv.StructOption{})
 		t.AssertNil(err)
@@ -147,7 +147,7 @@ func TestNewConverter(t *testing.T) {
 			H *sql.NullString
 		}
 		var dst sqlNullDst
-		err := conv.Struct(map[string]any{
+		err := conv.Struct(map[string]interface{}{
 			"a": 12,
 			"b": 34,
 			"c": 56,
@@ -185,7 +185,7 @@ type UserModel struct {
 	Status   int
 }
 
-func userInput2Model(in any, out reflect.Value) error {
+func userInput2Model(in interface{}, out reflect.Value) error {
 	if out.Type() == reflect.TypeOf(&UserModel{}) {
 		if input, ok := in.(UserInput); ok {
 			model := UserModel{

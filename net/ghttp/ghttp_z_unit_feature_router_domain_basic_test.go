@@ -30,8 +30,8 @@ func Test_Router_DomainBasic(t *testing.T) {
 	d.BindHandler("/:name/:action", func(r *ghttp.Request) {
 		r.Response.Write(r.Get("action"))
 	})
-	d.BindHandler("/:name/*any", func(r *ghttp.Request) {
-		r.Response.Write(r.Get("any"))
+	d.BindHandler("/:name/*interface{}", func(r *ghttp.Request) {
+		r.Response.Write(r.Get("interface{}"))
 	})
 	d.BindHandler("/user/list/{field}.html", func(r *ghttp.Request) {
 		r.Response.Write(r.Get("field"))
@@ -377,8 +377,8 @@ func TestIssue4100(t *testing.T) {
 	d.BindHandler("/:name/:action", func(r *ghttp.Request) {
 		r.Response.Write(r.Get("action"))
 	})
-	d.BindHandler("/:name/*any", func(r *ghttp.Request) {
-		r.Response.Write(r.Get("any"))
+	d.BindHandler("/:name/*interface{}", func(r *ghttp.Request) {
+		r.Response.Write(r.Get("interface{}"))
 	})
 	d.BindHandler("/user/list/{field}.html", func(r *ghttp.Request) {
 		r.Response.Write(r.Get("field"))

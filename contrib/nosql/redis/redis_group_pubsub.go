@@ -27,7 +27,7 @@ func (r *Redis) GroupPubSub() gredis.IGroupPubSub {
 // Publish posts a message to the given channel.
 //
 // In a Redis Cluster clients can publish to every node. The cluster makes sure that published
-// messages are forwarded as needed, so clients can subscribe to any channel by connecting to any one
+// messages are forwarded as needed, so clients can subscribe to interface{} channel by connecting to interface{} one
 // of the nodes.
 //
 // It returns the number of clients that received the message.
@@ -35,7 +35,7 @@ func (r *Redis) GroupPubSub() gredis.IGroupPubSub {
 // are included in the count.
 //
 // https://redis.io/commands/publish/
-func (r GroupPubSub) Publish(ctx context.Context, channel string, message any) (int64, error) {
+func (r GroupPubSub) Publish(ctx context.Context, channel string, message interface{}) (int64, error) {
 	v, err := r.Operation.Do(ctx, "Publish", channel, message)
 	return v.Int64(), err
 }

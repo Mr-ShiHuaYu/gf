@@ -43,7 +43,7 @@ func (meter *localMeter) Histogram(name string, option MetricOption) (Histogram,
 }
 
 // MustHistogram creates and returns a new Histogram.
-// It panics if any error occurs.
+// It panics if interface{} error occurs.
 func (meter *localMeter) MustHistogram(name string, option MetricOption) Histogram {
 	m, err := meter.Histogram(name, option)
 	if err != nil {
@@ -72,6 +72,6 @@ func (l *localHistogram) Buckets() []float64 {
 
 // Performer implements interface PerformerExporter, which exports internal Performer of Metric.
 // This is usually used by metric implements.
-func (l *localHistogram) Performer() any {
+func (l *localHistogram) Performer() interface{} {
 	return l.HistogramPerformer
 }

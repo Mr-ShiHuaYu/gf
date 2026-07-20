@@ -23,7 +23,7 @@ func Encode(str string) string {
 // Decode does the inverse transformation of Encode,
 // converting each 3-byte encoded substring of the form "%AB" into the
 // hex-decoded byte 0xAB.
-// It returns an error if any % is not followed by two hexadecimal
+// It returns an error if interface{} % is not followed by two hexadecimal
 // digits.
 func Decode(str string) (string, error) {
 	return url.QueryUnescape(str)
@@ -33,14 +33,14 @@ func Decode(str string) (string, error) {
 // URL-encode according to RFC 3986.
 // See http://php.net/manual/en/function.rawurlencode.php.
 func RawEncode(str string) string {
-	return strings.ReplaceAll(url.QueryEscape(str), "+", "%20")
+	return strings.Replace(url.QueryEscape(str), "+", "%20", -1)
 }
 
 // RawDecode does decode the given string
 // Decode URL-encoded strings.
 // See http://php.net/manual/en/function.rawurldecode.php.
 func RawDecode(str string) (string, error) {
-	return url.QueryUnescape(strings.ReplaceAll(str, "%20", "+"))
+	return url.QueryUnescape(strings.Replace(str, "%20", "+", -1))
 }
 
 // BuildQuery Generate URL-encoded query string.

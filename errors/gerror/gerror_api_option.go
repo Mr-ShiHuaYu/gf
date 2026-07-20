@@ -10,7 +10,7 @@ import "github.com/gogf/gf/v2/errors/gcode"
 
 // Option is option for creating error.
 type Option struct {
-	Error error      // Wrapped error if any.
+	Error error      // Wrapped error if interface{}.
 	Stack bool       // Whether recording stack information into error.
 	Text  string     // Error text, which is created by New* functions.
 	Code  gcode.Code // Error code if necessary.

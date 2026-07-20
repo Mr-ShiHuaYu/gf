@@ -58,11 +58,11 @@ type iSoftTimeMaintainer interface {
 
 	GetValueByFieldTypeForCreateOrUpdate(
 		ctx context.Context, fieldType LocalType, isDeletedField bool,
-	) (dataValue any)
+	) (dataValue interface{})
 
 	GetDataByFieldNameAndTypeForDelete(
 		ctx context.Context, fieldPrefix, fieldName string, fieldType LocalType,
-	) (dataHolder string, dataValue any)
+	) (dataHolder string, dataValue interface{})
 
 	GetWhereConditionForDelete(ctx context.Context) string
 }
@@ -195,7 +195,7 @@ func (m *softTimeMaintainer) getSoftFieldNameAndType(
 			schema, table, strings.Join(checkFiledNames, "_"),
 		)
 		cacheDuration = gcache.DurationNoExpire
-		cacheFunc     = func(ctx context.Context) (value any, err error) {
+		cacheFunc     = func(ctx context.Context) (value interface{}, err error) {
 			// Ignore the error from TableFields.
 			fieldsMap, err := m.TableFields(table, schema)
 			if err != nil {
@@ -327,7 +327,7 @@ func (m *softTimeMaintainer) getConditionOfTableStringForSoftDeleting(ctx contex
 // specified field name and type in soft-deleting scenario.
 func (m *softTimeMaintainer) GetDataByFieldNameAndTypeForDelete(
 	ctx context.Context, fieldPrefix, fieldName string, fieldType LocalType,
-) (dataHolder string, dataValue any) {
+) (dataHolder string, dataValue interface{}) {
 	var (
 		quotedFieldPrefix = m.db.GetCore().QuoteWord(fieldPrefix)
 		quotedFieldName   = m.db.GetCore().QuoteWord(fieldName)
@@ -378,8 +378,8 @@ func (m *softTimeMaintainer) getConditionByFieldNameAndTypeForSoftDeleting(
 // usually for creating or updating operations.
 func (m *softTimeMaintainer) GetValueByFieldTypeForCreateOrUpdate(
 	ctx context.Context, fieldType LocalType, isDeletedField bool,
-) any {
-	var value any
+) interface{} {
+	var value interface{}
 	if isDeletedField {
 		switch fieldType {
 		case LocalTypeDate, LocalTypeTime, LocalTypeDatetime:
@@ -417,8 +417,8 @@ func (m *softTimeMaintainer) GetValueByFieldTypeForCreateOrUpdate(
 	return value
 }
 
-func (m *softTimeMaintainer) createValueBySoftTimeOption(isDeletedField bool) any {
-	var value any
+func (m *softTimeMaintainer) createValueBySoftTimeOption(isDeletedField bool) interface{} {
+	var value interface{}
 	if isDeletedField {
 		switch m.softTimeOption.SoftTimeType {
 		case SoftTimeTypeTime:

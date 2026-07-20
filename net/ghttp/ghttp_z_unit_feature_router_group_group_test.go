@@ -49,7 +49,7 @@ func Test_Router_Group_Group(t *testing.T) {
 		})
 		group.Group("/hook", func(group *ghttp.RouterGroup) {
 			group.Hook("/*", ghttp.HookBeforeServe, func(r *ghttp.Request) {
-				r.Response.Write("hook any")
+				r.Response.Write("hook interface{}")
 			})
 			group.Hook("/:name", ghttp.HookBeforeServe, func(r *ghttp.Request) {
 				r.Response.Write("hook name")
@@ -68,9 +68,9 @@ func Test_Router_Group_Group(t *testing.T) {
 		t.Assert(client.GetContent(ctx, "/"), "Not Found")
 		t.Assert(client.GetContent(ctx, "/api.v2"), "Not Found")
 		t.Assert(client.GetContent(ctx, "/api.v2/test"), "1test2")
-		t.Assert(client.GetContent(ctx, "/api.v2/hook"), "hook any")
-		t.Assert(client.GetContent(ctx, "/api.v2/hook/name"), "hook namehook any")
-		t.Assert(client.GetContent(ctx, "/api.v2/hook/name/any"), "hook any")
+		t.Assert(client.GetContent(ctx, "/api.v2/hook"), "hook interface{}")
+		t.Assert(client.GetContent(ctx, "/api.v2/hook/name"), "hook namehook interface{}")
+		t.Assert(client.GetContent(ctx, "/api.v2/hook/name/interface{}"), "hook interface{}")
 		t.Assert(client.GetContent(ctx, "/api.v2/order/list"), "1list2")
 		t.Assert(client.GetContent(ctx, "/api.v2/order/update"), "Not Found")
 		t.Assert(client.PutContent(ctx, "/api.v2/order/update"), "1update2")

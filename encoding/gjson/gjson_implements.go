@@ -24,8 +24,8 @@ func (j *Json) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// UnmarshalValue is an interface implement which sets any type of value for Json.
-func (j *Json) UnmarshalValue(value any) error {
+// UnmarshalValue is an interface implement which sets interface{} type of value for Json.
+func (j *Json) UnmarshalValue(value interface{}) error {
 	if r := NewWithOptions(value, Options{
 		StrNumber: true,
 	}); r != nil {
@@ -36,7 +36,7 @@ func (j *Json) UnmarshalValue(value any) error {
 }
 
 // MapStrAny implements interface function MapStrAny().
-func (j *Json) MapStrAny() map[string]any {
+func (j *Json) MapStrAny() map[string]interface{} {
 	if j == nil {
 		return nil
 	}
@@ -44,7 +44,7 @@ func (j *Json) MapStrAny() map[string]any {
 }
 
 // Interfaces implements interface function Interfaces().
-func (j *Json) Interfaces() []any {
+func (j *Json) Interfaces() []interface{} {
 	if j == nil {
 		return nil
 	}

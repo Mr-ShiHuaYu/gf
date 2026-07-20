@@ -267,7 +267,7 @@ func StrToTime(str string, format ...string) (*Time, error) {
 	}
 	// If there's offset in the string, it then firstly processes the offset.
 	if match[6] != "" {
-		zone := strings.ReplaceAll(match[6], ":", "")
+		zone := strings.Replace(match[6], ":", "", -1)
 		zone = strings.TrimLeft(zone, "+-")
 		if len(zone) <= 6 {
 			zone += strings.Repeat("0", 6-len(zone))

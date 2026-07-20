@@ -28,17 +28,17 @@ func (r *Registry) Register(ctx context.Context, service gsvc.Service) (gsvc.Ser
 	for _, endpoint := range service.GetEndpoints() {
 		// medata
 		var (
-			rmd            map[string]any
+			rmd            map[string]interface{}
 			serviceName    = service.GetPrefix()
 			serviceVersion = service.GetVersion()
 		)
 		if service.GetMetadata().IsEmpty() {
-			rmd = map[string]any{
+			rmd = map[string]interface{}{
 				metadataKeyKind:    gsvc.DefaultProtocol,
 				metadataKeyVersion: serviceVersion,
 			}
 		} else {
-			rmd = make(map[string]any, len(service.GetMetadata())+2)
+			rmd = make(map[string]interface{}, len(service.GetMetadata())+2)
 			rmd[metadataKeyKind] = gsvc.DefaultProtocol
 			if protocol, ok := service.GetMetadata()[gsvc.MDProtocol]; ok {
 				rmd[metadataKeyKind] = gconv.String(protocol)

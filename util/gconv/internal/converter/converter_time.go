@@ -15,8 +15,8 @@ import (
 	"github.com/gogf/gf/v2/util/gconv/internal/localinterface"
 )
 
-// Time converts `any` to time.Time.
-func (c *Converter) Time(anyInput any, format ...string) (time.Time, error) {
+// Time converts `interface{}` to time.Time.
+func (c *Converter) Time(anyInput interface{}, format ...string) (time.Time, error) {
 	// It's already this type.
 	if len(format) == 0 {
 		if v, ok := anyInput.(time.Time); ok {
@@ -33,10 +33,10 @@ func (c *Converter) Time(anyInput any, format ...string) (time.Time, error) {
 	return time.Time{}, nil
 }
 
-// Duration converts `any` to time.Duration.
-// If `any` is string, then it uses time.ParseDuration to convert it.
-// If `any` is numeric, then it converts `any` as nanoseconds.
-func (c *Converter) Duration(anyInput any) (time.Duration, error) {
+// Duration converts `interface{}` to time.Duration.
+// If `interface{}` is string, then it uses time.ParseDuration to convert it.
+// If `interface{}` is numeric, then it converts `interface{}` as nanoseconds.
+func (c *Converter) Duration(anyInput interface{}) (time.Duration, error) {
 	// It's already this type.
 	if v, ok := anyInput.(time.Duration); ok {
 		return v, nil
@@ -55,12 +55,12 @@ func (c *Converter) Duration(anyInput any) (time.Duration, error) {
 	return time.Duration(i), nil
 }
 
-// GTime converts `any` to *gtime.Time.
-// The parameter `format` can be used to specify the format of `any`.
+// GTime converts `interface{}` to *gtime.Time.
+// The parameter `format` can be used to specify the format of `interface{}`.
 // It returns the converted value that matched the first format of the formats slice.
-// If no `format` given, it converts `any` using gtime.NewFromTimeStamp if `any` is numeric,
-// or using gtime.StrToTime if `any` is string.
-func (c *Converter) GTime(anyInput any, format ...string) (*gtime.Time, error) {
+// If no `format` given, it converts `interface{}` using gtime.NewFromTimeStamp if `interface{}` is numeric,
+// or using gtime.StrToTime if `interface{}` is string.
+func (c *Converter) GTime(anyInput interface{}, format ...string) (*gtime.Time, error) {
 	if empty.IsNil(anyInput) {
 		return nil, nil
 	}

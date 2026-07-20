@@ -318,7 +318,7 @@ func Test_Gen_Dao_FieldMapping(t *testing.T) {
 	})
 }
 
-func execSqlFile(db gdb.DB, filePath string, args ...any) error {
+func execSqlFile(db gdb.DB, filePath string, args ...interface{}) error {
 	sqlContent := fmt.Sprintf(
 		gfile.GetContents(filePath),
 		args...,

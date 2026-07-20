@@ -18,10 +18,10 @@ type EnhancedStatusCode = int
 // EnhancedStatusType is the structure for certain response status.
 // Currently, it only supports `Response` and `Examples`.
 // `Response` is the response structure
-// `Examples` is the examples for the response, map[string]any, []any are supported.
+// `Examples` is the examples for the response, map[string]interface{}, []interface{} are supported.
 type EnhancedStatusType struct {
-	Response any
-	Examples any
+	Response interface{}
+	Examples interface{}
 }
 
 // IEnhanceResponseStatus is used to enhance the documentation of the response.

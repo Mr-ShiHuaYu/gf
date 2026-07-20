@@ -10,7 +10,7 @@ package gconv
 //
 // The optional parameter `extraParams` is used for additional necessary parameter for this conversion.
 // It supports common basic types conversion as its conversion based on type name string.
-func Convert(fromValue any, toTypeName string, extraParams ...any) any {
+func Convert(fromValue interface{}, toTypeName string, extraParams ...interface{}) interface{} {
 	result, _ := defaultConverter.ConvertWithTypeName(fromValue, toTypeName, ConvertOption{
 		ExtraParams:  extraParams,
 		SliceOption:  SliceOption{ContinueOnError: true},
@@ -24,7 +24,7 @@ func Convert(fromValue any, toTypeName string, extraParams ...any) any {
 //
 // The optional parameter `extraParams` is used for additional necessary parameter for this conversion.
 // It supports common basic types conversion as its conversion based on type name string.
-func ConvertWithRefer(fromValue any, referValue any, extraParams ...any) any {
+func ConvertWithRefer(fromValue interface{}, referValue interface{}, extraParams ...interface{}) interface{} {
 	result, _ := defaultConverter.ConvertWithRefer(fromValue, referValue, ConvertOption{
 		ExtraParams:  extraParams,
 		SliceOption:  SliceOption{ContinueOnError: true},

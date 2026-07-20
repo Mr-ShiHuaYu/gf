@@ -30,7 +30,7 @@ func (item *localStatsItem) Stats() sql.DBStats {
 // Stats retrieves and returns the pool stat for all nodes that have been established.
 func (c *Core) Stats(ctx context.Context) []StatsItem {
 	var items = make([]StatsItem, 0)
-	c.links.Iterator(func(k, v any) bool {
+	c.links.Iterator(func(k, v interface{}) bool {
 		var (
 			node  = k.(ConfigNode)
 			sqlDB = v.(*sql.DB)

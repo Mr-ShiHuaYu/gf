@@ -31,9 +31,9 @@ func (vs Vars) Bools() (s []bool) {
 	return s
 }
 
-// Interfaces converts and returns `vs` as []any.
-func (vs Vars) Interfaces() (s []any) {
-	s = make([]any, 0, len(vs))
+// Interfaces converts and returns `vs` as []interface{}.
+func (vs Vars) Interfaces() (s []interface{}) {
+	s = make([]interface{}, 0, len(vs))
 	for _, v := range vs {
 		s = append(s, v.Val())
 	}
@@ -149,6 +149,6 @@ func (vs Vars) Uint64s() (s []uint64) {
 }
 
 // Scan converts `vs` to []struct/[]*struct.
-func (vs Vars) Scan(pointer any, mapping ...map[string]string) error {
+func (vs Vars) Scan(pointer interface{}, mapping ...map[string]string) error {
 	return gconv.Structs(vs.Interfaces(), pointer, mapping...)
 }

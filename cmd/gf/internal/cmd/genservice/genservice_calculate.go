@@ -194,7 +194,7 @@ func (c CGenService) calculateStructEmbeddedFuncInfos(folderInfos []folderInfo, 
 			fi := folder.FileInfos[k]
 			for k := range fi.FuncItems {
 				item := &fi.FuncItems[k]
-				receiver := folder.SrcPackageName + "." + strings.ReplaceAll(item.Receiver, "*", "")
+				receiver := folder.SrcPackageName + "." + strings.Replace(item.Receiver, "*", "", -1)
 				funcItemMap[receiver] = &fi.FuncItems
 				funcItemsWithoutEmbed[receiver] = append(funcItemsWithoutEmbed[receiver], item)
 				funcItemsWithoutEmbedMap[fmt.Sprintf("%s:%s", receiver, item.MethodName)] = item
@@ -203,7 +203,7 @@ func (c CGenService) calculateStructEmbeddedFuncInfos(folderInfos []folderInfo, 
 	}
 
 	for receiver, structItems := range allStructItems {
-		receiverName := strings.ReplaceAll(receiver, "*", "")
+		receiverName := strings.Replace(receiver, "*", "", -1)
 		for _, structName := range structItems {
 			// Get the list of methods for the corresponding structName.
 			for _, funcItem := range c.getStructFuncItems(structName, allStructItems, funcItemsWithoutEmbed) {

@@ -47,7 +47,7 @@ func newWatcher(ctx context.Context, nameSpace, prefix string, conn *zk.Conn) (*
 }
 
 // Proceed proceeds watch in blocking way.
-// It returns all complete services that watched by `key` if any change.
+// It returns all complete services that watched by `key` if interface{} change.
 func (w *watcher) Proceed() ([]gsvc.Service, error) {
 	select {
 	case <-w.ctx.Done():
@@ -67,9 +67,9 @@ func (w *watcher) Proceed() ([]gsvc.Service, error) {
 }
 
 func (w *watcher) getServicesByPrefix() ([]gsvc.Service, error) {
-	prefix := strings.Trim(strings.ReplaceAll(w.prefix, "/", "-"), "-")
+	prefix := strings.Trim(strings.Replace(w.prefix, "/", "-", -1), "-")
 	serviceNamePath := path.Join(w.nameSpace, prefix)
-	instances, err, _ := w.group.Do(serviceNamePath, func() (any, error) {
+	instances, err, _ := w.group.Do(serviceNamePath, func() (interface{}, error) {
 		servicesID, _, err := w.conn.Children(serviceNamePath)
 		if err != nil {
 			return nil, gerror.Wrapf(
@@ -123,7 +123,7 @@ func (w *watcher) Close() error {
 }
 
 func (w *watcher) watch(ctx context.Context) {
-	prefix := strings.Trim(strings.ReplaceAll(w.prefix, "/", "-"), "-")
+	prefix := strings.Trim(strings.Replace(w.prefix, "/", "-", -1), "-")
 	serviceNamePath := path.Join(w.nameSpace, prefix)
 	for {
 

@@ -214,7 +214,7 @@ func Test_Struct(t *testing.T) {
 
 		type M struct {
 			Id    string         `json:"id"`
-			Me    map[string]any `json:"me"`
+			Me    map[string]interface{} `json:"me"`
 			Txt   string         `json:"txt"`
 			Items []*Item        `json:"items"`
 		}

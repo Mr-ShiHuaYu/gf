@@ -47,7 +47,7 @@ type Provider interface {
 	ForceFlush(ctx context.Context) error
 
 	// Shutdown shuts down the Provider flushing all pending metrics and
-	// releasing any held computational resources.
+	// releasing interface{} held computational resources.
 	Shutdown(ctx context.Context) error
 }
 
@@ -241,7 +241,7 @@ type MetricInitializer interface {
 type PerformerExporter interface {
 	// Performer exports internal Performer of Metric.
 	// This is usually used by metric implements.
-	Performer() any
+	Performer() interface{}
 }
 
 // MetricCallback is automatically called when metric reader starts reading the metric value.

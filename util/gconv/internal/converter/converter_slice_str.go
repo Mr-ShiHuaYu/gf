@@ -15,8 +15,8 @@ import (
 	"github.com/gogf/gf/v2/util/gconv/internal/localinterface"
 )
 
-// SliceStr converts `any` to []string.
-func (c *Converter) SliceStr(anyInput any, option ...SliceOption) ([]string, error) {
+// SliceStr converts `interface{}` to []string.
+func (c *Converter) SliceStr(anyInput interface{}, option ...SliceOption) ([]string, error) {
 	if empty.IsNil(anyInput) {
 		return nil, nil
 	}
@@ -161,7 +161,7 @@ func (c *Converter) SliceStr(anyInput any, option ...SliceOption) ([]string, err
 			}
 			array[k] = s
 		}
-	case []any:
+	case []interface{}:
 		array = make([]string, len(value))
 		for k, v := range value {
 			s, err = c.String(v)
@@ -209,7 +209,7 @@ func (c *Converter) SliceStr(anyInput any, option ...SliceOption) ([]string, err
 		return slice, err
 
 	default:
-		if originValueAndKind.OriginValue.IsZero() {
+		if reflection.IsZero(originValueAndKind.OriginValue) {
 			return []string{}, err
 		}
 		s, err = c.String(anyInput)

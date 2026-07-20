@@ -164,12 +164,18 @@ func HideStr(str string, percent int, hide string) string {
 	// Calculate start position: mid - hideLen/2
 	// This matches the original algorithm behavior
 	mid := length / 2
-	start := max(mid-hideLen/2, 0)
+	start := mid - hideLen/2
+	if start < 0 {
+		start = 0
+	}
 
 	end := start + hideLen
 	if end > length {
 		end = length
-		start = max(length-hideLen, 0)
+		start = length - hideLen
+		if start < 0 {
+			start = 0
+		}
 	}
 
 	// Pre-calculate capacity to avoid reallocations

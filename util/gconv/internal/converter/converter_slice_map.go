@@ -21,15 +21,15 @@ func (c *Converter) getSliceMapOption(option ...SliceMapOption) SliceMapOption {
 	return SliceMapOption{}
 }
 
-// SliceMap converts `value` to []map[string]any.
+// SliceMap converts `value` to []map[string]interface{}.
 // Note that it automatically checks and converts json string to []map if `value` is string/[]byte.
-func (c *Converter) SliceMap(value any, option ...SliceMapOption) ([]map[string]any, error) {
+func (c *Converter) SliceMap(value interface{}, option ...SliceMapOption) ([]map[string]interface{}, error) {
 	if value == nil {
 		return nil, nil
 	}
 	switch r := value.(type) {
 	case string:
-		list := make([]map[string]any, 0)
+		list := make([]map[string]interface{}, 0)
 		if len(r) > 0 && r[0] == '[' && r[len(r)-1] == ']' {
 			if err := json.UnmarshalUseNumber([]byte(r), &list); err != nil {
 				return nil, err
@@ -39,7 +39,7 @@ func (c *Converter) SliceMap(value any, option ...SliceMapOption) ([]map[string]
 		return nil, nil
 
 	case []byte:
-		list := make([]map[string]any, 0)
+		list := make([]map[string]interface{}, 0)
 		if len(r) > 0 && r[0] == '[' && r[len(r)-1] == ']' {
 			if err := json.UnmarshalUseNumber(r, &list); err != nil {
 				return nil, err
@@ -48,7 +48,7 @@ func (c *Converter) SliceMap(value any, option ...SliceMapOption) ([]map[string]
 		}
 		return nil, nil
 
-	case []map[string]any:
+	case []map[string]interface{}:
 		return r, nil
 
 	default:
@@ -60,7 +60,7 @@ func (c *Converter) SliceMap(value any, option ...SliceMapOption) ([]map[string]
 		if len(array) == 0 {
 			return nil, nil
 		}
-		list := make([]map[string]any, len(array))
+		list := make([]map[string]interface{}, len(array))
 		for k, v := range array {
 			m, err := c.Map(v, sliceMapOption.MapOption)
 			if err != nil && !sliceMapOption.SliceOption.ContinueOnError {

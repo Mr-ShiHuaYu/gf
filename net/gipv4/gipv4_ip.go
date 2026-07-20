@@ -34,7 +34,7 @@ func GetIpArray() (ips []string, err error) {
 	return ips, nil
 }
 
-// MustGetIntranetIp performs as GetIntranetIp, but it panics if any error occurs.
+// MustGetIntranetIp performs as GetIntranetIp, but it panics if interface{} error occurs.
 func MustGetIntranetIp() string {
 	ip, err := GetIntranetIp()
 	if err != nil {

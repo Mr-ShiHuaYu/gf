@@ -301,7 +301,7 @@ func Test_DB_TableFields(t *testing.T) {
 		table := createTable()
 		defer dropTable(table)
 
-		var expect = map[string][]any{
+		var expect = map[string][]interface{}{
 			//[]string: Index Type Null Key Default Comment
 			//id is bigserial so the default is a pgsql function
 			"id":          {0, "int8", false, "pri", fmt.Sprintf("nextval('%s_id_seq'::regclass)", table), ""},
@@ -365,7 +365,7 @@ int_col INT);`
 	})
 	// The inserted field does not exist in the table
 	gtest.C(t, func(t *gtest.T) {
-		data := map[string]any{
+		data := map[string]interface{}{
 			"id1":        22,
 			"int_col_22": 11111,
 		}

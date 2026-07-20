@@ -17,8 +17,8 @@ import (
 	"github.com/gogf/gf/v2/util/gconv/internal/localinterface"
 )
 
-// Bytes converts `any` to []byte.
-func (c *Converter) Bytes(anyInput any) ([]byte, error) {
+// Bytes converts `interface{}` to []byte.
+func (c *Converter) Bytes(anyInput interface{}) ([]byte, error) {
 	if empty.IsNil(anyInput) {
 		return nil, nil
 	}

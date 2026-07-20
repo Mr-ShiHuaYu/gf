@@ -32,7 +32,7 @@ const (
 // New creates and returns a new resource object.
 func New() *Resource {
 	return &Resource{
-		tree: gtree.NewBTree(defaultTreeM, func(v1, v2 any) int {
+		tree: gtree.NewBTree(defaultTreeM, func(v1, v2 interface{}) int {
 			return strings.Compare(v1.(string), v2.(string))
 		}),
 	}
@@ -75,8 +75,8 @@ func (r *Resource) Get(path string) *File {
 	if path == "" {
 		return nil
 	}
-	path = strings.ReplaceAll(path, "\\", "/")
-	path = strings.ReplaceAll(path, "//", "/")
+	path = strings.Replace(path, "\\", "/", -1)
+	path = strings.Replace(path, "//", "/", -1)
 	if path != "/" {
 		for path[len(path)-1] == '/' {
 			path = path[:len(path)-1]
@@ -95,8 +95,8 @@ func (r *Resource) Get(path string) *File {
 // GetWithIndex is usually used for http static file service.
 func (r *Resource) GetWithIndex(path string, indexFiles []string) *File {
 	// Necessary for double char '/' replacement in prefix.
-	path = strings.ReplaceAll(path, "\\", "/")
-	path = strings.ReplaceAll(path, "//", "/")
+	path = strings.Replace(path, "\\", "/", -1)
+	path = strings.Replace(path, "//", "/", -1)
 	if path != "/" {
 		for path[len(path)-1] == '/' {
 			path = path[:len(path)-1]
@@ -171,8 +171,8 @@ func (r *Resource) ScanDirFile(path string, pattern string, recursive ...bool) [
 //
 // It scans directory recursively if given parameter `recursive` is true.
 func (r *Resource) doScanDir(path string, pattern string, recursive bool, onlyFile bool) []*File {
-	path = strings.ReplaceAll(path, "\\", "/")
-	path = strings.ReplaceAll(path, "//", "/")
+	path = strings.Replace(path, "\\", "/", -1)
+	path = strings.Replace(path, "//", "/", -1)
 	if path != "/" {
 		for path[len(path)-1] == '/' {
 			path = path[:len(path)-1]
@@ -189,7 +189,7 @@ func (r *Resource) doScanDir(path string, pattern string, recursive bool, onlyFi
 	}
 	// Used for type checking for first entry.
 	first := true
-	r.tree.IteratorFrom(path, true, func(key, value any) bool {
+	r.tree.IteratorFrom(path, true, func(key, value interface{}) bool {
 		if first {
 			if !value.(*File).FileInfo().IsDir() {
 				return false
@@ -275,7 +275,7 @@ func (r *Resource) Export(src, dst string, option ...ExportOption) error {
 // Dump prints the files of current resource object.
 func (r *Resource) Dump() {
 	var info os.FileInfo
-	r.tree.Iterator(func(key, value any) bool {
+	r.tree.Iterator(func(key, value interface{}) bool {
 		info = value.(*File).FileInfo()
 		fmt.Printf(
 			"%v %8s %s\n",

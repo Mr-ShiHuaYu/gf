@@ -24,15 +24,15 @@ import (
 // View object for template engine.
 type View struct {
 	searchPaths  *garray.StrArray // Searching array for path, NOT concurrent-safe for performance purpose.
-	data         map[string]any   // Global template variables.
-	funcMap      map[string]any   // Global template function map.
+	data         map[string]interface{}   // Global template variables.
+	funcMap      map[string]interface{}   // Global template function map.
 	fileCacheMap *gmap.StrAnyMap  // File cache map.
 	config       Config           // Extra configuration for the view.
 }
 
 type (
-	Params  = map[string]any // Params is type for template params.
-	FuncMap = map[string]any // FuncMap is type for custom template functions.
+	Params  = map[string]interface{} // Params is type for template params.
+	FuncMap = map[string]interface{} // FuncMap is type for custom template functions.
 )
 
 const (
@@ -67,8 +67,8 @@ func New(path ...string) *View {
 	)
 	view := &View{
 		searchPaths:  garray.NewStrArray(),
-		data:         make(map[string]any),
-		funcMap:      make(map[string]any),
+		data:         make(map[string]interface{}),
+		funcMap:      make(map[string]interface{}),
 		fileCacheMap: gmap.NewStrAnyMap(true),
 		config:       DefaultConfig(),
 	}

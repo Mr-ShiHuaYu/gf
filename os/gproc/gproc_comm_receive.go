@@ -39,7 +39,7 @@ func Receive(group ...string) *MsgRequest {
 	} else {
 		groupName = defaultGroupNameForProcComm
 	}
-	queue := commReceiveQueues.GetOrSetFuncLock(groupName, func() any {
+	queue := commReceiveQueues.GetOrSetFuncLock(groupName, func() interface{} {
 		return gqueue.New(maxLengthForProcMsgQueue)
 	}).(*gqueue.Queue)
 
@@ -125,7 +125,7 @@ func receiveTcpHandler(conn *gtcp.Conn) {
 				glog.Error(ctx, err)
 			}
 		} else {
-			// Just close the connection if any error occurs.
+			// Just close the connection if interface{} error occurs.
 			if err = conn.Close(); err != nil {
 				glog.Error(ctx, err)
 			}

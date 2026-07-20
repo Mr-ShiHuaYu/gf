@@ -59,7 +59,7 @@ func Test_MapAttributeConvert(t *testing.T) {
 		gtest.AssertNil(err)
 
 		tx := struct {
-			Title map[string]any
+			Title map[string]interface{}
 		}{}
 
 		err = j.Var().Scan(&tx)

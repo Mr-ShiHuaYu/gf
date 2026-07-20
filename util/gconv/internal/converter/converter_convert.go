@@ -17,7 +17,7 @@ import (
 // ConvertOption is the option for converting.
 type ConvertOption struct {
 	// ExtraParams are extra values for implementing the converting.
-	ExtraParams  []any
+	ExtraParams  []interface{}
 	SliceOption  SliceOption
 	MapOption    MapOption
 	StructOption StructOption
@@ -31,7 +31,7 @@ func (c *Converter) getConvertOption(option ...ConvertOption) ConvertOption {
 }
 
 // ConvertWithTypeName converts the variable `fromValue` to the type `toTypeName`, the type `toTypeName` is specified by string.
-func (c *Converter) ConvertWithTypeName(fromValue any, toTypeName string, option ...ConvertOption) (any, error) {
+func (c *Converter) ConvertWithTypeName(fromValue interface{}, toTypeName string, option ...ConvertOption) (interface{}, error) {
 	return c.doConvert(
 		doConvertInput{
 			FromValue:  fromValue,
@@ -43,7 +43,7 @@ func (c *Converter) ConvertWithTypeName(fromValue any, toTypeName string, option
 }
 
 // ConvertWithRefer converts the variable `fromValue` to the type referred by value `referValue`.
-func (c *Converter) ConvertWithRefer(fromValue, referValue any, option ...ConvertOption) (any, error) {
+func (c *Converter) ConvertWithRefer(fromValue, referValue interface{}, option ...ConvertOption) (interface{}, error) {
 	var referValueRf reflect.Value
 	if v, ok := referValue.(reflect.Value); ok {
 		referValueRf = v
@@ -61,9 +61,9 @@ func (c *Converter) ConvertWithRefer(fromValue, referValue any, option ...Conver
 }
 
 type doConvertInput struct {
-	FromValue  any    // Value that is converted from.
+	FromValue  interface{}    // Value that is converted from.
 	ToTypeName string // Target value type name in string.
-	ReferValue any    // Referred value, a value in type `ToTypeName`. Note that its type might be reflect.Value.
+	ReferValue interface{}    // Referred value, a value in type `ToTypeName`. Note that its type might be reflect.Value.
 
 	// Marks that the value is already converted and set to `ReferValue`. Caller can ignore the returned result.
 	// It is an attribute for internal usage purpose.
@@ -71,7 +71,7 @@ type doConvertInput struct {
 }
 
 // doConvert does commonly use types converting.
-func (c *Converter) doConvert(in doConvertInput, option ConvertOption) (convertedValue any, err error) {
+func (c *Converter) doConvert(in doConvertInput, option ConvertOption) (convertedValue interface{}, err error) {
 	switch in.ToTypeName {
 	case "int":
 		return c.Int(in.FromValue)
@@ -379,7 +379,7 @@ func (c *Converter) doConvert(in doConvertInput, option ConvertOption) (converte
 	}
 }
 
-func (c *Converter) doConvertForDefault(in doConvertInput, option ConvertOption) (convertedValue any, err error) {
+func (c *Converter) doConvertForDefault(in doConvertInput, option ConvertOption) (convertedValue interface{}, err error) {
 	if in.ReferValue != nil {
 		var referReflectValue reflect.Value
 		if v, ok := in.ReferValue.(reflect.Value); ok {
@@ -413,7 +413,7 @@ func (c *Converter) doConvertForDefault(in doConvertInput, option ConvertOption)
 			}
 		}()
 		switch referReflectValue.Kind() {
-		case reflect.Pointer:
+		case reflect.Ptr:
 			// Type converting for custom type pointers.
 			// Eg:
 			// type PayMode int
@@ -481,7 +481,7 @@ func (c *Converter) callCustomConverter(srcReflectValue, dstReflectValue reflect
 		return c.doCallCustomTypeConverter(srcReflectValue, dstReflectValue, registeredConverterFunc, srcType)
 	}
 
-	// search any converter function.
+	// search interface{} converter function.
 	anyConverterFunc := c.getRegisteredAnyConverterFunc(dstReflectValue)
 	if anyConverterFunc == nil {
 		return false, nil
@@ -506,7 +506,7 @@ func (c *Converter) callCustomConverterWithRefer(
 		return
 	}
 
-	// search any converter function.
+	// search interface{} converter function.
 	anyConverterFunc := c.getRegisteredAnyConverterFunc(referReflectValue)
 	if anyConverterFunc == nil {
 		return reflect.Value{}, false, nil
@@ -526,7 +526,7 @@ func (c *Converter) getRegisteredTypeConverterFuncAndSrcType(
 		return reflect.Value{}, nil, false
 	}
 	srcType = srcReflectValue.Type()
-	for srcType.Kind() == reflect.Pointer {
+	for srcType.Kind() == reflect.Ptr {
 		srcType = srcType.Elem()
 	}
 	var registeredOutTypeMap map[converterOutType]converterFunc
@@ -536,15 +536,15 @@ func (c *Converter) getRegisteredTypeConverterFuncAndSrcType(
 		return reflect.Value{}, nil, false
 	}
 	var dstType = dstReflectValueForRefer.Type()
-	if dstType.Kind() == reflect.Pointer {
+	if dstType.Kind() == reflect.Ptr {
 		// Might be **struct, which is support as designed.
-		if dstType.Elem().Kind() == reflect.Pointer {
+		if dstType.Elem().Kind() == reflect.Ptr {
 			dstType = dstType.Elem()
 		}
 	} else if dstReflectValueForRefer.IsValid() && dstReflectValueForRefer.CanAddr() {
 		dstType = dstReflectValueForRefer.Addr().Type()
 	} else {
-		dstType = reflect.PointerTo(dstType)
+		dstType = reflect.PtrTo(dstType)
 	}
 	// secondly, it searches the input parameter type map
 	// and finds the result converter function by the output parameter type.
@@ -563,15 +563,15 @@ func (c *Converter) getRegisteredAnyConverterFunc(dstReflectValueForRefer reflec
 		return nil
 	}
 	var dstType = dstReflectValueForRefer.Type()
-	if dstType.Kind() == reflect.Pointer {
+	if dstType.Kind() == reflect.Ptr {
 		// Might be **struct, which is support as designed.
-		if dstType.Elem().Kind() == reflect.Pointer {
+		if dstType.Elem().Kind() == reflect.Ptr {
 			dstType = dstType.Elem()
 		}
 	} else if dstReflectValueForRefer.IsValid() && dstReflectValueForRefer.CanAddr() {
 		dstType = dstReflectValueForRefer.Addr().Type()
 	} else {
-		dstType = reflect.PointerTo(dstType)
+		dstType = reflect.PtrTo(dstType)
 	}
 	return c.internalConverter.GetAnyConvertFuncByType(dstType)
 }
@@ -599,7 +599,7 @@ func (c *Converter) doCallCustomTypeConverter(
 		if resultValue.Type() == dstReflectValue.Type() && dstReflectValue.CanSet() {
 			dstReflectValue.Set(resultValue)
 			converted = true
-		} else if dstReflectValue.Kind() == reflect.Pointer {
+		} else if dstReflectValue.Kind() == reflect.Ptr {
 			if resultValue.Type() == dstReflectValue.Elem().Type() && dstReflectValue.Elem().CanSet() {
 				dstReflectValue.Elem().Set(resultValue)
 				converted = true
@@ -608,7 +608,7 @@ func (c *Converter) doCallCustomTypeConverter(
 		if converted {
 			break
 		}
-		if resultValue.Kind() == reflect.Pointer {
+		if resultValue.Kind() == reflect.Ptr {
 			resultValue = resultValue.Elem()
 		} else {
 			break

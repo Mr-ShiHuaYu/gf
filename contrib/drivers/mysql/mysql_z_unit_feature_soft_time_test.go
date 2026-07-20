@@ -636,11 +636,11 @@ CREATE TABLE %s (
 		time.Sleep(2 * time.Second)
 		type User struct {
 			g.Meta    `orm:"do:true"`
-			Id        any
-			Num       any
-			CreatedAt any
-			UpdatedAt any
-			DeletedAt any
+			Id        interface{}
+			Num       interface{}
+			CreatedAt interface{}
+			UpdatedAt interface{}
+			DeletedAt interface{}
 		}
 		r, err = db.Model(table).Data(User{
 			Num: 100,

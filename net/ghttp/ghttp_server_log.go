@@ -7,6 +7,7 @@
 package ghttp
 
 import (
+	"time"
 	"fmt"
 
 	"github.com/gogf/gf/v2/errors/gerror"
@@ -27,10 +28,10 @@ func (s *Server) handleAccessLog(r *Request) {
 	content := fmt.Sprintf(
 		`%d "%s %s %s %s %s" %.3f, %s, "%s", "%s"`,
 		r.Response.Status, r.Method, scheme, r.Host, r.URL.String(), r.Proto,
-		float64(r.LeaveTime.Sub(r.EnterTime).Milliseconds())/1000,
+		float64(int64(r.LeaveTime.Sub(r.EnterTime) / time.Millisecond))/1000,
 		r.GetClientIp(), r.Referer(), r.UserAgent(),
 	)
-	logger := instance.GetOrSetFuncLock(loggerInstanceKey, func() any {
+	logger := instance.GetOrSetFuncLock(loggerInstanceKey, func() interface{} {
 		l := s.Logger()
 		l.SetFile(s.config.AccessLogPattern)
 		l.SetStdoutPrint(s.config.LogStdout)
@@ -72,7 +73,7 @@ func (s *Server) handleErrorLog(err error, r *Request) {
 	} else {
 		content += ", " + err.Error()
 	}
-	logger := instance.GetOrSetFuncLock(loggerInstanceKey, func() any {
+	logger := instance.GetOrSetFuncLock(loggerInstanceKey, func() interface{} {
 		l := s.Logger()
 		l.SetStack(false)
 		l.SetFile(s.config.ErrorLogPattern)

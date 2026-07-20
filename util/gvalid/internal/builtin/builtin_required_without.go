@@ -15,7 +15,7 @@ import (
 )
 
 // RuleRequiredWithout implements `required-without` rule:
-// Required if any of given fields are empty.
+// Required if interface{} of given fields are empty.
 //
 // Format:  required-without:field1,field2,...
 // Example: required-without:id,name
@@ -37,7 +37,7 @@ func (r RuleRequiredWithout) Run(in RunInput) error {
 	var (
 		required   = false
 		array      = strings.Split(in.RulePattern, ",")
-		foundValue any
+		foundValue interface{}
 		dataMap    = in.Data.Map()
 	)
 

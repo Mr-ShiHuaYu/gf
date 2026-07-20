@@ -6,32 +6,32 @@
 
 package gconv
 
-// Uint converts `any` to uint.
-func Uint(anyInput any) uint {
+// Uint converts `interface{}` to uint.
+func Uint(anyInput interface{}) uint {
 	v, _ := defaultConverter.Uint(anyInput)
 	return v
 }
 
-// Uint8 converts `any` to uint8.
-func Uint8(anyInput any) uint8 {
+// Uint8 converts `interface{}` to uint8.
+func Uint8(anyInput interface{}) uint8 {
 	v, _ := defaultConverter.Uint8(anyInput)
 	return v
 }
 
-// Uint16 converts `any` to uint16.
-func Uint16(anyInput any) uint16 {
+// Uint16 converts `interface{}` to uint16.
+func Uint16(anyInput interface{}) uint16 {
 	v, _ := defaultConverter.Uint16(anyInput)
 	return v
 }
 
-// Uint32 converts `any` to uint32.
-func Uint32(anyInput any) uint32 {
+// Uint32 converts `interface{}` to uint32.
+func Uint32(anyInput interface{}) uint32 {
 	v, _ := defaultConverter.Uint32(anyInput)
 	return v
 }
 
-// Uint64 converts `any` to uint64.
-func Uint64(anyInput any) uint64 {
+// Uint64 converts `interface{}` to uint64.
+func Uint64(anyInput interface{}) uint64 {
 	v, _ := defaultConverter.Uint64(anyInput)
 	return v
 }

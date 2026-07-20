@@ -31,7 +31,7 @@ type iUnixNano interface {
 // New("2024-10-29")
 // New(1390876568)
 // New(t) // The t is type of time.Time.
-func New(param ...any) *Time {
+func New(param ...interface{}) *Time {
 	if len(param) > 0 {
 		switch r := param[0].(type) {
 		case time.Time:
@@ -329,7 +329,7 @@ func (t *Time) AddDate(years int, months int, days int) *Time {
 
 // Round returns the result of rounding t to the nearest multiple of d (since the zero time).
 // The rounding behavior for halfway values is to round up.
-// If d <= 0, Round returns t stripped of any monotonic clock reading but otherwise unchanged.
+// If d <= 0, Round returns t stripped of interface{} monotonic clock reading but otherwise unchanged.
 //
 // Round operates on the time as an absolute duration since the
 // zero time; it does not operate on the presentation form of the
@@ -342,7 +342,7 @@ func (t *Time) Round(d time.Duration) *Time {
 }
 
 // Truncate returns the result of rounding t down to a multiple of d (since the zero time).
-// If d <= 0, Truncate returns t stripped of any monotonic clock reading but otherwise unchanged.
+// If d <= 0, Truncate returns t stripped of interface{} monotonic clock reading but otherwise unchanged.
 //
 // Truncate operates on the time as an absolute duration since the
 // zero time; it does not operate on the presentation form of the
@@ -553,7 +553,7 @@ func (t *Time) UnmarshalText(data []byte) error {
 func (t *Time) NoValidation() {}
 
 // DeepCopy implements interface for deep copy of current type.
-func (t *Time) DeepCopy() any {
+func (t *Time) DeepCopy() interface{} {
 	if t == nil {
 		return nil
 	}

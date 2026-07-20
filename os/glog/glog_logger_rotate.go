@@ -141,7 +141,7 @@ func (l *Logger) rotateChecksTimely(ctx context.Context) {
 	// access-{y-m-d}-test.log => access-$-test.log => access-\$-test\.log => access-(.+?)-test\.log
 	fileNameRegexPattern, _ := gregex.ReplaceString(`{.+?}`, "$", l.config.File)
 	fileNameRegexPattern = gregex.Quote(fileNameRegexPattern)
-	fileNameRegexPattern = strings.ReplaceAll(fileNameRegexPattern, "\\$", "(.+?)")
+	fileNameRegexPattern = strings.Replace(fileNameRegexPattern, "\\$", "(.+?)", -1)
 	// =============================================================
 	// Rotation of expired file checks.
 	// =============================================================
@@ -235,7 +235,7 @@ func (l *Logger) rotateChecksTimely(ctx context.Context) {
 	// =============================================================
 	// Backups count limitation and expiration checks.
 	// =============================================================
-	backupFiles := garray.NewSortedArray(func(a, b any) int {
+	backupFiles := garray.NewSortedArray(func(a, b interface{}) int {
 		// Sorted by rotated/backup file mtime.
 		// The older rotated/backup file is put in the head of array.
 		var (
@@ -274,7 +274,7 @@ func (l *Logger) rotateChecksTimely(ctx context.Context) {
 				mtime       time.Time
 				subDuration time.Duration
 			)
-			backupFiles.Iterator(func(_ int, v any) bool {
+			backupFiles.Iterator(func(_ int, v interface{}) bool {
 				path := v.(string)
 				mtime = gfile.MTime(path)
 				subDuration = now.Sub(mtime)

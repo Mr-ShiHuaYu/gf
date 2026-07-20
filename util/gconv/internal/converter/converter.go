@@ -4,7 +4,7 @@
 // If a copy of the MIT was not distributed with this file,
 // You can obtain one at https://github.com/gogf/gf.
 
-// Package converter provides converting utilities for any types of variables.
+// Package converter provides converting utilities for interface{} types of variables.
 package converter
 
 import (
@@ -17,7 +17,7 @@ import (
 	"github.com/gogf/gf/v2/util/gconv/internal/structcache"
 )
 
-// AnyConvertFunc is the type for any type converting function.
+// AnyConvertFunc is the type for interface{} type converting function.
 type AnyConvertFunc = structcache.AnyConvertFunc
 
 // RecursiveType is the type for converting recursively.
@@ -69,7 +69,7 @@ func NewConverter() *Converter {
 //  1. The parameter `fn` must be defined as pattern `func(T1) (T2, error)`.
 //     It will convert type `T1` to type `T2`.
 //  2. The `T1` should not be type of pointer, but the `T2` should be type of pointer.
-func (c *Converter) RegisterTypeConverterFunc(f any) (err error) {
+func (c *Converter) RegisterTypeConverterFunc(f interface{}) (err error) {
 	var (
 		fReflectType = reflect.TypeOf(f)
 		errType      = reflect.TypeOf((*error)(nil)).Elem()
@@ -91,7 +91,7 @@ func (c *Converter) RegisterTypeConverterFunc(f any) (err error) {
 		inType  = fReflectType.In(0)
 		outType = fReflectType.Out(0)
 	)
-	if inType.Kind() == reflect.Pointer {
+	if inType.Kind() == reflect.Ptr {
 		err = gerror.NewCodef(
 			gcode.CodeInvalidParameter,
 			"invalid converter function `%s`: invalid input parameter type `%s`, should not be type of pointer",
@@ -99,7 +99,7 @@ func (c *Converter) RegisterTypeConverterFunc(f any) (err error) {
 		)
 		return
 	}
-	if outType.Kind() != reflect.Pointer {
+	if outType.Kind() != reflect.Ptr {
 		err = gerror.NewCodef(
 			gcode.CodeInvalidParameter,
 			"invalid converter function `%s`: invalid output parameter type `%s` should be type of pointer",

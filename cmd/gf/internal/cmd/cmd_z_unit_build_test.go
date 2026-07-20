@@ -104,7 +104,7 @@ func Test_Build_Single_VarMap(t *testing.T) {
 
 		t.Assert(gfile.Exists(binaryPath), false)
 		_, err = f.Index(ctx, cBuildInput{
-			VarMap: map[string]any{
+			VarMap: map[string]interface{}{
 				"a": "1",
 				"b": "2",
 			},

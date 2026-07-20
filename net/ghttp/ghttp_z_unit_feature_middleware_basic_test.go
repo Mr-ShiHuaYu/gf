@@ -274,7 +274,7 @@ func Test_BindMiddleware_Status(t *testing.T) {
 	s.BindHandler("/test/test", func(r *ghttp.Request) {
 		r.Response.Write("test")
 	})
-	s.BindMiddleware("/test/*any", func(r *ghttp.Request) {
+	s.BindMiddleware("/test/*interface{}", func(r *ghttp.Request) {
 		r.Middleware.Next()
 	})
 	s.SetDumpRouterMap(false)

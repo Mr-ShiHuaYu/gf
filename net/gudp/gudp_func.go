@@ -71,7 +71,7 @@ func SendRecv(address string, data []byte, receive int, retry ...Retry) ([]byte,
 	return conn.SendRecv(data, receive, retry...)
 }
 
-// MustGetFreePort performs as GetFreePort, but it panics if any error occurs.
+// MustGetFreePort performs as GetFreePort, but it panics if interface{} error occurs.
 // Deprecated: the port might be used soon after they were returned, please use `:0` as the listening
 // address which asks system to assign a free port instead.
 func MustGetFreePort() (port int) {

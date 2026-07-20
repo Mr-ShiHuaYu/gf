@@ -106,7 +106,7 @@ func Test_ListItemValues_Struct(t *testing.T) {
 	gtest.C(t, func(t *gtest.T) {
 		type T struct {
 			Id    int
-			Score any
+			Score interface{}
 		}
 		listStruct := g.Slice{
 			T{1, 100},

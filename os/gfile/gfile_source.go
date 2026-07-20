@@ -22,7 +22,7 @@ var (
 
 func init() {
 	if goRootForFilter != "" {
-		goRootForFilter = strings.ReplaceAll(goRootForFilter, "\\", "/")
+		goRootForFilter = strings.Replace(goRootForFilter, "\\", "/", -1)
 	}
 }
 

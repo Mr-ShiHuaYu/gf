@@ -3842,8 +3842,8 @@ func Test_OrderBy_Statement_Generated(t *testing.T) {
 			g.DB("default").Ctx(ctx).Model("employee").Order("name asc", "age desc").All()
 			return nil
 		})
-		rawSql := strings.ReplaceAll(sqlArray[len(sqlArray)-1], " ", "")
-		expectSql := strings.ReplaceAll("SELECT * FROM `employee` ORDER BY `name` asc, `age` desc", " ", "")
+		rawSql := strings.Replace(sqlArray[len(sqlArray)-1], " ", "", -1)
+		expectSql := strings.Replace("SELECT * FROM `employee` ORDER BY `name` asc, `age` desc", " ", "", -1)
 		t.Assert(rawSql, expectSql)
 	})
 }

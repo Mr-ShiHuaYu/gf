@@ -6,7 +6,7 @@
 
 // go test *.go -bench=".*" -benchmem
 
-//go:build windows
+// +build windows
 
 package gproc_test
 
