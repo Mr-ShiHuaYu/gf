@@ -12,7 +12,7 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/gogf/gf/v2/os/gtime"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gtime"
 )
 
 func ExampleNew_curTime() {

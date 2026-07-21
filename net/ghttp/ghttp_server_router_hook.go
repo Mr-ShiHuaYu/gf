@@ -11,7 +11,7 @@ import (
 	"net/http"
 	"reflect"
 
-	"github.com/gogf/gf/v2/debug/gdebug"
+	"github.com/Mr-ShiHuaYu/gf/v2/debug/gdebug"
 )
 
 // BindHookHandler registers handler for specified hook.

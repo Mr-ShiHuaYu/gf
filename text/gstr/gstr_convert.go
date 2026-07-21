@@ -14,7 +14,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/gogf/gf/v2/util/grand"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/grand"
 )
 
 var (

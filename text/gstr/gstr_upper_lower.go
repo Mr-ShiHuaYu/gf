@@ -12,7 +12,7 @@ import (
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 
-	"github.com/gogf/gf/v2/internal/utils"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/utils"
 )
 
 // ToLower returns a copy of the string s with all Unicode letters mapped to their lower case.

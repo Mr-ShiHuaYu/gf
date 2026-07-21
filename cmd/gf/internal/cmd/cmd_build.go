@@ -15,17 +15,17 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/gogf/gf/v2/encoding/gbase64"
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/os/gbuild"
-	"github.com/gogf/gf/v2/os/gcmd"
-	"github.com/gogf/gf/v2/os/genv"
-	"github.com/gogf/gf/v2/os/gfile"
-	"github.com/gogf/gf/v2/os/gproc"
-	"github.com/gogf/gf/v2/os/gtime"
-	"github.com/gogf/gf/v2/text/gregex"
-	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/gogf/gf/v2/util/gtag"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gbase64"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gbuild"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gcmd"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/genv"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gproc"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gtime"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gregex"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gtag"
 
 	"github.com/gogf/gf/cmd/gf/v2/internal/utility/mlog"
 )
@@ -225,7 +225,7 @@ func (c cBuild) Index(ctx context.Context, in cBuildInput) (out *cBuildOutput, e
 
 	// Injected information by building flags.
 	ldFlags := fmt.Sprintf(
-		`-X 'github.com/gogf/gf/v2/os/gbuild.builtInVarStr=%v'`,
+		`-X 'github.com/Mr-ShiHuaYu/gf/v2/os/gbuild.builtInVarStr=%v'`,
 		c.getBuildInVarStr(ctx, in),
 	)
 

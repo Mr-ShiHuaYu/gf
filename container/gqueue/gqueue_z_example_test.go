@@ -11,8 +11,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/gogf/gf/v2/container/gqueue"
-	"github.com/gogf/gf/v2/os/gtimer"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gqueue"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gtimer"
 )
 
 func ExampleNew() {

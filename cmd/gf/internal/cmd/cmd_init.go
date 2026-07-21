@@ -12,13 +12,13 @@ import (
 	"os"
 	"strings"
 
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/os/gcmd"
-	"github.com/gogf/gf/v2/os/gfile"
-	"github.com/gogf/gf/v2/os/gproc"
-	"github.com/gogf/gf/v2/os/gres"
-	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/gogf/gf/v2/util/gtag"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gcmd"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gproc"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gres"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gtag"
 
 	"github.com/gogf/gf/cmd/gf/v2/internal/utility/allyes"
 	"github.com/gogf/gf/cmd/gf/v2/internal/utility/mlog"
@@ -152,8 +152,8 @@ func (c cInit) Index(ctx context.Context, in cInitInput) (out *cInitOutput, err 
 	// Update the GoFrame version.
 	if in.Update {
 		mlog.Print("update goframe...")
-		// go get -u github.com/gogf/gf/v2@latest
-		updateCommand := `go get -u github.com/gogf/gf/v2@latest`
+		// go get -u github.com/Mr-ShiHuaYu/gf/v2@latest
+		updateCommand := `go get -u github.com/Mr-ShiHuaYu/gf/v2@latest`
 		if in.Name != "." {
 			updateCommand = fmt.Sprintf(`cd %s && %s`, in.Name, updateCommand)
 		}

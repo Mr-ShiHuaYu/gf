@@ -11,8 +11,8 @@ package mysql_test
 import (
 	"testing"
 
-	"github.com/gogf/gf/v2/os/gtime"
-	"github.com/gogf/gf/v2/util/grand"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gtime"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/grand"
 )
 
 func Benchmark_BatchInsert(b *testing.B) {

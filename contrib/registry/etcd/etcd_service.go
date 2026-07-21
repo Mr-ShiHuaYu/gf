@@ -7,8 +7,8 @@
 package etcd
 
 import (
-	"github.com/gogf/gf/v2/encoding/gjson"
-	"github.com/gogf/gf/v2/net/gsvc"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gjson"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gsvc"
 )
 
 // Service wrapper.

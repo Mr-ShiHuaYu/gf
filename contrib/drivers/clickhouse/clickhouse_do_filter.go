@@ -11,8 +11,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/gogf/gf/v2/database/gdb"
-	"github.com/gogf/gf/v2/text/gregex"
+	"github.com/Mr-ShiHuaYu/gf/v2/database/gdb"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gregex"
 )
 
 // DoFilter handles the sql before posts it to database.

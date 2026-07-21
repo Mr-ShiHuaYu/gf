@@ -10,10 +10,10 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/gogf/gf/v2/internal/json"
-	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/gogf/gf/v2/util/gtag"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/json"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gtag"
 )
 
 type SchemaRefs []SchemaRef

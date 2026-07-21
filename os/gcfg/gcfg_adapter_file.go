@@ -9,18 +9,18 @@ package gcfg
 import (
 	"context"
 
-	"github.com/gogf/gf/v2/container/garray"
-	"github.com/gogf/gf/v2/container/gmap"
-	"github.com/gogf/gf/v2/container/gvar"
-	"github.com/gogf/gf/v2/encoding/gjson"
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/internal/command"
-	"github.com/gogf/gf/v2/internal/intlog"
-	"github.com/gogf/gf/v2/os/gfile"
-	"github.com/gogf/gf/v2/os/gfsnotify"
-	"github.com/gogf/gf/v2/os/gres"
-	"github.com/gogf/gf/v2/util/gmode"
-	"github.com/gogf/gf/v2/util/gutil"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/garray"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gmap"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gvar"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gjson"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/command"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/intlog"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfsnotify"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gres"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gmode"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gutil"
 )
 
 // AdapterFile implements interface Adapter using file.

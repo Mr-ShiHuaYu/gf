@@ -7,7 +7,7 @@
 package goai
 
 import (
-	"github.com/gogf/gf/v2/internal/json"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/json"
 )
 
 type SecurityScheme struct {

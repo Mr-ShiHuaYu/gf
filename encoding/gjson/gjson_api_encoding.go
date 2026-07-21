@@ -7,12 +7,12 @@
 package gjson
 
 import (
-	"github.com/gogf/gf/v2/encoding/gini"
-	"github.com/gogf/gf/v2/encoding/gproperties"
-	"github.com/gogf/gf/v2/encoding/gtoml"
-	"github.com/gogf/gf/v2/encoding/gxml"
-	"github.com/gogf/gf/v2/encoding/gyaml"
-	"github.com/gogf/gf/v2/internal/json"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gini"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gproperties"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gtoml"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gxml"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gyaml"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/json"
 )
 
 // ========================================================================

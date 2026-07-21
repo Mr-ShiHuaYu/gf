@@ -9,9 +9,9 @@ package redis
 import (
 	"testing"
 
-	"github.com/gogf/gf/v2/database/gredis"
-	"github.com/gogf/gf/v2/test/gtest"
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/database/gredis"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 func Test_mustMergeOptionToArgs(t *testing.T) {

@@ -11,7 +11,7 @@ import (
 	"go/ast"
 	t "time"
 
-	gdbalias "github.com/gogf/gf/v2/database/gdb"
+	gdbalias "github.com/Mr-ShiHuaYu/gf/v2/database/gdb"
 
 	"github.com/gogf/gf/cmd/gf/v2/internal/cmd/testdata/genservice/service"
 )

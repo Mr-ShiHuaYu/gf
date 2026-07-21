@@ -9,7 +9,7 @@ package gdb
 import (
 	"fmt"
 
-	"github.com/gogf/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 )
 
 // LeftJoin does "LEFT JOIN ... ON ..." statement on the model.

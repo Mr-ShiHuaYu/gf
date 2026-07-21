@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/gogf/gf/v2/container/gvar"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gvar"
 )
 
 // Cookie for HTTP COOKIE management.

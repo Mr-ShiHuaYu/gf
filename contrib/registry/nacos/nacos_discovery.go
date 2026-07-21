@@ -12,10 +12,10 @@ import (
 	"github.com/nacos-group/nacos-sdk-go/v2/model"
 	"github.com/nacos-group/nacos-sdk-go/v2/vo"
 
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/net/gsvc"
-	"github.com/gogf/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gsvc"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 )
 
 // Search searches and returns services with specified condition.

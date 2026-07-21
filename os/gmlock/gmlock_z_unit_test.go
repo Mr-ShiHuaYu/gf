@@ -11,9 +11,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gogf/gf/v2/container/garray"
-	"github.com/gogf/gf/v2/os/gmlock"
-	"github.com/gogf/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/garray"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gmlock"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
 )
 
 func Test_Locker_Lock(t *testing.T) {

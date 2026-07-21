@@ -9,11 +9,11 @@ package goai
 import (
 	"fmt"
 
-	"github.com/gogf/gf/v2/encoding/gjson"
-	"github.com/gogf/gf/v2/internal/empty"
-	"github.com/gogf/gf/v2/internal/json"
-	"github.com/gogf/gf/v2/os/gfile"
-	"github.com/gogf/gf/v2/os/gres"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gjson"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/empty"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/json"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gres"
 )
 
 // Example is specified by OpenAPI/Swagger 3.0 standard.

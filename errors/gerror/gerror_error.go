@@ -12,7 +12,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/gogf/gf/v2/errors/gcode"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
 )
 
 // Error is custom error for additional features.

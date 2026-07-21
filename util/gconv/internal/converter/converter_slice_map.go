@@ -6,7 +6,7 @@
 
 package converter
 
-import "github.com/gogf/gf/v2/internal/json"
+import "github.com/Mr-ShiHuaYu/gf/v2/internal/json"
 
 // SliceMapOption is the option for SliceMap function.
 type SliceMapOption struct {

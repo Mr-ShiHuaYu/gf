@@ -12,7 +12,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/gogf/gf/v2/container/gmap"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gmap"
 )
 
 var gm = gmap.NewIntIntMap(true)

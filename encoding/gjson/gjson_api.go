@@ -9,10 +9,10 @@ package gjson
 import (
 	"fmt"
 
-	"github.com/gogf/gf/v2/container/gvar"
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/util/gutil"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gvar"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gutil"
 )
 
 // Interface returns the json value.

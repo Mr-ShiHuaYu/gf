@@ -13,13 +13,13 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/internal/intlog"
-	"github.com/gogf/gf/v2/internal/json"
-	"github.com/gogf/gf/v2/os/gfile"
-	"github.com/gogf/gf/v2/os/gtime"
-	"github.com/gogf/gf/v2/util/grand"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/intlog"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/json"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gtime"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/grand"
 )
 
 // UploadFile wraps the multipart uploading file with more and convenient features.

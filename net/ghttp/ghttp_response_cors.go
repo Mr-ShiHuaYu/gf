@@ -11,8 +11,8 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 // CORSOptions is the options for CORS feature.

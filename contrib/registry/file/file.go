@@ -10,8 +10,8 @@ package file
 import (
 	"time"
 
-	"github.com/gogf/gf/v2/net/gsvc"
-	"github.com/gogf/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gsvc"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
 )
 
 var (

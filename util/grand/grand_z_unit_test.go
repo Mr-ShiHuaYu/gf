@@ -13,9 +13,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gogf/gf/v2/test/gtest"
-	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/gogf/gf/v2/util/grand"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/grand"
 )
 
 func Test_Intn(t *testing.T) {

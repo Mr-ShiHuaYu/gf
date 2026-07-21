@@ -9,11 +9,11 @@ package pgsql
 import (
 	"fmt"
 
-	"github.com/gogf/gf/v2/database/gdb"
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/database/gdb"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 // FormatUpsert returns SQL clause of type upsert for PgSQL.

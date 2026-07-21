@@ -11,9 +11,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/os/gsession"
-	"github.com/gogf/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gsession"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
 )
 
 func Test_StorageMemory(t *testing.T) {

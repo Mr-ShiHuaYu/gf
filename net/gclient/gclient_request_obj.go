@@ -11,14 +11,14 @@ import (
 	"net/http"
 	"reflect"
 
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/text/gregex"
-	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/gogf/gf/v2/util/gmeta"
-	"github.com/gogf/gf/v2/util/gtag"
-	"github.com/gogf/gf/v2/util/gutil"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gregex"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gmeta"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gtag"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gutil"
 )
 
 // DoRequestObj does HTTP request using standard request/response object.

@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/gogf/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 )
 
 // RuleBetween implements `between` rule:

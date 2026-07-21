@@ -9,7 +9,7 @@ package gring_test
 import (
 	"fmt"
 
-	"github.com/gogf/gf/v2/container/gring"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gring"
 )
 
 func ExampleNew() {

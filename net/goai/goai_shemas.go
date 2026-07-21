@@ -7,7 +7,7 @@
 package goai
 
 import (
-	"github.com/gogf/gf/v2/container/gmap"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gmap"
 )
 
 type Schemas struct {

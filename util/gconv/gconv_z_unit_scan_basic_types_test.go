@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gogf/gf/v2/test/gtest"
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 type testScan struct {

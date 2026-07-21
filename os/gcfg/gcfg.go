@@ -10,13 +10,13 @@ package gcfg
 import (
 	"context"
 
-	"github.com/gogf/gf/v2/container/gvar"
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/internal/command"
-	"github.com/gogf/gf/v2/internal/intlog"
-	"github.com/gogf/gf/v2/internal/utils"
-	"github.com/gogf/gf/v2/os/genv"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gvar"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/command"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/intlog"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/utils"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/genv"
 )
 
 // Config is the configuration management object.

@@ -9,9 +9,9 @@ package garray_test
 import (
 	"fmt"
 
-	"github.com/gogf/gf/v2/container/garray"
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/internal/empty"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/garray"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/empty"
 )
 
 func ExampleNew() {

@@ -12,7 +12,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
 )
 
 // GetIpArray retrieves and returns all the ip of current host.

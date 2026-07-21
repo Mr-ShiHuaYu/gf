@@ -13,9 +13,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/os/gcron"
-	"github.com/gogf/gf/v2/os/glog"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gcron"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/glog"
 )
 
 func ExampleCron_AddSingleton() {

@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gogf/gf/v2/container/gtype"
-	"github.com/gogf/gf/v2/os/glog"
-	"github.com/gogf/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gtype"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/glog"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
 )
 
 func Test_Core_SetDebug_GetDebug(t *testing.T) {

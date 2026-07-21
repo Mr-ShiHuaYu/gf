@@ -12,10 +12,10 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/os/gstructs"
-	"github.com/gogf/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gstructs"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 )
 
 // BindHandler registers a handler function to server with a given pattern.

@@ -11,8 +11,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
 )
 
 // Time is a wrapper for time.Time for additional features.

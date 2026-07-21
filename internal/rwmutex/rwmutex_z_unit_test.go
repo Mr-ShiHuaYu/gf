@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gogf/gf/v2/container/garray"
-	"github.com/gogf/gf/v2/internal/rwmutex"
-	"github.com/gogf/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/garray"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/rwmutex"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
 )
 
 func TestRWMutexIsSafe(t *testing.T) {

@@ -13,7 +13,7 @@ import (
 	"net/textproto"
 	"time"
 
-	"github.com/gogf/gf/v2/os/gtime"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gtime"
 )
 
 type clientTracerMetrics struct {

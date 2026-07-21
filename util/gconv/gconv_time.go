@@ -9,7 +9,7 @@ package gconv
 import (
 	"time"
 
-	"github.com/gogf/gf/v2/os/gtime"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gtime"
 )
 
 // Time converts `interface{}` to time.Time.

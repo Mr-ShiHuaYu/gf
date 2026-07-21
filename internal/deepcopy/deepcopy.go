@@ -13,7 +13,7 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/gogf/gf/v2/internal/reflection"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/reflection"
 )
 
 // Interface for delegating copy process to type

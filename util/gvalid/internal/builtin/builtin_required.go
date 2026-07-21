@@ -10,7 +10,7 @@ import (
 	"errors"
 	"reflect"
 
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 // RuleRequired implements `required` rule.

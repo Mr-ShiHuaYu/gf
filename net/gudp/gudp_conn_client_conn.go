@@ -10,7 +10,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
 )
 
 // ClientConn holds the client side connection.

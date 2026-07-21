@@ -10,8 +10,8 @@ package mysql
 import (
 	_ "github.com/go-sql-driver/mysql"
 
-	"github.com/gogf/gf/v2/database/gdb"
-	"github.com/gogf/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/database/gdb"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
 )
 
 // Driver is the driver for mysql database.

@@ -11,7 +11,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gogf/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
 )
 
 func TestSlash(t *testing.T) {

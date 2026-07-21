@@ -12,7 +12,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/gogf/gf/v2/text/gregex"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gregex"
 )
 
 var (

@@ -11,8 +11,8 @@ import (
 	"encoding/base64"
 	"sync/atomic"
 
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 // Bytes is a struct for concurrent-safe operation for type []byte.

@@ -9,8 +9,8 @@ package gproc
 import (
 	"os"
 
-	"github.com/gogf/gf/v2/container/gmap"
-	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gmap"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
 )
 
 // Manager is a process manager maintaining multiple processes.

@@ -10,7 +10,7 @@ package sqlite
 import (
 	_ "github.com/glebarez/go-sqlite"
 
-	"github.com/gogf/gf/v2/database/gdb"
+	"github.com/Mr-ShiHuaYu/gf/v2/database/gdb"
 )
 
 // Driver is the driver for sqlite database.

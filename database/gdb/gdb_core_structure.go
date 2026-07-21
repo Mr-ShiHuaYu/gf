@@ -14,15 +14,15 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gogf/gf/v2/encoding/gbinary"
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/internal/intlog"
-	"github.com/gogf/gf/v2/internal/json"
-	"github.com/gogf/gf/v2/os/gtime"
-	"github.com/gogf/gf/v2/text/gregex"
-	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/gogf/gf/v2/util/gutil"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gbinary"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/intlog"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/json"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gtime"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gregex"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gutil"
 )
 
 // GetFieldTypeStr retrieves and returns the field type string for certain field by name.

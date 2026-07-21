@@ -14,10 +14,10 @@ import (
 
 	"github.com/olekukonko/tablewriter"
 
-	"github.com/gogf/gf/v2/database/gdb"
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/text/gregex"
-	"github.com/gogf/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/database/gdb"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gregex"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 )
 
 type generateStructDefinitionInput struct {

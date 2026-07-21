@@ -14,9 +14,9 @@ import (
 	"os"
 	"syscall"
 
-	"github.com/gogf/gf/v2/internal/intlog"
-	"github.com/gogf/gf/v2/os/glog"
-	"github.com/gogf/gf/v2/os/gproc"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/intlog"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/glog"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gproc"
 )
 
 // handleProcessSignal handles all signals from system in blocking way.

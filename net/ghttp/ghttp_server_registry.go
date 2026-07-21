@@ -10,11 +10,11 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/gogf/gf/v2/net/gipv4"
-	"github.com/gogf/gf/v2/net/gsvc"
-	"github.com/gogf/gf/v2/os/gctx"
-	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gipv4"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gsvc"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gctx"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 // doServiceRegister registers current service to Registry.

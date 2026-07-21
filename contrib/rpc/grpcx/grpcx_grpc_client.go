@@ -12,11 +12,11 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/net/gsel"
-	"github.com/gogf/gf/v2/net/gsvc"
-	"github.com/gogf/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gsel"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gsvc"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 )
 
 // DefaultGrpcDialOptions returns the default options for creating grpc client connection.

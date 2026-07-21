@@ -10,7 +10,7 @@ import (
 	"context"
 	"database/sql"
 
-	"github.com/gogf/gf/v2/database/gdb"
+	"github.com/Mr-ShiHuaYu/gf/v2/database/gdb"
 )
 
 // DoDelete does "DELETE FROM ... " statement for the table.

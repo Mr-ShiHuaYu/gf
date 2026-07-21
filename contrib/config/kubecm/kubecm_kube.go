@@ -13,7 +13,7 @@ import (
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
 
-	"github.com/gogf/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
 )
 
 const (

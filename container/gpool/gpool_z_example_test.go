@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/gogf/gf/v2/container/gpool"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gpool"
 )
 
 func ExampleNew() {

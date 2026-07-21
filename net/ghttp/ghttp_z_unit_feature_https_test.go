@@ -11,15 +11,15 @@ import (
 	"testing"
 	"time"
 
-	_ "github.com/gogf/gf/v2/net/ghttp/testdata/https/packed"
+	_ "github.com/Mr-ShiHuaYu/gf/v2/net/ghttp/testdata/https/packed"
 
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/net/ghttp"
-	"github.com/gogf/gf/v2/os/gfile"
-	"github.com/gogf/gf/v2/os/gtime"
-	"github.com/gogf/gf/v2/test/gtest"
-	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/gogf/gf/v2/util/guid"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/ghttp"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gtime"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/guid"
 )
 
 func Test_HTTPS_Basic(t *testing.T) {

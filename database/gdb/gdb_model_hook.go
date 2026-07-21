@@ -11,9 +11,9 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/gogf/gf/v2/container/gvar"
-	"github.com/gogf/gf/v2/text/gregex"
-	"github.com/gogf/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gvar"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gregex"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 )
 
 type (

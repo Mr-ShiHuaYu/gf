@@ -12,9 +12,9 @@ import (
 
 	etcd3 "go.etcd.io/etcd/client/v3"
 
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/net/gsvc"
-	"github.com/gogf/gf/v2/util/grand"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gsvc"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/grand"
 )
 
 // Register registers `service` to Registry.

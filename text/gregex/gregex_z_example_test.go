@@ -10,8 +10,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/text/gregex"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gregex"
 )
 
 func ExampleIsMatch() {

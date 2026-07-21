@@ -16,15 +16,15 @@ import (
 	"go.opentelemetry.io/otel/propagation"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/gogf/gf/v2"
-	"github.com/gogf/gf/v2/internal/httputil"
-	"github.com/gogf/gf/v2/net/gtrace"
-	"github.com/gogf/gf/v2/os/gctx"
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/httputil"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gtrace"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gctx"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 const (
-	instrumentName                              = "github.com/gogf/gf/v2/net/ghttp.Server"
+	instrumentName                              = "github.com/Mr-ShiHuaYu/gf/v2/net/ghttp.Server"
 	tracingEventHttpRequest                     = "http.request"
 	tracingEventHttpRequestHeaders              = "http.request.headers"
 	tracingEventHttpRequestBaggage              = "http.request.baggage"

@@ -9,11 +9,11 @@ package converter
 import (
 	"reflect"
 
-	"github.com/gogf/gf/v2/internal/empty"
-	"github.com/gogf/gf/v2/internal/json"
-	"github.com/gogf/gf/v2/internal/reflection"
-	"github.com/gogf/gf/v2/internal/utils"
-	"github.com/gogf/gf/v2/util/gconv/internal/localinterface"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/empty"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/json"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/reflection"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/utils"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv/internal/localinterface"
 )
 
 // SliceFloat32 converts `interface{}` to []float32.

@@ -9,9 +9,9 @@ package redis
 import (
 	"context"
 
-	"github.com/gogf/gf/v2/container/gvar"
-	"github.com/gogf/gf/v2/database/gredis"
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gvar"
+	"github.com/Mr-ShiHuaYu/gf/v2/database/gredis"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 // GroupScript provides script functions for redis.

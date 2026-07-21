@@ -1,10 +1,10 @@
-module github.com/gogf/gf/contrib/config/apollo/v2
+module github.com/Mr-ShiHuaYu/gf/contrib/config/apollo/v2
 
 go 1.23.0
 
 require (
 	github.com/apolloconfig/agollo/v4 v4.3.1
-	github.com/gogf/gf/v2 v2.9.4
+	github.com/Mr-ShiHuaYu/gf/v2 v2.9.4
 )
 
 require (
@@ -48,4 +48,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/gogf/gf/v2 => ../../../
+replace github.com/Mr-ShiHuaYu/gf/v2 => ../../../

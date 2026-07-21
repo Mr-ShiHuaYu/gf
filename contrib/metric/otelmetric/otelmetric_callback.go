@@ -9,7 +9,7 @@ package otelmetric
 import (
 	"go.opentelemetry.io/otel/metric"
 
-	"github.com/gogf/gf/v2/os/gmetric"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gmetric"
 )
 
 // localObserver implements interface gmetric.Observer.

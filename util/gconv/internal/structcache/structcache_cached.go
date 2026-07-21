@@ -9,8 +9,8 @@ package structcache
 import (
 	"reflect"
 
-	"github.com/gogf/gf/v2/internal/utils"
-	"github.com/gogf/gf/v2/util/gtag"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/utils"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gtag"
 )
 
 // GetCachedStructInfo retrieves or parses and returns a cached info for certain struct type.

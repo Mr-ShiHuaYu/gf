@@ -9,9 +9,9 @@ package gtype
 import (
 	"sync/atomic"
 
-	"github.com/gogf/gf/v2/internal/deepcopy"
-	"github.com/gogf/gf/v2/internal/json"
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/deepcopy"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/json"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 // Interface is a struct for concurrent-safe operation for type interface{}.

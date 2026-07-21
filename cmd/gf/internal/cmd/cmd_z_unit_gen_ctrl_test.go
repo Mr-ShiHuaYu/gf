@@ -10,10 +10,10 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/gogf/gf/v2/os/gfile"
-	"github.com/gogf/gf/v2/test/gtest"
-	"github.com/gogf/gf/v2/util/guid"
-	"github.com/gogf/gf/v2/util/gutil"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/guid"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gutil"
 
 	"github.com/gogf/gf/cmd/gf/v2/internal/cmd/genctrl"
 )
@@ -108,7 +108,7 @@ func Test_Gen_Ctrl_UseMerge_AddNewFile(t *testing.T) {
 		)
 		const testNewApiFile = `
 package v1
-import "github.com/gogf/gf/v2/frame/g"
+import "github.com/Mr-ShiHuaYu/gf/v2/frame/g"
 type DictTypeAddReq struct {
 	g.Meta
 }

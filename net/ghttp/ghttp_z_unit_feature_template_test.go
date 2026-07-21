@@ -13,12 +13,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gogf/gf/v2/encoding/ghtml"
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/net/ghttp"
-	"github.com/gogf/gf/v2/os/gview"
-	"github.com/gogf/gf/v2/test/gtest"
-	"github.com/gogf/gf/v2/util/guid"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/ghtml"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/ghttp"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gview"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/guid"
 )
 
 func Test_Template_Basic(t *testing.T) {

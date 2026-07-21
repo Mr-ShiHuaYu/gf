@@ -8,11 +8,11 @@
 package ghttp
 
 import (
-	"github.com/gogf/gf/v2/os/gcfg"
-	"github.com/gogf/gf/v2/os/gview"
-	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/gogf/gf/v2/util/gmode"
-	"github.com/gogf/gf/v2/util/gutil"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gcfg"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gview"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gmode"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gutil"
 )
 
 // WriteTpl parses and responses given template file.

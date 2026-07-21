@@ -11,11 +11,11 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/gogf/gf/v2/internal/instance"
-	"github.com/gogf/gf/v2/os/gcfg"
-	"github.com/gogf/gf/v2/os/gfile"
-	"github.com/gogf/gf/v2/os/gtime"
-	"github.com/gogf/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/instance"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gcfg"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gtime"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
 )
 
 func Test_View(t *testing.T) {

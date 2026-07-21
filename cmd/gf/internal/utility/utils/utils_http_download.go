@@ -14,7 +14,7 @@ import (
 
 	"github.com/schollz/progressbar/v3"
 
-	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
 
 	"github.com/gogf/gf/cmd/gf/v2/internal/utility/mlog"
 )

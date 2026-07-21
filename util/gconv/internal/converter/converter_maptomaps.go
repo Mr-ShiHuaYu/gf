@@ -9,8 +9,8 @@ package converter
 import (
 	"reflect"
 
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
 )
 
 // MapToMaps converts interface{} map type variable `params` to another map slice variable `pointer`.

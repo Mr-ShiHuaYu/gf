@@ -9,7 +9,7 @@ package gudp_test
 import (
 	"fmt"
 
-	"github.com/gogf/gf/v2/net/gudp"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gudp"
 )
 
 func ExampleGetFreePort() {

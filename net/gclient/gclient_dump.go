@@ -12,8 +12,8 @@ import (
 	"net/http"
 	"net/http/httputil"
 
-	"github.com/gogf/gf/v2/internal/intlog"
-	"github.com/gogf/gf/v2/internal/utils"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/intlog"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/utils"
 )
 
 // dumpTextFormat is the format of the dumped raw string

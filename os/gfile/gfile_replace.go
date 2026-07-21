@@ -7,7 +7,7 @@
 package gfile
 
 import (
-	"github.com/gogf/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 )
 
 // ReplaceFile replaces content for file `path`.

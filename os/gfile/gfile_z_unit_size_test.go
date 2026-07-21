@@ -9,9 +9,9 @@ package gfile_test
 import (
 	"testing"
 
-	"github.com/gogf/gf/v2/os/gfile"
-	"github.com/gogf/gf/v2/test/gtest"
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 func Test_Size(t *testing.T) {

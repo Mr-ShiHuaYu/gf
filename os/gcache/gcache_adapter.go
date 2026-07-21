@@ -10,7 +10,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/gogf/gf/v2/container/gvar"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gvar"
 )
 
 // Adapter is the core adapter for cache features implements.

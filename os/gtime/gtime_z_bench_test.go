@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gogf/gf/v2/os/gtime"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gtime"
 )
 
 func Benchmark_Timestamp(b *testing.B) {

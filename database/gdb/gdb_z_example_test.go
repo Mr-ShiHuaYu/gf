@@ -9,8 +9,8 @@ package gdb_test
 import (
 	"context"
 
-	"github.com/gogf/gf/v2/database/gdb"
-	"github.com/gogf/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/database/gdb"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
 )
 
 // ExampleDB_Transaction demonstrates the usage of transaction in gdb.

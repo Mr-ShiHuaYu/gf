@@ -15,8 +15,8 @@ import (
 	"html"
 	"math"
 
-	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 // Page is the pagination implementer.

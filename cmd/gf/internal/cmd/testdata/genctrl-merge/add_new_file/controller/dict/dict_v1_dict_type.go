@@ -3,8 +3,8 @@ package dict
 import (
 	"context"
 
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
 
 	"github.com/gogf/gf/cmd/gf/v2/internal/cmd/testdata/genctrl-merge/add_new_file/api/dict/v1"
 )

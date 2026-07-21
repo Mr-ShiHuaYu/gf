@@ -10,8 +10,8 @@ import (
 	"context"
 	"sync"
 
-	"github.com/gogf/gf/v2/container/gtype"
-	"github.com/gogf/gf/v2/internal/intlog"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gtype"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/intlog"
 )
 
 type selectorLeastConnection struct {

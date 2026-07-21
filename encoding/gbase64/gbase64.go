@@ -11,7 +11,7 @@ import (
 	"encoding/base64"
 	"io/ioutil"
 
-	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
 )
 
 // Encode encodes bytes with BASE64 algorithm.

@@ -9,8 +9,8 @@ package gbase64_test
 import (
 	"testing"
 
-	"github.com/gogf/gf/v2/encoding/gbase64"
-	"github.com/gogf/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gbase64"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
 )
 
 type testPair struct {

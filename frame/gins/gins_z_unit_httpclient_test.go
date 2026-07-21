@@ -10,8 +10,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/gogf/gf/v2/frame/gins"
-	"github.com/gogf/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/gins"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
 )
 
 func Test_Client(t *testing.T) {

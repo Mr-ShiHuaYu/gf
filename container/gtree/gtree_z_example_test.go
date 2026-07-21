@@ -9,9 +9,9 @@ package gtree_test
 import (
 	"fmt"
 
-	"github.com/gogf/gf/v2/container/gtree"
-	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/gogf/gf/v2/util/gutil"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gtree"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gutil"
 )
 
 func ExampleNewAVLTree() {

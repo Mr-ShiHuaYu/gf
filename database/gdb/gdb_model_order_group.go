@@ -9,8 +9,8 @@ package gdb
 import (
 	"strings"
 
-	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 // Order sets the "ORDER BY" statement for the model.

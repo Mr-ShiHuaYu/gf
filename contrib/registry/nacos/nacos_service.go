@@ -11,9 +11,9 @@ import (
 
 	"github.com/nacos-group/nacos-sdk-go/v2/model"
 
-	"github.com/gogf/gf/v2/container/gmap"
-	"github.com/gogf/gf/v2/net/gsvc"
-	"github.com/gogf/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gmap"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gsvc"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 )
 
 // NewServiceFromInstance new one service from instance

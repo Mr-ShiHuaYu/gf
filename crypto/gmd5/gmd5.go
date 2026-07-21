@@ -13,8 +13,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 // Encrypt encrypts interface{} type of variable using MD5 algorithms.

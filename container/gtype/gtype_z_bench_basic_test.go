@@ -13,8 +13,8 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/gogf/gf/v2/container/gtype"
-	"github.com/gogf/gf/v2/encoding/gbinary"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gtype"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gbinary"
 )
 
 var (

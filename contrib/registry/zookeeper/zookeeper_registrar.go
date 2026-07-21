@@ -14,8 +14,8 @@ import (
 
 	"github.com/go-zookeeper/zk"
 
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/net/gsvc"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gsvc"
 )
 
 // Register registers `service` to Registry.

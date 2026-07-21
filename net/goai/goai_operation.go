@@ -7,9 +7,9 @@
 package goai
 
 import (
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/internal/json"
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/json"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 // Operation represents "operation" specified by OpenAPI/Swagger 3.0 standard.

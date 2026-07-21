@@ -9,8 +9,8 @@ package gutil_test
 import (
 	"testing"
 
-	"github.com/gogf/gf/v2/test/gtest"
-	"github.com/gogf/gf/v2/util/gutil"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gutil"
 )
 
 func Test_ComparatorString(t *testing.T) {

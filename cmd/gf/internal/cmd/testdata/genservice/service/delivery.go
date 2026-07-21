@@ -8,7 +8,7 @@ package service
 import (
 	"context"
 
-	gdbas "github.com/gogf/gf/v2/database/gdb"
+	gdbas "github.com/Mr-ShiHuaYu/gf/v2/database/gdb"
 )
 
 type (

@@ -10,7 +10,7 @@ import (
 	"regexp"
 	"sync"
 
-	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
 )
 
 var (

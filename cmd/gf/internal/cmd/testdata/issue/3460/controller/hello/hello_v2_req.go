@@ -3,8 +3,8 @@ package hello
 import (
 	"context"
 
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
 
 	"github.com/gogf/gf/cmd/gf/v2/internal/cmd/testdata/issue/3460/api/hello/v2"
 )

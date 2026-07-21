@@ -10,9 +10,9 @@ import (
 	"context"
 	"sync"
 
-	"github.com/gogf/gf/v2/internal/intlog"
-	"github.com/gogf/gf/v2/net/gsvc"
-	"github.com/gogf/gf/v2/util/grand"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/intlog"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gsvc"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/grand"
 )
 
 type selectorWeight struct {

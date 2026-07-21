@@ -11,8 +11,8 @@ package gstr_test
 import (
 	"testing"
 
-	"github.com/gogf/gf/v2/test/gtest"
-	"github.com/gogf/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 )
 
 func Test_Pos(t *testing.T) {

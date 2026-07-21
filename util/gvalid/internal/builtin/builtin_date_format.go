@@ -10,7 +10,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/gogf/gf/v2/os/gtime"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gtime"
 )
 
 // RuleDateFormat implements `date-format` rule:

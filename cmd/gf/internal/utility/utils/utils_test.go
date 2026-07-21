@@ -10,7 +10,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/gogf/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
 
 	"github.com/gogf/gf/cmd/gf/v2/internal/utility/utils"
 )

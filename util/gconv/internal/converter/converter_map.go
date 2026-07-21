@@ -10,12 +10,12 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/gogf/gf/v2/internal/empty"
-	"github.com/gogf/gf/v2/internal/json"
-	"github.com/gogf/gf/v2/internal/reflection"
-	"github.com/gogf/gf/v2/internal/utils"
-	"github.com/gogf/gf/v2/util/gconv/internal/localinterface"
-	"github.com/gogf/gf/v2/util/gtag"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/empty"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/json"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/reflection"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/utils"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv/internal/localinterface"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gtag"
 )
 
 // MapOption specifies the option for map converting.

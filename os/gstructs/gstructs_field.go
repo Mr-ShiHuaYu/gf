@@ -9,9 +9,9 @@ package gstructs
 import (
 	"reflect"
 
-	"github.com/gogf/gf/v2/internal/empty"
-	"github.com/gogf/gf/v2/internal/utils"
-	"github.com/gogf/gf/v2/util/gtag"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/empty"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/utils"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gtag"
 )
 
 // Tag returns the value associated with key in the tag string. If there is no

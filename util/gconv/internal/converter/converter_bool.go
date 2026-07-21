@@ -10,8 +10,8 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/gogf/gf/v2/internal/empty"
-	"github.com/gogf/gf/v2/util/gconv/internal/localinterface"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/empty"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv/internal/localinterface"
 )
 
 // Bool converts `interface{}` to bool.

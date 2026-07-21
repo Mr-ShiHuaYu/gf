@@ -10,9 +10,9 @@ import (
 	"container/ring"
 	"testing"
 
-	"github.com/gogf/gf/v2/container/gring"
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gring"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
 )
 
 type Student struct {

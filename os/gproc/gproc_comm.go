@@ -11,12 +11,12 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/gogf/gf/v2/container/gmap"
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/internal/intlog"
-	"github.com/gogf/gf/v2/net/gtcp"
-	"github.com/gogf/gf/v2/os/gfile"
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gmap"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/intlog"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gtcp"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 // MsgRequest is the request structure for process communication.

@@ -10,7 +10,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/gogf/gf/v2/os/gmutex"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gmutex"
 )
 
 var (

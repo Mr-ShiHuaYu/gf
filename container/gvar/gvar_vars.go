@@ -7,7 +7,7 @@
 package gvar
 
 import (
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 // Vars is a slice of *Var.

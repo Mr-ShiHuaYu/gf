@@ -7,8 +7,8 @@
 package cmd
 
 import (
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/util/gtag"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gtag"
 )
 
 var (

@@ -13,7 +13,7 @@ import (
 	"go/printer"
 	"go/token"
 
-	"github.com/gogf/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
 )
 
 // getFuncInDst retrieves all function declarations and bodies in the file.

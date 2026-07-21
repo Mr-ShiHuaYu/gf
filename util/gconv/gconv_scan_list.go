@@ -9,10 +9,10 @@ package gconv
 import (
 	"reflect"
 
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/internal/utils"
-	"github.com/gogf/gf/v2/os/gstructs"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/utils"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gstructs"
 )
 
 // ScanList converts `structSlice` to struct slice which contains other complex struct attributes.

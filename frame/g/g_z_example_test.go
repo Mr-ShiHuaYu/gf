@@ -7,8 +7,8 @@
 package g_test
 
 import (
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/net/ghttp"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/ghttp"
 )
 
 func ExampleServer() {

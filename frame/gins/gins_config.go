@@ -7,7 +7,7 @@
 package gins
 
 import (
-	"github.com/gogf/gf/v2/os/gcfg"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gcfg"
 )
 
 // Config returns an instance of View with default settings.

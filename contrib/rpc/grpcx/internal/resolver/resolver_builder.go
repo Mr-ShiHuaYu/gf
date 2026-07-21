@@ -11,10 +11,10 @@ import (
 
 	"google.golang.org/grpc/resolver"
 
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/net/gsvc"
-	"github.com/gogf/gf/v2/os/gctx"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gsvc"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gctx"
 )
 
 // Builder is the builder for the etcd discovery resolver.

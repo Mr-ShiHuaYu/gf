@@ -8,7 +8,7 @@
 package otelmetric
 
 import (
-	"github.com/gogf/gf/v2/os/gmetric"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gmetric"
 )
 
 // NewProvider creates and returns a metrics provider.

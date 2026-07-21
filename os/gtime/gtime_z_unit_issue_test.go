@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gogf/gf/v2/os/gtime"
-	"github.com/gogf/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gtime"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
 )
 
 // https://github.com/gogf/gf/issues/1681

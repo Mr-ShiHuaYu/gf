@@ -9,7 +9,7 @@ package gdb
 import (
 	"database/sql"
 
-	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
 )
 
 // SqlResult is execution result for sql operations.

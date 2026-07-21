@@ -16,16 +16,16 @@ import (
 	"github.com/olekukonko/tablewriter/tw"
 	"golang.org/x/mod/modfile"
 
-	"github.com/gogf/gf/v2/container/garray"
-	"github.com/gogf/gf/v2/container/gset"
-	"github.com/gogf/gf/v2/database/gdb"
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/os/gfile"
-	"github.com/gogf/gf/v2/os/gproc"
-	"github.com/gogf/gf/v2/os/gtime"
-	"github.com/gogf/gf/v2/os/gview"
-	"github.com/gogf/gf/v2/text/gregex"
-	"github.com/gogf/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/garray"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gset"
+	"github.com/Mr-ShiHuaYu/gf/v2/database/gdb"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gproc"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gtime"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gview"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gregex"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 
 	"github.com/gogf/gf/cmd/gf/v2/internal/utility/mlog"
 	"github.com/gogf/gf/cmd/gf/v2/internal/utility/utils"
@@ -300,19 +300,19 @@ func doGenDaoForArray(ctx context.Context, index int, in CGenDaoInput) {
 func getImportPartContent(ctx context.Context, source string, isDo bool, appendImports []string) string {
 	var packageImportsArray = garray.NewStrArray()
 	if isDo {
-		packageImportsArray.Append(`"github.com/gogf/gf/v2/frame/g"`)
+		packageImportsArray.Append(`"github.com/Mr-ShiHuaYu/gf/v2/frame/g"`)
 	}
 
 	// Time package recognition.
 	if strings.Contains(source, "gtime.Time") {
-		packageImportsArray.Append(`"github.com/gogf/gf/v2/os/gtime"`)
+		packageImportsArray.Append(`"github.com/Mr-ShiHuaYu/gf/v2/os/gtime"`)
 	} else if strings.Contains(source, "time.Time") {
 		packageImportsArray.Append(`"time"`)
 	}
 
 	// Json type.
 	if strings.Contains(source, "gjson.Json") {
-		packageImportsArray.Append(`"github.com/gogf/gf/v2/encoding/gjson"`)
+		packageImportsArray.Append(`"github.com/Mr-ShiHuaYu/gf/v2/encoding/gjson"`)
 	}
 
 	// Check and update imports in go.mod

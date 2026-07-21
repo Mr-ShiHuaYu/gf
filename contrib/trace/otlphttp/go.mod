@@ -1,9 +1,9 @@
-module github.com/gogf/gf/contrib/trace/otlphttp/v2
+module github.com/Mr-ShiHuaYu/gf/contrib/trace/otlphttp/v2
 
 go 1.23.0
 
 require (
-	github.com/gogf/gf/v2 v2.9.4
+	github.com/Mr-ShiHuaYu/gf/v2 v2.9.4
 	go.opentelemetry.io/otel v1.38.0
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.38.0
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.38.0
@@ -45,4 +45,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/gogf/gf/v2 => ../../../
+replace github.com/Mr-ShiHuaYu/gf/v2 => ../../../

@@ -16,11 +16,11 @@ import (
 	"os"
 	"time"
 
-	"github.com/gogf/gf/v2"
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/net/gsel"
-	"github.com/gogf/gf/v2/net/gsvc"
-	"github.com/gogf/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gsel"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gsvc"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
 )
 
 // Client is the HTTP client for HTTP request management.

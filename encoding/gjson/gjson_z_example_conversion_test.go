@@ -9,7 +9,7 @@ package gjson_test
 import (
 	"fmt"
 
-	"github.com/gogf/gf/v2/encoding/gjson"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gjson"
 )
 
 func ExampleJson_data() {

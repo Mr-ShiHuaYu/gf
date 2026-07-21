@@ -9,7 +9,7 @@ package gfile_test
 import (
 	"fmt"
 
-	"github.com/gogf/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
 )
 
 func ExampleGetContents() {

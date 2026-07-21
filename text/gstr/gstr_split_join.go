@@ -9,8 +9,8 @@ package gstr
 import (
 	"strings"
 
-	"github.com/gogf/gf/v2/internal/utils"
-	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/utils"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 )
 
 // Split splits string `str` by a string `delimiter`, to an array.

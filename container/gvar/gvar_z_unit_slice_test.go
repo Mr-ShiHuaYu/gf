@@ -9,8 +9,8 @@ package gvar_test
 import (
 	"testing"
 
-	"github.com/gogf/gf/v2/container/gvar"
-	"github.com/gogf/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gvar"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
 )
 
 func TestVar_Ints(t *testing.T) {

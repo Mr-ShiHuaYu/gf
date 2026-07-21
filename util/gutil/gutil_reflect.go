@@ -7,7 +7,7 @@
 package gutil
 
 import (
-	"github.com/gogf/gf/v2/internal/reflection"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/reflection"
 )
 
 type (

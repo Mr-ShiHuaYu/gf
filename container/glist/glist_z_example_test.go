@@ -10,9 +10,9 @@ import (
 	"container/list"
 	"fmt"
 
-	"github.com/gogf/gf/v2/container/garray"
-	"github.com/gogf/gf/v2/container/glist"
-	"github.com/gogf/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/garray"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/glist"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
 )
 
 func ExampleNew() {

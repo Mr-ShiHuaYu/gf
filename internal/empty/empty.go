@@ -11,7 +11,7 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/gogf/gf/v2/internal/reflection"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/reflection"
 )
 
 // iString is used for type assert api for String().

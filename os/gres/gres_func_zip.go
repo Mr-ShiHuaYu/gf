@@ -13,10 +13,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/internal/fileinfo"
-	"github.com/gogf/gf/v2/os/gfile"
-	"github.com/gogf/gf/v2/text/gregex"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/fileinfo"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gregex"
 )
 
 // ZipPathWriter compresses `paths` to `writer` using zip compressing algorithm.

@@ -12,7 +12,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/gogf/gf/v2/internal/json"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/json"
 )
 
 // File is a file in a zip file.

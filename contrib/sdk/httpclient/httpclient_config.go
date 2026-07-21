@@ -7,8 +7,8 @@
 package httpclient
 
 import (
-	"github.com/gogf/gf/v2/net/gclient"
-	"github.com/gogf/gf/v2/os/glog"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gclient"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/glog"
 )
 
 // Config is the configuration struct for SDK client.

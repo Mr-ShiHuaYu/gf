@@ -9,7 +9,7 @@ package clickhouse
 import (
 	"context"
 
-	"github.com/gogf/gf/v2/database/gdb"
+	"github.com/Mr-ShiHuaYu/gf/v2/database/gdb"
 )
 
 // Begin starts and returns the transaction object.

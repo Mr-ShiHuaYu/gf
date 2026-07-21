@@ -12,7 +12,7 @@
 package gerror
 
 import (
-	"github.com/gogf/gf/v2/errors/gcode"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
 )
 
 // IEqual is the interface for Equal feature.

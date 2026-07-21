@@ -13,8 +13,8 @@ import (
 	"go/printer"
 	"go/token"
 
-	"github.com/gogf/gf/v2/os/gfile"
-	"github.com/gogf/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 )
 
 type structInfo struct {

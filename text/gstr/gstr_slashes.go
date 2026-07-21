@@ -9,7 +9,7 @@ package gstr
 import (
 	"bytes"
 
-	"github.com/gogf/gf/v2/internal/utils"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/utils"
 )
 
 // AddSlashes quotes with slashes `\` for chars: '"\.

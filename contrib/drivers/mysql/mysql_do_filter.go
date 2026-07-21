@@ -9,7 +9,7 @@ package mysql
 import (
 	"context"
 
-	"github.com/gogf/gf/v2/database/gdb"
+	"github.com/Mr-ShiHuaYu/gf/v2/database/gdb"
 )
 
 // DoFilter handles the sql before posts it to database.

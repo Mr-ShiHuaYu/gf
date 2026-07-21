@@ -9,16 +9,16 @@ package gjson
 import (
 	"bytes"
 
-	"github.com/gogf/gf/v2/encoding/gini"
-	"github.com/gogf/gf/v2/encoding/gproperties"
-	"github.com/gogf/gf/v2/encoding/gtoml"
-	"github.com/gogf/gf/v2/encoding/gxml"
-	"github.com/gogf/gf/v2/encoding/gyaml"
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/internal/json"
-	"github.com/gogf/gf/v2/text/gregex"
-	"github.com/gogf/gf/v2/text/gstr"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gini"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gproperties"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gtoml"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gxml"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gyaml"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/json"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gregex"
+	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 )
 
 // LoadWithOptions creates a Json object from given JSON format content and options.

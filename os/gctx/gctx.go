@@ -15,7 +15,7 @@ import (
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/propagation"
 
-	"github.com/gogf/gf/v2/net/gtrace"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gtrace"
 )
 
 type (

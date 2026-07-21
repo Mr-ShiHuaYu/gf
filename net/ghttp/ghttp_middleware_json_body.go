@@ -7,7 +7,7 @@
 package ghttp
 
 import (
-	"github.com/gogf/gf/v2/internal/json"
+	"github.com/Mr-ShiHuaYu/gf/v2/internal/json"
 )
 
 // MiddlewareJsonBody validates and returns request body whether JSON format.

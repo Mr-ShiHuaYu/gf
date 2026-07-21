@@ -8,9 +8,9 @@ package gtoml_test
 import (
 	"testing"
 
-	"github.com/gogf/gf/v2/encoding/gjson"
-	"github.com/gogf/gf/v2/encoding/gtoml"
-	"github.com/gogf/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gjson"
+	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gtoml"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
 )
 
 var tomlStr string = `

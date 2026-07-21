@@ -7,9 +7,9 @@
 package ghttp_test
 
 import (
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/net/ghttp"
-	"github.com/gogf/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/ghttp"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
 )
 
 func ExampleServer_Run() {

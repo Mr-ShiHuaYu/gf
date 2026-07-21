@@ -11,9 +11,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/gogf/gf/v2/container/gmap"
-	"github.com/gogf/gf/v2/container/gpool"
-	"github.com/gogf/gf/v2/container/gtype"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gmap"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gpool"
+	"github.com/Mr-ShiHuaYu/gf/v2/container/gtype"
 )
 
 // Pool pointer pool.

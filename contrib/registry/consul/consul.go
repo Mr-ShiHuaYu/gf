@@ -16,8 +16,8 @@ import (
 
 	"github.com/hashicorp/consul/api"
 
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/net/gsvc"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/net/gsvc"
 )
 
 const (

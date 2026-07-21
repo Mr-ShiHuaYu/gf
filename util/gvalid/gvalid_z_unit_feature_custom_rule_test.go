@@ -11,11 +11,11 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/test/gtest"
-	"github.com/gogf/gf/v2/util/guid"
-	"github.com/gogf/gf/v2/util/gvalid"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
+	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/guid"
+	"github.com/Mr-ShiHuaYu/gf/v2/util/gvalid"
 )
 
 func Test_CustomRule1(t *testing.T) {

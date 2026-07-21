@@ -11,8 +11,8 @@ import (
 	"compress/gzip"
 	"io"
 
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/os/gfile"
+	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
+	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
 )
 
 // Gzip compresses `data` using gzip algorithm.

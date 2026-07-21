@@ -1,9 +1,9 @@
-module github.com/gogf/gf/contrib/config/kubecm/v2
+module github.com/Mr-ShiHuaYu/gf/contrib/config/kubecm/v2
 
 go 1.24.0
 
 require (
-	github.com/gogf/gf/v2 v2.9.4
+	github.com/Mr-ShiHuaYu/gf/v2 v2.9.4
 	k8s.io/api v0.33.4
 	k8s.io/apimachinery v0.33.4
 	k8s.io/client-go v0.33.4
@@ -70,4 +70,4 @@ require (
 	sigs.k8s.io/yaml v1.6.0 // indirect
 )
 
-replace github.com/gogf/gf/v2 => ../../../
+replace github.com/Mr-ShiHuaYu/gf/v2 => ../../../
