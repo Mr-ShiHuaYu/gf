@@ -12,11 +12,11 @@ import (
 	"os"
 	"strings"
 
-	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/attribute"
-	"go.opentelemetry.io/otel/propagation"
-	semconv "go.opentelemetry.io/otel/semconv"
-	"go.opentelemetry.io/otel/trace"
+	"github.com/Mr-ShiHuaYu/otel-go111"
+	"github.com/Mr-ShiHuaYu/otel-go111/attribute"
+	"github.com/Mr-ShiHuaYu/otel-go111/propagation"
+	semconv "github.com/Mr-ShiHuaYu/otel-go111/semconv"
+	"github.com/Mr-ShiHuaYu/otel-go111/trace"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/container/gmap"
 	"github.com/Mr-ShiHuaYu/gf/v2/container/gvar"

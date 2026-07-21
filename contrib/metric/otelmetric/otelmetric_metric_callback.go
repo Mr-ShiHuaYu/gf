@@ -7,7 +7,7 @@
 package otelmetric
 
 import (
-	"go.opentelemetry.io/otel/metric"
+	"github.com/Mr-ShiHuaYu/otel-go111/metric"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/os/gmetric"
 )

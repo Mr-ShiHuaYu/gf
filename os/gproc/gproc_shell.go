@@ -13,8 +13,8 @@ import (
 	"io"
 	"runtime"
 
-	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/propagation"
+	"github.com/Mr-ShiHuaYu/otel-go111"
+	"github.com/Mr-ShiHuaYu/otel-go111/propagation"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
 )

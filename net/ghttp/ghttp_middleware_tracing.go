@@ -10,11 +10,11 @@ import (
 	"context"
 	"fmt"
 
-	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/attribute"
-	"go.opentelemetry.io/otel/codes"
-	"go.opentelemetry.io/otel/propagation"
-	"go.opentelemetry.io/otel/trace"
+	"github.com/Mr-ShiHuaYu/otel-go111"
+	"github.com/Mr-ShiHuaYu/otel-go111/attribute"
+	"github.com/Mr-ShiHuaYu/otel-go111/codes"
+	"github.com/Mr-ShiHuaYu/otel-go111/propagation"
+	"github.com/Mr-ShiHuaYu/otel-go111/trace"
 
 	"github.com/Mr-ShiHuaYu/gf/v2"
 	"github.com/Mr-ShiHuaYu/gf/v2/internal/httputil"

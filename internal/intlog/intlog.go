@@ -14,7 +14,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"go.opentelemetry.io/otel/trace"
+	"github.com/Mr-ShiHuaYu/otel-go111/trace"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/debug/gdebug"
 	"github.com/Mr-ShiHuaYu/gf/v2/internal/utils"

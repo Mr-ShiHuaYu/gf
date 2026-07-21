@@ -14,9 +14,9 @@ import (
 	"testing"
 	"time"
 
-	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/trace"
-	"go.opentelemetry.io/otel/trace/noop"
+	"github.com/Mr-ShiHuaYu/otel-go111"
+	"github.com/Mr-ShiHuaYu/otel-go111/trace"
+	"github.com/Mr-ShiHuaYu/otel-go111/trace/noop"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/container/garray"
 	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"

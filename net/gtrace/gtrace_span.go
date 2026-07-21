@@ -9,7 +9,7 @@ package gtrace
 import (
 	"context"
 
-	"go.opentelemetry.io/otel/trace"
+	"github.com/Mr-ShiHuaYu/otel-go111/trace"
 )
 
 // Span warps trace.Span for compatibility and extension.

@@ -1,6 +1,6 @@
 package semconv
 
-import "go.opentelemetry.io/otel/attribute"
+import "github.com/Mr-ShiHuaYu/otel-go111/attribute"
 
 const (
 	ServiceNameKey           = attribute.Key("service.name")

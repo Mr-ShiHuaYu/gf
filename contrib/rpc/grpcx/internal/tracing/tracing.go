@@ -12,10 +12,10 @@ package tracing
 import (
 	"context"
 
-	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/attribute"
-	"go.opentelemetry.io/otel/baggage"
-	"go.opentelemetry.io/otel/trace"
+	"github.com/Mr-ShiHuaYu/otel-go111"
+	"github.com/Mr-ShiHuaYu/otel-go111/attribute"
+	"github.com/Mr-ShiHuaYu/otel-go111/baggage"
+	"github.com/Mr-ShiHuaYu/otel-go111/trace"
 	"google.golang.org/grpc/metadata"
 )
 

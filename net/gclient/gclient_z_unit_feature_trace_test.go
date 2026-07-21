@@ -13,9 +13,9 @@ import (
 	"testing"
 	"time"
 
-	"go.opentelemetry.io/otel"
-	sdkTrace "go.opentelemetry.io/otel/sdk/trace"
-	"go.opentelemetry.io/otel/trace"
+	"github.com/Mr-ShiHuaYu/otel-go111"
+	sdkTrace "github.com/Mr-ShiHuaYu/otel-go111/sdk/trace"
+	"github.com/Mr-ShiHuaYu/otel-go111/trace"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
 	"github.com/Mr-ShiHuaYu/gf/v2/internal/tracing"

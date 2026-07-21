@@ -7,8 +7,8 @@
 package otelmetric
 
 import (
-	"go.opentelemetry.io/otel/attribute"
-	"go.opentelemetry.io/otel/metric"
+	"github.com/Mr-ShiHuaYu/otel-go111/attribute"
+	"github.com/Mr-ShiHuaYu/otel-go111/metric"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
 	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"

@@ -10,9 +10,9 @@ import (
 	"time"
 
 	"go.opentelemetry.io/contrib/instrumentation/runtime"
-	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/sdk/instrumentation"
-	"go.opentelemetry.io/otel/sdk/metric"
+	"github.com/Mr-ShiHuaYu/otel-go111"
+	"github.com/Mr-ShiHuaYu/otel-go111/sdk/instrumentation"
+	"github.com/Mr-ShiHuaYu/otel-go111/sdk/metric"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
 	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"

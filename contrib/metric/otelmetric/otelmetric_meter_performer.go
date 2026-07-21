@@ -11,8 +11,8 @@ import (
 	"fmt"
 	"reflect"
 
-	otelmetric "go.opentelemetry.io/otel/metric"
-	"go.opentelemetry.io/otel/sdk/metric"
+	otelmetric "github.com/Mr-ShiHuaYu/otel-go111/metric"
+	"github.com/Mr-ShiHuaYu/otel-go111/sdk/metric"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/container/gset"
 	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"

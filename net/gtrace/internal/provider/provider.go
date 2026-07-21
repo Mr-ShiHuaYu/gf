@@ -7,7 +7,7 @@
 package provider
 
 import (
-	sdkTrace "go.opentelemetry.io/otel/sdk/trace"
+	sdkTrace "github.com/Mr-ShiHuaYu/otel-go111/sdk/trace"
 )
 
 // TracerProvider is a wrapper around sdkTrace.TracerProvider.

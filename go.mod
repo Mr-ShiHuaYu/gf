@@ -13,8 +13,8 @@ require (
 	github.com/magiconair/properties v1.8.0
 	github.com/mattn/go-colorable v0.1.15 // indirect
 	github.com/mattn/go-isatty v0.0.23 // indirect
+	github.com/Mr-ShiHuaYu/otel-go111 v0.20.0
 	github.com/olekukonko/tablewriter v0.0.5
-	go.opentelemetry.io/otel v0.20.0
 	golang.org/x/net v0.0.0-20200202094626-16171245cfb2
 	golang.org/x/text v0.3.2
 	gopkg.in/yaml.v3 v3.0.1
@@ -32,7 +32,6 @@ replace (
 	github.com/mattn/go-isatty => github.com/mattn/go-isatty v0.0.4
 	github.com/mattn/go-runewidth => github.com/mattn/go-runewidth v0.0.4
 	github.com/olekukonko/tablewriter => github.com/olekukonko/tablewriter v0.0.5
-	go.opentelemetry.io/otel => ./third_party/otel
 	golang.org/x/net => golang.org/x/net v0.0.0-20200202094626-16171245cfb2
 	golang.org/x/sys => golang.org/x/sys v0.0.0-20200202164722-d101bd2416d5
 	golang.org/x/text => golang.org/x/text v0.3.2

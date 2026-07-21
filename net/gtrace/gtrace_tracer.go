@@ -7,8 +7,8 @@
 package gtrace
 
 import (
-	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/trace"
+	"github.com/Mr-ShiHuaYu/otel-go111"
+	"github.com/Mr-ShiHuaYu/otel-go111/trace"
 )
 
 // Tracer warps trace.Tracer for compatibility and extension.

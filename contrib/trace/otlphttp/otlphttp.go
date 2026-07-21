@@ -11,14 +11,14 @@ import (
 	"context"
 	"time"
 
-	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/attribute"
-	"go.opentelemetry.io/otel/exporters/otlp/otlptrace"
-	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp"
-	"go.opentelemetry.io/otel/propagation"
-	"go.opentelemetry.io/otel/sdk/resource"
-	"go.opentelemetry.io/otel/sdk/trace"
-	semconv "go.opentelemetry.io/otel/semconv/v1.24.0"
+	"github.com/Mr-ShiHuaYu/otel-go111"
+	"github.com/Mr-ShiHuaYu/otel-go111/attribute"
+	"github.com/Mr-ShiHuaYu/otel-go111/exporters/otlp/otlptrace"
+	"github.com/Mr-ShiHuaYu/otel-go111/exporters/otlp/otlptrace/otlptracehttp"
+	"github.com/Mr-ShiHuaYu/otel-go111/propagation"
+	"github.com/Mr-ShiHuaYu/otel-go111/sdk/resource"
+	"github.com/Mr-ShiHuaYu/otel-go111/sdk/trace"
+	semconv "github.com/Mr-ShiHuaYu/otel-go111/semconv/v1.24.0"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
 	"github.com/Mr-ShiHuaYu/gf/v2/net/gipv4"
@@ -77,15 +77,15 @@ func Init(serviceName, endpoint, path string) (func(ctx context.Context), error)
 
 	tracerProvider := trace.NewTracerProvider(
 		// AlwaysSample is a sampler that samples every trace.
-		// see: https://pkg.go.dev/go.opentelemetry.io/otel/sdk/trace#AlwaysSample
+		// see: https://pkg.go.dev/github.com/Mr-ShiHuaYu/otel-go111/sdk/trace#AlwaysSample
 		// example see: [example/trace/provider/http/main.go](../../../../../example/trace/provider/http/main.go#L84)
 		trace.WithSampler(trace.AlwaysSample()),
 		// WithResource returns a trace option that sets the resource to be associated with spans.
-		// see: https://pkg.go.dev/go.opentelemetry.io/otel/sdk/trace#WithResource
+		// see: https://pkg.go.dev/github.com/Mr-ShiHuaYu/otel-go111/sdk/trace#WithResource
 		// example see: [example/trace/provider/http/main.go](../../../../../example/trace/provider/http/main.go#L33)
 		trace.WithResource(res),
 		// WithSpanProcessor returns a trace option that sets the span processor to be used by the trace provider.
-		// see: https://pkg.go.dev/go.opentelemetry.io/otel/sdk/trace#WithSpanProcessor
+		// see: https://pkg.go.dev/github.com/Mr-ShiHuaYu/otel-go111/sdk/trace#WithSpanProcessor
 		// example see: [example/trace/provider/http/main.go](../../../../../example/trace/provider/http/main.go#L96)
 		trace.WithSpanProcessor(trace.NewBatchSpanProcessor(traceExp)),
 	)

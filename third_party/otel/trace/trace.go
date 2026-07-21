@@ -4,8 +4,8 @@ import (
 	"context"
 	"encoding/hex"
 
-	"go.opentelemetry.io/otel/attribute"
-	"go.opentelemetry.io/otel/codes"
+	"github.com/Mr-ShiHuaYu/otel-go111/attribute"
+	"github.com/Mr-ShiHuaYu/otel-go111/codes"
 )
 
 type TraceID [16]byte

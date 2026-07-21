@@ -17,9 +17,9 @@ import (
 	"net"
 	"strings"
 
-	"go.opentelemetry.io/otel/attribute"
-	semconv "go.opentelemetry.io/otel/semconv/v1.7.0"
-	"go.opentelemetry.io/otel/trace"
+	"github.com/Mr-ShiHuaYu/otel-go111/attribute"
+	semconv "github.com/Mr-ShiHuaYu/otel-go111/semconv/v1.7.0"
+	"github.com/Mr-ShiHuaYu/otel-go111/trace"
 	"google.golang.org/grpc"
 	grpcCodes "google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"

@@ -9,7 +9,7 @@ package otelmetric
 import (
 	"context"
 
-	"go.opentelemetry.io/otel/metric"
+	"github.com/Mr-ShiHuaYu/otel-go111/metric"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gjson"
 	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"

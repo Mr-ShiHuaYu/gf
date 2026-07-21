@@ -7,9 +7,9 @@
 package otelmetric
 
 import (
-	"go.opentelemetry.io/otel/sdk/metric"
-	"go.opentelemetry.io/otel/sdk/metric/exemplar"
-	"go.opentelemetry.io/otel/sdk/resource"
+	"github.com/Mr-ShiHuaYu/otel-go111/sdk/metric"
+	"github.com/Mr-ShiHuaYu/otel-go111/sdk/metric/exemplar"
+	"github.com/Mr-ShiHuaYu/otel-go111/sdk/resource"
 )
 
 // newProviderConfigByOptions returns a config configured with options.

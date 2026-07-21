@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"go.opentelemetry.io/otel/exporters/prometheus"
+	"github.com/Mr-ShiHuaYu/otel-go111/exporters/prometheus"
 
 	"github.com/Mr-ShiHuaYu/gf/v2"
 	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"

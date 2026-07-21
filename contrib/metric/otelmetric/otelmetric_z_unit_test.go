@@ -10,8 +10,8 @@ import (
 	"context"
 	"testing"
 
-	"go.opentelemetry.io/otel/sdk/metric"
-	"go.opentelemetry.io/otel/sdk/metric/metricdata"
+	"github.com/Mr-ShiHuaYu/otel-go111/sdk/metric"
+	"github.com/Mr-ShiHuaYu/otel-go111/sdk/metric/metricdata"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gjson"
 	"github.com/Mr-ShiHuaYu/gf/v2/os/gctx"
