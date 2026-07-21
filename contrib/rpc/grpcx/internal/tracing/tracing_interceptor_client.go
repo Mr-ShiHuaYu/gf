@@ -27,7 +27,7 @@ import (
 
 // UnaryClientInterceptor returns a grpc.UnaryClientInterceptor suitable
 // for use in a grpc.Dial call.
-func UnaryClientInterceptor(ctx context.Context, method string, req, reply any,
+func UnaryClientInterceptor(ctx context.Context, method string, req, reply interface{},
 	cc *grpc.ClientConn, invoker grpc.UnaryInvoker, callOpts ...grpc.CallOption) error {
 	tracer := otel.GetTracerProvider().Tracer(
 		tracingInstrumentGrpcClient,

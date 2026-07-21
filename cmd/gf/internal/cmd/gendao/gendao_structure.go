@@ -217,7 +217,7 @@ func isAllUpper(fieldName string) bool {
 	return true
 }
 
-// formatComment formats the comment string to fit the golang code without any lines.
+// formatComment formats the comment string to fit the golang code without interface{} lines.
 func formatComment(comment string) string {
 	comment = gstr.ReplaceByArray(comment, g.SliceStr{
 		"\n", " ",

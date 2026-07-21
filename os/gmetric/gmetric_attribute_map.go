@@ -7,10 +7,10 @@
 package gmetric
 
 // AttributeMap contains the attribute key and value as map for easy filtering.
-type AttributeMap map[string]any
+type AttributeMap map[string]interface{}
 
 // Sets adds given attribute map to current map.
-func (m AttributeMap) Sets(attrMap map[string]any) {
+func (m AttributeMap) Sets(attrMap map[string]interface{}) {
 	for k, v := range attrMap {
 		m[k] = v
 	}

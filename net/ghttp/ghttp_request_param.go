@@ -10,6 +10,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"mime/multipart"
 	"net/http"
 	"reflect"
@@ -51,27 +52,27 @@ var (
 // 2. Multiple struct, post content like: [{"id":1, "name":"john"}, {"id":, "name":"smith"}]
 //
 // TODO: Improve the performance by reducing duplicated reflect usage on the same variable across packages.
-func (r *Request) Parse(pointer any) error {
+func (r *Request) Parse(pointer interface{}) error {
 	return r.doParse(pointer, parseTypeRequest)
 }
 
 // ParseQuery performs like function Parse, but only parses the query parameters.
-func (r *Request) ParseQuery(pointer any) error {
+func (r *Request) ParseQuery(pointer interface{}) error {
 	return r.doParse(pointer, parseTypeQuery)
 }
 
 // ParseForm performs like function Parse, but only parses the form parameters or the body content.
-func (r *Request) ParseForm(pointer any) error {
+func (r *Request) ParseForm(pointer interface{}) error {
 	return r.doParse(pointer, parseTypeForm)
 }
 
 // doParse parses the request data to struct/structs according to request type.
-func (r *Request) doParse(pointer any, requestType int) error {
+func (r *Request) doParse(pointer interface{}, requestType int) error {
 	var (
 		reflectVal1  = reflect.ValueOf(pointer)
 		reflectKind1 = reflectVal1.Kind()
 	)
-	if reflectKind1 != reflect.Pointer {
+	if reflectKind1 != reflect.Ptr {
 		return gerror.NewCodef(
 			gcode.CodeInvalidParameter,
 			`invalid parameter type "%v", of which kind should be of *struct/**struct/*[]struct/*[]*struct, but got: "%v"`,
@@ -87,10 +88,10 @@ func (r *Request) doParse(pointer any, requestType int) error {
 	// Single struct, post content like:
 	// 1. {"id":1, "name":"john"}
 	// 2. ?id=1&name=john
-	case reflect.Pointer, reflect.Struct:
+	case reflect.Ptr, reflect.Struct:
 		var (
 			err  error
-			data map[string]any
+			data map[string]interface{}
 		)
 		// Converting.
 		switch requestType {
@@ -144,7 +145,7 @@ func (r *Request) doParse(pointer any, requestType int) error {
 // Get is alias of GetRequest, which is one of the most commonly used functions for
 // retrieving parameter.
 // See r.GetRequest.
-func (r *Request) Get(key string, def ...any) *gvar.Var {
+func (r *Request) Get(key string, def ...interface{}) *gvar.Var {
 	return r.GetRequest(key, def...)
 }
 
@@ -162,7 +163,7 @@ func (r *Request) GetBody() []byte {
 func (r *Request) MakeBodyRepeatableRead(repeatableRead bool) []byte {
 	if r.bodyContent == nil {
 		var err error
-		if r.bodyContent, err = io.ReadAll(r.Body); err != nil {
+		if r.bodyContent, err = ioutil.ReadAll(r.Body); err != nil {
 			errMsg := `Read from request Body failed`
 			if gerror.Is(err, io.EOF) {
 				errMsg += `, the Body might be closed or read manually from middleware/hook/other package previously`
@@ -181,7 +182,7 @@ func (r *Request) GetBodyString() string {
 }
 
 // GetJson parses current request content as JSON format, and returns the JSON object.
-// Note that the request content is read from request BODY, not from any field of FORM.
+// Note that the request content is read from request BODY, not from interface{} field of FORM.
 func (r *Request) GetJson() (*gjson.Json, error) {
 	return gjson.LoadWithOptions(r.GetBody(), gjson.Options{
 		Type:      gjson.ContentTypeJSON,
@@ -191,19 +192,19 @@ func (r *Request) GetJson() (*gjson.Json, error) {
 
 // GetMap is an alias and convenient function for GetRequestMap.
 // See GetRequestMap.
-func (r *Request) GetMap(def ...map[string]any) map[string]any {
+func (r *Request) GetMap(def ...map[string]interface{}) map[string]interface{} {
 	return r.GetRequestMap(def...)
 }
 
 // GetMapStrStr is an alias and convenient function for GetRequestMapStrStr.
 // See GetRequestMapStrStr.
-func (r *Request) GetMapStrStr(def ...map[string]any) map[string]string {
+func (r *Request) GetMapStrStr(def ...map[string]interface{}) map[string]string {
 	return r.GetRequestMapStrStr(def...)
 }
 
 // GetStruct is an alias and convenient function for GetRequestStruct.
 // See GetRequestStruct.
-func (r *Request) GetStruct(pointer any, mapping ...map[string]string) error {
+func (r *Request) GetStruct(pointer interface{}, mapping ...map[string]string) error {
 	return r.GetRequestStruct(pointer, mapping...)
 }
 

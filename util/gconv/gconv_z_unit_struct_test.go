@@ -185,7 +185,7 @@ func TestStruct(t *testing.T) {
 
 func TestStructDuplicateField(t *testing.T) {
 	gtest.C(t, func(t *gtest.T) {
-		m := map[string]any{
+		m := map[string]interface{}{
 			"ID": 100,
 		}
 		type Nested1 struct {
@@ -227,7 +227,7 @@ func TestStructErr(t *testing.T) {
 		}
 
 		user := new(User)
-		scores := map[string]any{
+		scores := map[string]interface{}{
 			"Score": 1,
 		}
 		err := gconv.Struct(scores, user)

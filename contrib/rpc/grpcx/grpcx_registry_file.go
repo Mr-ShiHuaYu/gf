@@ -18,7 +18,7 @@ import (
 // autoLoadAndRegisterFileRegistry checks and registers ETCD service as default service registry
 // if no registry is registered previously.
 func autoLoadAndRegisterFileRegistry() {
-	// It ignores etcd registry if any registry already registered.
+	// It ignores etcd registry if interface{} registry already registered.
 	if gsvc.GetRegistry() != nil {
 		return
 	}

@@ -65,7 +65,7 @@ func Get(root string, cache bool) *SPath {
 	if root == "" {
 		root = "/"
 	}
-	return pathsMap.GetOrSetFuncLock(root, func() any {
+	return pathsMap.GetOrSetFuncLock(root, func() interface{} {
 		return New(root, cache)
 	}).(*SPath)
 }
@@ -75,7 +75,7 @@ func Get(root string, cache bool) *SPath {
 // convert `root` to absolute path for performance reason.
 // The optional parameter `indexFiles` specifies the searching index files when the result is a directory.
 // For example, if the result `filePath` is a directory, and `indexFiles` is [index.html, main.html], it will also
-// search [index.html, main.html] under `filePath`. It returns the absolute file path if any of them found,
+// search [index.html, main.html] under `filePath`. It returns the absolute file path if interface{} of them found,
 // or else it returns `filePath`.
 func Search(root string, name string, indexFiles ...string) (filePath string, isDir bool) {
 	return Get(root, false).Search(name, indexFiles...)
@@ -86,7 +86,7 @@ func Search(root string, name string, indexFiles ...string) (filePath string, is
 // convert `root` to absolute path for performance reason.
 // The optional parameter `indexFiles` specifies the searching index files when the result is a directory.
 // For example, if the result `filePath` is a directory, and `indexFiles` is [index.html, main.html], it will also
-// search [index.html, main.html] under `filePath`. It returns the absolute file path if any of them found,
+// search [index.html, main.html] under `filePath`. It returns the absolute file path if interface{} of them found,
 // or else it returns `filePath`.
 func SearchWithCache(root string, name string, indexFiles ...string) (filePath string, isDir bool) {
 	return Get(root, true).Search(name, indexFiles...)
@@ -158,7 +158,7 @@ func (sp *SPath) Add(path string) (realPath string, err error) {
 // Search searches file `name` in the manager.
 // The optional parameter `indexFiles` specifies the searching index files when the result is a directory.
 // For example, if the result `filePath` is a directory, and `indexFiles` is [index.html, main.html], it will also
-// search [index.html, main.html] under `filePath`. It returns the absolute file path if any of them found,
+// search [index.html, main.html] under `filePath`. It returns the absolute file path if interface{} of them found,
 // or else it returns `filePath`.
 func (sp *SPath) Search(name string, indexFiles ...string) (filePath string, isDir bool) {
 	// No cache enabled.

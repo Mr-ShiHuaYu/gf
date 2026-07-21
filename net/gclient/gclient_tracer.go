@@ -151,7 +151,7 @@ func (ct *clientTracer) Wait100Continue() {
 }
 
 // WroteRequest is called with the result of writing the
-// request and any body. It may be called multiple times
+// request and interface{} body. It may be called multiple times
 // in the case of retried requests.
 func (ct *clientTracer) WroteRequest(info httptrace.WroteRequestInfo) {
 	ct.ClientTrace.WroteRequest(info)

@@ -103,7 +103,7 @@ func (s *Session) Close() error {
 }
 
 // Set sets key-value pair to this session.
-func (s *Session) Set(key string, value any) (err error) {
+func (s *Session) Set(key string, value interface{}) (err error) {
 	if err = s.init(); err != nil {
 		return err
 	}
@@ -118,7 +118,7 @@ func (s *Session) Set(key string, value any) (err error) {
 }
 
 // SetMap batch sets the session using map.
-func (s *Session) SetMap(data map[string]any) (err error) {
+func (s *Session) SetMap(data map[string]interface{}) (err error) {
 	if err = s.init(); err != nil {
 		return err
 	}
@@ -204,9 +204,9 @@ func (s *Session) SetIdFunc(f func(ttl time.Duration) string) error {
 
 // Data returns all data as map.
 // Note that it's using value copy internally for concurrent-safe purpose.
-func (s *Session) Data() (sessionData map[string]any, err error) {
+func (s *Session) Data() (sessionData map[string]interface{}, err error) {
 	if s.id == "" {
-		return map[string]any{}, nil
+		return map[string]interface{}{}, nil
 	}
 	if err = s.init(); err != nil {
 		return nil, err
@@ -254,7 +254,7 @@ func (s *Session) Contains(key string) (ok bool, err error) {
 	return !v.IsNil(), nil
 }
 
-// IsDirty checks whether there's any data changes in the session.
+// IsDirty checks whether there's interface{} data changes in the session.
 func (s *Session) IsDirty() bool {
 	return s.dirty
 }
@@ -262,7 +262,7 @@ func (s *Session) IsDirty() bool {
 // Get retrieves session value with given key.
 // It returns `def` if the key does not exist in the session if `def` is given,
 // or else it returns nil.
-func (s *Session) Get(key string, def ...any) (value *gvar.Var, err error) {
+func (s *Session) Get(key string, def ...interface{}) (value *gvar.Var, err error) {
 	if s.id == "" {
 		return nil, nil
 	}
@@ -286,7 +286,7 @@ func (s *Session) Get(key string, def ...any) (value *gvar.Var, err error) {
 	return nil, nil
 }
 
-// MustId performs as function Id, but it panics if any error occurs.
+// MustId performs as function Id, but it panics if interface{} error occurs.
 func (s *Session) MustId() string {
 	id, err := s.Id()
 	if err != nil {
@@ -295,8 +295,8 @@ func (s *Session) MustId() string {
 	return id
 }
 
-// MustGet performs as function Get, but it panics if any error occurs.
-func (s *Session) MustGet(key string, def ...any) *gvar.Var {
+// MustGet performs as function Get, but it panics if interface{} error occurs.
+func (s *Session) MustGet(key string, def ...interface{}) *gvar.Var {
 	v, err := s.Get(key, def...)
 	if err != nil {
 		panic(err)
@@ -304,23 +304,23 @@ func (s *Session) MustGet(key string, def ...any) *gvar.Var {
 	return v
 }
 
-// MustSet performs as function Set, but it panics if any error occurs.
-func (s *Session) MustSet(key string, value any) {
+// MustSet performs as function Set, but it panics if interface{} error occurs.
+func (s *Session) MustSet(key string, value interface{}) {
 	err := s.Set(key, value)
 	if err != nil {
 		panic(err)
 	}
 }
 
-// MustSetMap performs as function SetMap, but it panics if any error occurs.
-func (s *Session) MustSetMap(data map[string]any) {
+// MustSetMap performs as function SetMap, but it panics if interface{} error occurs.
+func (s *Session) MustSetMap(data map[string]interface{}) {
 	err := s.SetMap(data)
 	if err != nil {
 		panic(err)
 	}
 }
 
-// MustContains performs as function Contains, but it panics if any error occurs.
+// MustContains performs as function Contains, but it panics if interface{} error occurs.
 func (s *Session) MustContains(key string) bool {
 	b, err := s.Contains(key)
 	if err != nil {
@@ -329,8 +329,8 @@ func (s *Session) MustContains(key string) bool {
 	return b
 }
 
-// MustData performs as function Data, but it panics if any error occurs.
-func (s *Session) MustData() map[string]any {
+// MustData performs as function Data, but it panics if interface{} error occurs.
+func (s *Session) MustData() map[string]interface{} {
 	m, err := s.Data()
 	if err != nil {
 		panic(err)
@@ -338,7 +338,7 @@ func (s *Session) MustData() map[string]any {
 	return m
 }
 
-// MustSize performs as function Size, but it panics if any error occurs.
+// MustSize performs as function Size, but it panics if interface{} error occurs.
 func (s *Session) MustSize() int {
 	size, err := s.Size()
 	if err != nil {
@@ -347,7 +347,7 @@ func (s *Session) MustSize() int {
 	return size
 }
 
-// MustRemove performs as function Remove, but it panics if any error occurs.
+// MustRemove performs as function Remove, but it panics if interface{} error occurs.
 func (s *Session) MustRemove(keys ...string) {
 	err := s.Remove(keys...)
 	if err != nil {
@@ -403,7 +403,7 @@ func (s *Session) RegenerateId(deleteOld bool) (newId string, err error) {
 	return newId, nil
 }
 
-// MustRegenerateId performs as function RegenerateId, but it panics if any error occurs.
+// MustRegenerateId performs as function RegenerateId, but it panics if interface{} error occurs.
 func (s *Session) MustRegenerateId(deleteOld bool) string {
 	newId, err := s.RegenerateId(deleteOld)
 	if err != nil {

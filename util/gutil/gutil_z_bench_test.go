@@ -14,10 +14,10 @@ import (
 )
 
 var (
-	m1 = map[string]any{
+	m1 = map[string]interface{}{
 		"k1": "v1",
 	}
-	m2 = map[string]any{
+	m2 = map[string]interface{}{
 		"k2": "v2",
 	}
 )

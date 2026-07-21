@@ -270,7 +270,7 @@ func ExampleTime_AddDate() {
 
 // Round returns the result of rounding t to the nearest multiple of d (since the zero time).
 // The rounding behavior for halfway values is to round up.
-// If d <= 0, Round returns t stripped of any monotonic clock reading but otherwise unchanged.
+// If d <= 0, Round returns t stripped of interface{} monotonic clock reading but otherwise unchanged.
 //
 // Round operates on the time as an absolute duration since the
 // zero time; it does not operate on the presentation form of the
@@ -287,7 +287,7 @@ func ExampleTime_Round() {
 }
 
 // Truncate returns the result of rounding t down to a multiple of d (since the zero time).
-// If d <= 0, Truncate returns t stripped of any monotonic clock reading but otherwise unchanged.
+// If d <= 0, Truncate returns t stripped of interface{} monotonic clock reading but otherwise unchanged.
 //
 // Truncate operates on the time as an absolute duration since the
 // zero time; it does not operate on the presentation form of the

@@ -275,7 +275,7 @@ func RemoveFile(path string) (err error) {
 	return
 }
 
-// RemoveAll removes path and any children it contains.
+// RemoveAll removes path and interface{} children it contains.
 // It removes everything it can but returns the first error
 // it encounters. If the path does not exist, RemoveAll
 // returns nil (no error).
@@ -419,7 +419,7 @@ func Dir(path string) string {
 }
 
 // IsEmpty checks whether the given `path` is empty.
-// If `path` is a folder, it checks if there's any file under it.
+// If `path` is a folder, it checks if there's interface{} file under it.
 // If `path` is a file, it checks if the file size is zero.
 //
 // Note that it returns true if `path` does not exist.

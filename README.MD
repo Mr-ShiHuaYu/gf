@@ -1,4 +1,43 @@
 
+## Go 1.11.13 兼容性说明
+
+本分支基于 **GoFrame v2.9.4** 版本修改，兼容 **Go 1.11.13**。
+
+### 主要修改内容
+
+1. **Go 版本降级**：`go.mod` 中 `go 1.23.0` → `go 1.11`
+2. **`any` 关键字替换**：批量替换 `any` 为 `interface{}`（`any` 是 Go 1.18+ 特性）
+3. **`//go:build` 指令替换**：替换为 `// +build`（Go 1.17+ 特性）
+4. **`errors.Is/As` 兼容**：自定义实现 `isErr`/`asErr` 函数（Go 1.13+ 特性）
+5. **`sync.Mutex.TryLock` 兼容**：通过 channel 实现自定义互斥锁（Go 1.18+ 特性）
+6. **`reflect.Value.IsZero()` 兼容**：在 `internal/reflection` 包中实现 `IsZero` 函数（Go 1.13+ 特性）
+7. **`reflect.Pointer` 替换**：替换为 `reflect.Ptr`（Go 1.18+ 重命名）
+8. **`strings.ReplaceAll` 替换**：替换为 `strings.Replace(s, old, new, -1)`（Go 1.12+ 特性）
+9. **`io.ReadAll` 兼容**：使用 `ioutil.ReadAll` 替代（Go 1.16+ 特性）
+10. **依赖降级**：所有依赖降级到 Go 1.11 兼容版本，包括：
+    - `github.com/BurntSushi/toml` → v0.3.1
+    - `github.com/fsnotify/fsnotify` → v1.4.7
+    - `golang.org/x/net` → v0.0.0-20200202094626-16171245cfb2
+    - `golang.org/x/text` → v0.3.2
+    - `golang.org/x/sys` → v0.0.0-20200202164722-d101bd2416d5
+    - 等等...
+11. **OpenTelemetry 兼容**：使用本地 noop 实现替代高版本 otel 依赖（`third_party/otel/`）
+
+### 使用方式
+
+在你的项目 `go.mod` 中添加：
+
+```go
+replace (
+    github.com/gogf/gf/v2 => /path/to/your/local/gf
+    go.opentelemetry.io/otel => /path/to/your/local/gf/third_party/otel
+)
+```
+
+更多依赖降级的 replace 指令请参考项目根目录的 `go.mod`。
+
+---
+
 <div align=center>
 <img src="https://goframe.org/img/logo_full.png" width="300" alt="goframe gf logo"/>
 

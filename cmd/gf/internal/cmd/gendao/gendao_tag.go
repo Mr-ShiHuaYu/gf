@@ -85,7 +85,7 @@ generated json tag case for model struct, cases are as follows:
 | Snake           | any_kind_of_string |
 | SnakeScreaming  | ANY_KIND_OF_STRING |
 | SnakeFirstUpper | rgb_code_md5       |
-| Kebab           | any-kind-of-string |
+| Kebab           | interface{}-kind-of-string |
 | KebabScreaming  | ANY-KIND-OF-STRING |
 `
 	CGenDaoBriefTplDaoIndexPath    = `template file path for dao index file`

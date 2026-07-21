@@ -103,20 +103,20 @@ func (t *Time) Format(format string) string {
 				switch runes[i] {
 				case 'j':
 					for _, s := range []string{"=j=0", "=j="} {
-						result = strings.ReplaceAll(result, s, "")
+						result = strings.Replace(result, s, "", -1)
 					}
 					buffer.WriteString(result)
 				case 'G':
 					for _, s := range []string{"=G=0", "=G="} {
-						result = strings.ReplaceAll(result, s, "")
+						result = strings.Replace(result, s, "", -1)
 					}
 					buffer.WriteString(result)
 				case 'u':
-					buffer.WriteString(strings.ReplaceAll(result, "=u=.", ""))
+					buffer.WriteString(strings.Replace(result, "=u=.", "", -1))
 				case 'w':
 					buffer.WriteString(weekMap[result])
 				case 'N':
-					buffer.WriteString(strings.ReplaceAll(weekMap[result], "0", "7"))
+					buffer.WriteString(strings.Replace(weekMap[result], "0", "7", -1))
 				case 'S':
 					buffer.WriteString(formatMonthDaySuffixMap(result))
 				default:

@@ -34,8 +34,8 @@ func Join(array []string, sep string) string {
 // JoinAny concatenates the elements of `array` to create a single string. The separator string
 // `sep` is placed between elements in the resulting string.
 //
-// The parameter `array` can be any type of slice, which be converted to string array.
-func JoinAny(array any, sep string) string {
+// The parameter `array` can be interface{} type of slice, which be converted to string array.
+func JoinAny(array interface{}, sep string) string {
 	return strings.Join(gconv.Strings(array), sep)
 }
 

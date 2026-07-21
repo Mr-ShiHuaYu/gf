@@ -36,7 +36,7 @@ const (
 	// PropagationRequiresNew starts a new transaction, and suspends the current transaction if one exists.
 	PropagationRequiresNew Propagation = "REQUIRES_NEW"
 
-	// PropagationNotSupported executes non-transactional, suspends any existing transaction.
+	// PropagationNotSupported executes non-transactional, suspends interface{} existing transaction.
 	PropagationNotSupported Propagation = "NOT_SUPPORTED"
 
 	// PropagationMandatory executes in a transaction, fails if no existing transaction.

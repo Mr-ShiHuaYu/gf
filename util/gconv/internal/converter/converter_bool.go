@@ -14,8 +14,8 @@ import (
 	"github.com/gogf/gf/v2/util/gconv/internal/localinterface"
 )
 
-// Bool converts `any` to bool.
-func (c *Converter) Bool(anyInput any) (bool, error) {
+// Bool converts `interface{}` to bool.
+func (c *Converter) Bool(anyInput interface{}) (bool, error) {
 	if empty.IsNil(anyInput) {
 		return false, nil
 	}
@@ -38,7 +38,7 @@ func (c *Converter) Bool(anyInput any) (bool, error) {
 		}
 		rv := reflect.ValueOf(anyInput)
 		switch rv.Kind() {
-		case reflect.Pointer:
+		case reflect.Ptr:
 			if rv.IsNil() {
 				return false, nil
 			}

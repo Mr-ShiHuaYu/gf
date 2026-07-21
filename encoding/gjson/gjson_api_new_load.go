@@ -14,16 +14,16 @@ import (
 	"github.com/gogf/gf/v2/util/gconv"
 )
 
-// New creates a Json object with any variable type of `data`, but `data` should be a map
+// New creates a Json object with interface{} variable type of `data`, but `data` should be a map
 // or slice for data access reason, or it will make no sense.
 //
 // The parameter `safe` specifies whether using this Json object in concurrent-safe context,
 // which is false in default.
-func New(data any, safe ...bool) *Json {
+func New(data interface{}, safe ...bool) *Json {
 	return NewWithTag(data, string(ContentTypeJSON), safe...)
 }
 
-// NewWithTag creates a Json object with any variable type of `data`, but `data` should be a map
+// NewWithTag creates a Json object with interface{} variable type of `data`, but `data` should be a map
 // or slice for data access reason, or it will make no sense.
 //
 // The parameter `tags` specifies priority tags for struct conversion to map, multiple tags joined
@@ -31,7 +31,7 @@ func New(data any, safe ...bool) *Json {
 //
 // The parameter `safe` specifies whether using this Json object in concurrent-safe context, which
 // is false in default.
-func NewWithTag(data any, tags string, safe ...bool) *Json {
+func NewWithTag(data interface{}, tags string, safe ...bool) *Json {
 	option := Options{
 		Tags: tags,
 	}
@@ -41,9 +41,9 @@ func NewWithTag(data any, tags string, safe ...bool) *Json {
 	return NewWithOptions(data, option)
 }
 
-// NewWithOptions creates a Json object with any variable type of `data`, but `data` should be a map
+// NewWithOptions creates a Json object with interface{} variable type of `data`, but `data` should be a map
 // or slice for data access reason, or it will make no sense.
-func NewWithOptions(data any, options Options) *Json {
+func NewWithOptions(data interface{}, options Options) *Json {
 	var j *Json
 	switch result := data.(type) {
 	case []byte:
@@ -68,7 +68,7 @@ func NewWithOptions(data any, options Options) *Json {
 		}
 	default:
 		var (
-			pointedData any
+			pointedData interface{}
 			reflectInfo = reflection.OriginValueAndKind(data)
 		)
 		switch reflectInfo.OriginKind {

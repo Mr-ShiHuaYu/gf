@@ -6,14 +6,14 @@
 
 package gconv
 
-// Float32 converts `any` to float32.
-func Float32(anyInput any) float32 {
+// Float32 converts `interface{}` to float32.
+func Float32(anyInput interface{}) float32 {
 	v, _ := defaultConverter.Float32(anyInput)
 	return v
 }
 
-// Float64 converts `any` to float64.
-func Float64(anyInput any) float64 {
+// Float64 converts `interface{}` to float64.
+func Float64(anyInput interface{}) float64 {
 	v, _ := defaultConverter.Float64(anyInput)
 	return v
 }

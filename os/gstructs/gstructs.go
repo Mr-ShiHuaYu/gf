@@ -36,7 +36,7 @@ type Field struct {
 type FieldsInput struct {
 	// Pointer should be type of struct/*struct.
 	// TODO this attribute name is not suitable, which would make confuse.
-	Pointer any
+	Pointer interface{}
 
 	// RecursiveOption specifies the way retrieving the fields recursively if the attribute
 	// is an embedded struct. It is RecursiveOptionNone in default.
@@ -47,7 +47,7 @@ type FieldsInput struct {
 type FieldMapInput struct {
 	// Pointer should be type of struct/*struct.
 	// TODO this attribute name is not suitable, which would make confuse.
-	Pointer any
+	Pointer interface{}
 
 	// PriorityTagArray specifies the priority tag array for retrieving from high to low.
 	// If it's given `nil`, it returns map[name]Field, of which the `name` is attribute name.
@@ -207,10 +207,10 @@ func FieldMap(in FieldMapInput) (map[string]Field, error) {
 
 // StructType retrieves and returns the struct Type of specified struct/*struct.
 // The parameter `object` should be either type of struct/*struct/[]struct/[]*struct.
-func StructType(object any) (*Type, error) {
+func StructType(object interface{}) (*Type, error) {
 	// if already reflect.Type
 	if reflectType, ok := object.(reflect.Type); ok {
-		for reflectType.Kind() == reflect.Pointer {
+		for reflectType.Kind() == reflect.Ptr {
 			reflectType = reflectType.Elem()
 		}
 		if reflectType.Kind() == reflect.Struct {
@@ -233,7 +233,7 @@ func StructType(object any) (*Type, error) {
 	reflectKind = reflectValue.Kind()
 	for {
 		switch reflectKind {
-		case reflect.Pointer:
+		case reflect.Ptr:
 			if !reflectValue.IsValid() || reflectValue.IsNil() {
 				// If pointer is type of *struct and nil, then automatically create a temporary struct.
 				reflectValue = reflect.New(reflectValue.Type().Elem()).Elem()

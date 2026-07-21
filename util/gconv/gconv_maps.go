@@ -12,19 +12,19 @@ import (
 )
 
 // SliceMap is alias of Maps.
-func SliceMap(anyInput any, option ...MapOption) []map[string]any {
+func SliceMap(anyInput interface{}, option ...MapOption) []map[string]interface{} {
 	return Maps(anyInput, option...)
 }
 
 // SliceMapDeep is alias of MapsDeep.
 // Deprecated: used SliceMap instead.
-func SliceMapDeep(anyInput any) []map[string]any {
+func SliceMapDeep(anyInput interface{}) []map[string]interface{} {
 	return MapsDeep(anyInput)
 }
 
-// Maps converts `value` to []map[string]any.
+// Maps converts `value` to []map[string]interface{}.
 // Note that it automatically checks and converts json string to []map if `value` is string/[]byte.
-func Maps(value any, option ...MapOption) []map[string]any {
+func Maps(value interface{}, option ...MapOption) []map[string]interface{} {
 	mapOption := MapOption{
 		ContinueOnError: true,
 	}
@@ -40,17 +40,17 @@ func Maps(value any, option ...MapOption) []map[string]any {
 	return result
 }
 
-// MapsDeep converts `value` to []map[string]any recursively.
+// MapsDeep converts `value` to []map[string]interface{} recursively.
 //
 // TODO completely implement the recursive converting for all types.
 // Deprecated: used Maps instead.
-func MapsDeep(value any, tags ...string) []map[string]any {
+func MapsDeep(value interface{}, tags ...string) []map[string]interface{} {
 	if value == nil {
 		return nil
 	}
 	switch r := value.(type) {
 	case string:
-		list := make([]map[string]any, 0)
+		list := make([]map[string]interface{}, 0)
 		if len(r) > 0 && r[0] == '[' && r[len(r)-1] == ']' {
 			if err := json.UnmarshalUseNumber([]byte(r), &list); err != nil {
 				return nil
@@ -61,7 +61,7 @@ func MapsDeep(value any, tags ...string) []map[string]any {
 		}
 
 	case []byte:
-		list := make([]map[string]any, 0)
+		list := make([]map[string]interface{}, 0)
 		if len(r) > 0 && r[0] == '[' && r[len(r)-1] == ']' {
 			if err := json.UnmarshalUseNumber(r, &list); err != nil {
 				return nil
@@ -71,8 +71,8 @@ func MapsDeep(value any, tags ...string) []map[string]any {
 			return nil
 		}
 
-	case []map[string]any:
-		list := make([]map[string]any, len(r))
+	case []map[string]interface{}:
+		list := make([]map[string]interface{}, len(r))
 		for k, v := range r {
 			list[k] = MapDeep(v, tags...)
 		}
@@ -83,7 +83,7 @@ func MapsDeep(value any, tags ...string) []map[string]any {
 		if len(array) == 0 {
 			return nil
 		}
-		list := make([]map[string]any, len(array))
+		list := make([]map[string]interface{}, len(array))
 		for k, v := range array {
 			list[k] = MapDeep(v, tags...)
 		}

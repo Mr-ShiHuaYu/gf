@@ -21,7 +21,7 @@ func NewProvider(option ...Option) (gmetric.Provider, error) {
 }
 
 // MustProvider creates and returns a metrics provider.
-// It panics if any error occurs.
+// It panics if interface{} error occurs.
 func MustProvider(option ...Option) gmetric.Provider {
 	provider, err := NewProvider(option...)
 	if err != nil {

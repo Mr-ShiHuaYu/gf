@@ -22,22 +22,22 @@ var _ iTree = (*BTree)(nil)
 // BTree holds elements of the B-tree.
 type BTree struct {
 	mu         rwmutex.RWMutex
-	comparator func(v1, v2 any) int
+	comparator func(v1, v2 interface{}) int
 	m          int // order (maximum number of children)
 	tree       *btree.Tree
 }
 
 // BTreeEntry represents the key-value pair contained within nodes.
 type BTreeEntry struct {
-	Key   any
-	Value any
+	Key   interface{}
+	Value interface{}
 }
 
 // NewBTree instantiates a B-tree with `m` (maximum number of children) and a custom key comparator.
 // The parameter `safe` is used to specify whether using tree in concurrent-safety,
 // which is false in default.
 // Note that the `m` must be greater or equal than 3, or else it panics.
-func NewBTree(m int, comparator func(v1, v2 any) int, safe ...bool) *BTree {
+func NewBTree(m int, comparator func(v1, v2 interface{}) int, safe ...bool) *BTree {
 	return &BTree{
 		mu:         rwmutex.Create(safe...),
 		m:          m,
@@ -49,7 +49,7 @@ func NewBTree(m int, comparator func(v1, v2 any) int, safe ...bool) *BTree {
 // NewBTreeFrom instantiates a B-tree with `m` (maximum number of children), a custom key comparator and data map.
 // The parameter `safe` is used to specify whether using tree in concurrent-safety,
 // which is false in default.
-func NewBTreeFrom(m int, comparator func(v1, v2 any) int, data map[any]any, safe ...bool) *BTree {
+func NewBTreeFrom(m int, comparator func(v1, v2 interface{}) int, data map[interface{}]interface{}, safe ...bool) *BTree {
 	tree := NewBTree(m, comparator, safe...)
 	for k, v := range data {
 		tree.doSet(k, v)
@@ -65,14 +65,14 @@ func (tree *BTree) Clone() *BTree {
 }
 
 // Set sets key-value pair into the tree.
-func (tree *BTree) Set(key any, value any) {
+func (tree *BTree) Set(key interface{}, value interface{}) {
 	tree.mu.Lock()
 	defer tree.mu.Unlock()
 	tree.doSet(key, value)
 }
 
 // Sets batch sets key-values to the tree.
-func (tree *BTree) Sets(data map[any]any) {
+func (tree *BTree) Sets(data map[interface{}]interface{}) {
 	tree.mu.Lock()
 	defer tree.mu.Unlock()
 	for k, v := range data {
@@ -82,7 +82,7 @@ func (tree *BTree) Sets(data map[any]any) {
 
 // SetIfNotExist sets `value` to the map if the `key` does not exist, and then returns true.
 // It returns false if `key` exists, and such setting key-value pair operation would be ignored.
-func (tree *BTree) SetIfNotExist(key any, value any) bool {
+func (tree *BTree) SetIfNotExist(key interface{}, value interface{}) bool {
 	tree.mu.Lock()
 	defer tree.mu.Unlock()
 	if _, ok := tree.doGet(key); !ok {
@@ -94,7 +94,7 @@ func (tree *BTree) SetIfNotExist(key any, value any) bool {
 
 // SetIfNotExistFunc sets value with return value of callback function `f`, and then returns true.
 // It returns false if `key` exists, and such setting key-value pair operation would be ignored.
-func (tree *BTree) SetIfNotExistFunc(key any, f func() any) bool {
+func (tree *BTree) SetIfNotExistFunc(key interface{}, f func() interface{}) bool {
 	tree.mu.Lock()
 	defer tree.mu.Unlock()
 	if _, ok := tree.doGet(key); !ok {
@@ -109,7 +109,7 @@ func (tree *BTree) SetIfNotExistFunc(key any, f func() any) bool {
 //
 // SetIfNotExistFuncLock differs with SetIfNotExistFunc function is that
 // it executes function `f` within mutex lock.
-func (tree *BTree) SetIfNotExistFuncLock(key any, f func() any) bool {
+func (tree *BTree) SetIfNotExistFuncLock(key interface{}, f func() interface{}) bool {
 	tree.mu.Lock()
 	defer tree.mu.Unlock()
 	if _, ok := tree.doGet(key); !ok {
@@ -123,7 +123,7 @@ func (tree *BTree) SetIfNotExistFuncLock(key any, f func() any) bool {
 //
 // Note that, the `nil` value from Get function cannot be used to determine key existence, please use Contains function
 // to do so.
-func (tree *BTree) Get(key any) (value any) {
+func (tree *BTree) Get(key interface{}) (value interface{}) {
 	tree.mu.Lock()
 	defer tree.mu.Unlock()
 	value, _ = tree.doGet(key)
@@ -132,7 +132,7 @@ func (tree *BTree) Get(key any) (value any) {
 
 // GetOrSet returns its `value` of `key`, or sets value with given `value` if it does not exist and then returns
 // this value.
-func (tree *BTree) GetOrSet(key any, value any) any {
+func (tree *BTree) GetOrSet(key interface{}, value interface{}) interface{} {
 	tree.mu.Lock()
 	defer tree.mu.Unlock()
 	if v, ok := tree.doGet(key); !ok {
@@ -144,7 +144,7 @@ func (tree *BTree) GetOrSet(key any, value any) any {
 
 // GetOrSetFunc returns its `value` of `key`, or sets value with returned value of callback function `f` if it does not
 // exist and then returns this value.
-func (tree *BTree) GetOrSetFunc(key any, f func() any) any {
+func (tree *BTree) GetOrSetFunc(key interface{}, f func() interface{}) interface{} {
 	tree.mu.Lock()
 	defer tree.mu.Unlock()
 	if v, ok := tree.doGet(key); !ok {
@@ -158,7 +158,7 @@ func (tree *BTree) GetOrSetFunc(key any, f func() any) any {
 // not exist and then returns this value.
 //
 // GetOrSetFuncLock differs with GetOrSetFunc function is that it executes function `f` within mutex lock.
-func (tree *BTree) GetOrSetFuncLock(key any, f func() any) any {
+func (tree *BTree) GetOrSetFuncLock(key interface{}, f func() interface{}) interface{} {
 	tree.mu.Lock()
 	defer tree.mu.Unlock()
 	if v, ok := tree.doGet(key); !ok {
@@ -172,7 +172,7 @@ func (tree *BTree) GetOrSetFuncLock(key any, f func() any) any {
 // Note that, the returned gvar.Var is un-concurrent safe.
 //
 // Also see function Get.
-func (tree *BTree) GetVar(key any) *gvar.Var {
+func (tree *BTree) GetVar(key interface{}) *gvar.Var {
 	return gvar.New(tree.Get(key))
 }
 
@@ -180,7 +180,7 @@ func (tree *BTree) GetVar(key any) *gvar.Var {
 // Note that, the returned gvar.Var is un-concurrent safe.
 //
 // Also see function GetOrSet.
-func (tree *BTree) GetVarOrSet(key any, value any) *gvar.Var {
+func (tree *BTree) GetVarOrSet(key interface{}, value interface{}) *gvar.Var {
 	return gvar.New(tree.GetOrSet(key, value))
 }
 
@@ -188,7 +188,7 @@ func (tree *BTree) GetVarOrSet(key any, value any) *gvar.Var {
 // Note that, the returned gvar.Var is un-concurrent safe.
 //
 // Also see function GetOrSetFunc.
-func (tree *BTree) GetVarOrSetFunc(key any, f func() any) *gvar.Var {
+func (tree *BTree) GetVarOrSetFunc(key interface{}, f func() interface{}) *gvar.Var {
 	return gvar.New(tree.GetOrSetFunc(key, f))
 }
 
@@ -196,20 +196,20 @@ func (tree *BTree) GetVarOrSetFunc(key any, f func() any) *gvar.Var {
 // Note that, the returned gvar.Var is un-concurrent safe.
 //
 // Also see function GetOrSetFuncLock.
-func (tree *BTree) GetVarOrSetFuncLock(key any, f func() any) *gvar.Var {
+func (tree *BTree) GetVarOrSetFuncLock(key interface{}, f func() interface{}) *gvar.Var {
 	return gvar.New(tree.GetOrSetFuncLock(key, f))
 }
 
 // Search searches the tree with given `key`.
 // Second return parameter `found` is true if key was found, otherwise false.
-func (tree *BTree) Search(key any) (value any, found bool) {
+func (tree *BTree) Search(key interface{}) (value interface{}, found bool) {
 	tree.mu.RLock()
 	defer tree.mu.RUnlock()
 	return tree.tree.Get(key)
 }
 
 // Contains checks and returns whether given `key` exists in the tree.
-func (tree *BTree) Contains(key any) bool {
+func (tree *BTree) Contains(key interface{}) bool {
 	tree.mu.RLock()
 	defer tree.mu.RUnlock()
 	_, ok := tree.doGet(key)
@@ -223,7 +223,7 @@ func (tree *BTree) Size() int {
 	return tree.tree.Size()
 }
 
-// IsEmpty returns true if tree does not contain any nodes
+// IsEmpty returns true if tree does not contain interface{} nodes
 func (tree *BTree) IsEmpty() bool {
 	tree.mu.RLock()
 	defer tree.mu.RUnlock()
@@ -232,14 +232,14 @@ func (tree *BTree) IsEmpty() bool {
 
 // Remove removes the node from the tree by `key`, and returns its associated value of `key`.
 // The given `key` should adhere to the comparator's type assertion, otherwise method panics.
-func (tree *BTree) Remove(key any) (value any) {
+func (tree *BTree) Remove(key interface{}) (value interface{}) {
 	tree.mu.Lock()
 	defer tree.mu.Unlock()
 	return tree.doRemove(key)
 }
 
 // Removes batch deletes key-value pairs from the tree by `keys`.
-func (tree *BTree) Removes(keys []any) {
+func (tree *BTree) Removes(keys []interface{}) {
 	tree.mu.Lock()
 	defer tree.mu.Unlock()
 	for _, key := range keys {
@@ -255,21 +255,21 @@ func (tree *BTree) Clear() {
 }
 
 // Keys returns all keys from the tree in order by its comparator.
-func (tree *BTree) Keys() []any {
+func (tree *BTree) Keys() []interface{} {
 	tree.mu.RLock()
 	defer tree.mu.RUnlock()
 	return tree.tree.Keys()
 }
 
 // Values returns all values from the true in order by its comparator based on the key.
-func (tree *BTree) Values() []any {
+func (tree *BTree) Values() []interface{} {
 	tree.mu.RLock()
 	defer tree.mu.RUnlock()
 	return tree.tree.Values()
 }
 
 // Replace clears the data of the tree and sets the nodes by given `data`.
-func (tree *BTree) Replace(data map[any]any) {
+func (tree *BTree) Replace(data map[interface{}]interface{}) {
 	tree.mu.Lock()
 	defer tree.mu.Unlock()
 	tree.tree.Clear()
@@ -279,19 +279,19 @@ func (tree *BTree) Replace(data map[any]any) {
 }
 
 // Map returns all key-value pairs as map.
-func (tree *BTree) Map() map[any]any {
-	m := make(map[any]any, tree.Size())
-	tree.IteratorAsc(func(key, value any) bool {
+func (tree *BTree) Map() map[interface{}]interface{} {
+	m := make(map[interface{}]interface{}, tree.Size())
+	tree.IteratorAsc(func(key, value interface{}) bool {
 		m[key] = value
 		return true
 	})
 	return m
 }
 
-// MapStrAny returns all key-value items as map[string]any.
-func (tree *BTree) MapStrAny() map[string]any {
-	m := make(map[string]any, tree.Size())
-	tree.IteratorAsc(func(key, value any) bool {
+// MapStrAny returns all key-value items as map[string]interface{}.
+func (tree *BTree) MapStrAny() map[string]interface{} {
+	m := make(map[string]interface{}, tree.Size())
+	tree.IteratorAsc(func(key, value interface{}) bool {
 		m[gconv.String(key)] = value
 		return true
 	})
@@ -320,20 +320,20 @@ func (tree *BTree) MarshalJSON() (jsonBytes []byte, err error) {
 // Iterator is alias of IteratorAsc.
 //
 // Also see IteratorAsc.
-func (tree *BTree) Iterator(f func(key, value any) bool) {
+func (tree *BTree) Iterator(f func(key, value interface{}) bool) {
 	tree.IteratorAsc(f)
 }
 
 // IteratorFrom is alias of IteratorAscFrom.
 //
 // Also see IteratorAscFrom.
-func (tree *BTree) IteratorFrom(key any, match bool, f func(key, value any) bool) {
+func (tree *BTree) IteratorFrom(key interface{}, match bool, f func(key, value interface{}) bool) {
 	tree.IteratorAscFrom(key, match, f)
 }
 
 // IteratorAsc iterates the tree readonly in ascending order with given callback function `f`.
 // If callback function `f` returns true, then it continues iterating; or false to stop.
-func (tree *BTree) IteratorAsc(f func(key, value any) bool) {
+func (tree *BTree) IteratorAsc(f func(key, value interface{}) bool) {
 	tree.mu.RLock()
 	defer tree.mu.RUnlock()
 	var (
@@ -354,7 +354,7 @@ func (tree *BTree) IteratorAsc(f func(key, value any) bool) {
 // The parameter `match` specifies whether starting iterating only if the `key` is fully matched, or else using index
 // searching iterating.
 // If callback function `f` returns true, then it continues iterating; or false to stop.
-func (tree *BTree) IteratorAscFrom(key any, match bool, f func(key, value any) bool) {
+func (tree *BTree) IteratorAscFrom(key interface{}, match bool, f func(key, value interface{}) bool) {
 	tree.mu.RLock()
 	defer tree.mu.RUnlock()
 	var keys = tree.tree.Keys()
@@ -370,7 +370,7 @@ func (tree *BTree) IteratorAscFrom(key any, match bool, f func(key, value any) b
 // IteratorDesc iterates the tree readonly in descending order with given callback function `f`.
 //
 // If callback function `f` returns true, then it continues iterating; or false to stop.
-func (tree *BTree) IteratorDesc(f func(key, value any) bool) {
+func (tree *BTree) IteratorDesc(f func(key, value interface{}) bool) {
 	tree.mu.RLock()
 	defer tree.mu.RUnlock()
 	var (
@@ -391,7 +391,7 @@ func (tree *BTree) IteratorDesc(f func(key, value any) bool) {
 // The parameter `match` specifies whether starting iterating only if the `key` is fully matched, or else using index
 // searching iterating.
 // If callback function `f` returns true, then it continues iterating; or false to stop.
-func (tree *BTree) IteratorDescFrom(key any, match bool, f func(key, value any) bool) {
+func (tree *BTree) IteratorDescFrom(key interface{}, match bool, f func(key, value interface{}) bool) {
 	tree.mu.RLock()
 	defer tree.mu.RUnlock()
 	var keys = tree.tree.Keys()
@@ -441,11 +441,11 @@ func (tree *BTree) Right() *BTreeEntry {
 
 // doSet inserts key-value pair node into the tree without lock.
 // If `key` already exists, then its value is updated with the new value.
-// If `value` is type of <func() any>, it will be executed and its return value will be set to the map with `key`.
+// If `value` is type of <func() interface{}>, it will be executed and its return value will be set to the map with `key`.
 //
 // It returns value with given `key`.
-func (tree *BTree) doSet(key any, value any) any {
-	if f, ok := value.(func() any); ok {
+func (tree *BTree) doSet(key interface{}, value interface{}) interface{} {
+	if f, ok := value.(func() interface{}); ok {
 		value = f()
 	}
 	if value == nil {
@@ -456,13 +456,13 @@ func (tree *BTree) doSet(key any, value any) any {
 }
 
 // doGet get the value from the tree by key without lock.
-func (tree *BTree) doGet(key any) (value any, ok bool) {
+func (tree *BTree) doGet(key interface{}) (value interface{}, ok bool) {
 	return tree.tree.Get(key)
 }
 
 // doRemove removes key from tree and returns its associated value without lock.
 // Note that, the given `key` should adhere to the comparator's type assertion, otherwise method panics.
-func (tree *BTree) doRemove(key any) (value any) {
+func (tree *BTree) doRemove(key interface{}) (value interface{}) {
 	value, _ = tree.tree.Get(key)
 	tree.tree.Remove(key)
 	return

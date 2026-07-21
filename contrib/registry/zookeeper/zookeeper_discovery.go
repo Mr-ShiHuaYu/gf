@@ -19,8 +19,8 @@ import (
 
 // Search searches and returns services with specified condition.
 func (r *Registry) Search(_ context.Context, in gsvc.SearchInput) ([]gsvc.Service, error) {
-	prefix := strings.Trim(strings.ReplaceAll(in.Prefix, "/", "-"), "-")
-	instances, err, _ := r.group.Do(prefix, func() (any, error) {
+	prefix := strings.Trim(strings.Replace(in.Prefix, "/", "-", -1), "-")
+	instances, err, _ := r.group.Do(prefix, func() (interface{}, error) {
 		serviceNamePath := path.Join(r.opts.namespace, prefix)
 		servicesID, _, err := r.conn.Children(serviceNamePath)
 		if err != nil {

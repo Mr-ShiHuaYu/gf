@@ -55,7 +55,7 @@ func (c CGenService) parseItemsInSrc(filePath string) (pkgItems []pkgItem, struc
 			pkgItem := c.parseImportPackages(x)
 			pkgItems = append(pkgItems, pkgItem)
 			pkgPath := strings.Trim(pkgItem.Path, "\"")
-			pkgPath = strings.ReplaceAll(pkgPath, "\\", "/")
+			pkgPath = strings.Replace(pkgPath, "\\", "/", -1)
 			tmp := strings.Split(pkgPath, "/")
 			srcPkg := tmp[len(tmp)-1]
 			if srcPkg != pkgItem.Alias {

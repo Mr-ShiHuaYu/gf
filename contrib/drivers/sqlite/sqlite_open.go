@@ -36,7 +36,7 @@ func (d *Driver) Open(config *gdb.ConfigNode) (db *sql.DB, err error) {
 	if config.Extra != "" {
 		var (
 			options  string
-			extraMap map[string]any
+			extraMap map[string]interface{}
 		)
 		if extraMap, err = gstr.Parse(config.Extra); err != nil {
 			return nil, err

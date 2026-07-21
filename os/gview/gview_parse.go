@@ -128,7 +128,7 @@ func (view *View) ParseWithOptions(ctx context.Context, opts Options) (result st
 		return "", gerror.New(`template file cannot be empty`)
 	}
 	// It caches the file, folder, and content to enhance performance.
-	r := view.fileCacheMap.GetOrSetFuncLock(opts.File, func() any {
+	r := view.fileCacheMap.GetOrSetFuncLock(opts.File, func() interface{} {
 		var (
 			path     string
 			folder   string
@@ -177,7 +177,7 @@ func (view *View) ParseWithOptions(ctx context.Context, opts Options) (result st
 		return view.doParseContent(ctx, item.content, opts.Params)
 	}
 	// Get the template object instance for `folder`.
-	var tpl any
+	var tpl interface{}
 	tpl, err = view.getTemplate(item.path, item.folder, fmt.Sprintf(`*%s`, gfile.Ext(item.path)))
 	if err != nil {
 		return "", err
@@ -210,7 +210,7 @@ func (view *View) doParseContent(ctx context.Context, content string, params Par
 	var (
 		err error
 		key = fmt.Sprintf("%s_%v_%v", templateNameForContentParsing, view.config.Delimiters, view.config.AutoEncode)
-		tpl = templates.GetOrSetFuncLock(key, func() any {
+		tpl = templates.GetOrSetFuncLock(key, func() interface{} {
 			if view.config.AutoEncode {
 				return htmltpl.New(templateNameForContentParsing).Delims(
 					view.config.Delimiters[0],
@@ -239,7 +239,7 @@ func (view *View) doParseContent(ctx context.Context, content string, params Par
 	return view.doParseContentWithStdTemplate(ctx, tpl, params)
 }
 
-func (view *View) doParseContentWithStdTemplate(ctx context.Context, tpl any, params Params) (string, error) {
+func (view *View) doParseContentWithStdTemplate(ctx context.Context, tpl interface{}, params Params) (string, error) {
 	// Note that the template variable assignment cannot change the value
 	// of the existing `params` or view.data because both variables are pointers.
 	// It needs to merge the values of the two maps into a new map.
@@ -267,14 +267,14 @@ func (view *View) doParseContentWithStdTemplate(ctx context.Context, tpl any, pa
 			return "", err
 		}
 	}
-	// TODO any graceful plan to replace "<no value>"?
+	// TODO interface{} graceful plan to replace "<no value>"?
 	result := gstr.Replace(buffer.String(), "<no value>", "")
 	result = view.i18nTranslate(ctx, result, variables)
 	return result, nil
 }
 
-func (view *View) getBuiltInParams() map[string]any {
-	return map[string]any{
+func (view *View) getBuiltInParams() map[string]interface{} {
+	return map[string]interface{}{
 		"version": gf.VERSION,
 	}
 }
@@ -283,10 +283,10 @@ func (view *View) getBuiltInParams() map[string]any {
 // It uses template cache to enhance performance, that is, it will return the same template object
 // with the same given `path`. It will also automatically refresh the template cache
 // if the template files under `path` changes (recursively).
-func (view *View) getTemplate(filePath, folderPath, pattern string) (tpl any, err error) {
+func (view *View) getTemplate(filePath, folderPath, pattern string) (tpl interface{}, err error) {
 	var (
 		mapKey  = fmt.Sprintf("%s_%v", filePath, view.config.Delimiters)
-		mapFunc = func() any {
+		mapFunc = func() interface{} {
 			tplName := filePath
 			if view.config.AutoEncode {
 				tpl = htmltpl.New(tplName).Delims(

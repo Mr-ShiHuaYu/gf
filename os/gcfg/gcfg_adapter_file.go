@@ -137,7 +137,7 @@ func (a *AdapterFile) GetFileName() string {
 // "list.10", "array.0.name", "array.0.1.id".
 //
 // It returns a default value specified by `def` if value for `pattern` is not found.
-func (a *AdapterFile) Get(ctx context.Context, pattern string) (value any, err error) {
+func (a *AdapterFile) Get(ctx context.Context, pattern string) (value interface{}, err error) {
 	j, err := a.getJson()
 	if err != nil {
 		return nil, err
@@ -153,7 +153,7 @@ func (a *AdapterFile) Get(ctx context.Context, pattern string) (value any, err e
 // It is commonly used to update certain configuration values in runtime.
 // Note that it is not recommended using `Set` configuration at runtime as the configuration would be
 // automatically refreshed if the underlying configuration file changed.
-func (a *AdapterFile) Set(pattern string, value any) error {
+func (a *AdapterFile) Set(pattern string, value interface{}) error {
 	j, err := a.getJson()
 	if err != nil {
 		return err
@@ -165,7 +165,7 @@ func (a *AdapterFile) Set(pattern string, value any) error {
 }
 
 // Data retrieves and returns all configuration data as map type.
-func (a *AdapterFile) Data(ctx context.Context) (data map[string]any, err error) {
+func (a *AdapterFile) Data(ctx context.Context) (data map[string]interface{}, err error) {
 	j, err := a.getJson()
 	if err != nil {
 		return nil, err
@@ -226,7 +226,7 @@ func (a *AdapterFile) autoCheckAndAddMainPkgPathToSearchPaths() {
 }
 
 // getJson returns a *gjson.Json object for the specified `file` content.
-// It would print error if file reading fails. It returns nil if any error occurs.
+// It would print error if file reading fails. It returns nil if interface{} error occurs.
 func (a *AdapterFile) getJson(fileNameOrPath ...string) (configJson *gjson.Json, err error) {
 	var (
 		usedFileNameOrPath = a.defaultFileNameOrPath
@@ -237,12 +237,12 @@ func (a *AdapterFile) getJson(fileNameOrPath ...string) (configJson *gjson.Json,
 		usedFileNameOrPath = a.defaultFileNameOrPath
 	}
 	// It uses JSON map to cache specified configuration file content.
-	result := a.jsonMap.GetOrSetFuncLock(usedFileNameOrPath, func() any {
+	result := a.jsonMap.GetOrSetFuncLock(usedFileNameOrPath, func() interface{} {
 		var (
 			content  string
 			filePath string
 		)
-		// The configured content can be any kind of data type different from its file type.
+		// The configured content can be interface{} kind of data type different from its file type.
 		isFromConfigContent := true
 		if content = a.GetContent(usedFileNameOrPath); content == "" {
 			isFromConfigContent = false
@@ -276,7 +276,7 @@ func (a *AdapterFile) getJson(fileNameOrPath ...string) (configJson *gjson.Json,
 		}
 		configJson.SetViolenceCheck(a.violenceCheck)
 		// Add monitor for this configuration file,
-		// any changes of this file will refresh its cache in the Config object.
+		// interface{} changes of this file will refresh its cache in the Config object.
 		if filePath != "" && !gres.Contains(filePath) {
 			_, err = gfsnotify.Add(filePath, func(event *gfsnotify.Event) {
 				a.jsonMap.Remove(usedFileNameOrPath)

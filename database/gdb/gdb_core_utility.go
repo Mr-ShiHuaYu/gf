@@ -74,7 +74,7 @@ func (c *Core) SlaveLink(schema ...string) (Link, error) {
 
 // QuoteWord checks given string `s` a word,
 // if true it quotes `s` with security chars of the database
-// and returns the quoted string; or else it returns `s` without any change.
+// and returns the quoted string; or else it returns `s` without interface{} change.
 //
 // The meaning of a `word` can be considered as a column name.
 func (c *Core) QuoteWord(s string) string {
@@ -156,7 +156,7 @@ func (c *Core) ClearTableFieldsAll(ctx context.Context) (err error) {
 	var (
 		keys, _     = c.innerMemCache.KeyStrings(ctx)
 		cachePrefix = cachePrefixTableFields
-		removedKeys = make([]any, 0)
+		removedKeys = make([]interface{}, 0)
 	)
 	for _, key := range keys {
 		if gstr.HasPrefix(key, cachePrefix) {
@@ -175,7 +175,7 @@ func (c *Core) ClearCache(ctx context.Context, table string) (err error) {
 	var (
 		keys, _     = c.db.GetCache().KeyStrings(ctx)
 		cachePrefix = fmt.Sprintf(`%s%s@`, cachePrefixSelectCache, table)
-		removedKeys = make([]any, 0)
+		removedKeys = make([]interface{}, 0)
 	)
 	for _, key := range keys {
 		if gstr.HasPrefix(key, cachePrefix) {

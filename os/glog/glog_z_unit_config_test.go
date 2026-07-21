@@ -17,7 +17,7 @@ import (
 func Test_SetConfigWithMap(t *testing.T) {
 	gtest.C(t, func(t *gtest.T) {
 		l := New()
-		m := map[string]any{
+		m := map[string]interface{}{
 			"path":     "/var/log",
 			"level":    "all",
 			"stdout":   false,
@@ -35,7 +35,7 @@ func Test_SetConfigWithMap_LevelStr(t *testing.T) {
 	gtest.C(t, func(t *gtest.T) {
 		buffer := bytes.NewBuffer(nil)
 		l := New()
-		m := map[string]any{
+		m := map[string]interface{}{
 			"level": "all",
 		}
 		err := l.SetConfigWithMap(m)
@@ -52,7 +52,7 @@ func Test_SetConfigWithMap_LevelStr(t *testing.T) {
 	gtest.C(t, func(t *gtest.T) {
 		buffer := bytes.NewBuffer(nil)
 		l := New()
-		m := map[string]any{
+		m := map[string]interface{}{
 			"level": "warn",
 		}
 		err := l.SetConfigWithMap(m)

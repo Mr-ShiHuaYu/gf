@@ -56,7 +56,7 @@ func (w *Watcher) AddOnce(
 		// 1. It only recursively adds **folders** to the monitor, NOT files,
 		//    because if the folders are monitored and their sub-files are also monitored.
 		// 2. It bounds no callbacks to the folders, because it will search the callbacks
-		//    from its parent recursively if any event produced.
+		//    from its parent recursively if interface{} event produced.
 		if fileIsDir(path) && !watchOption.NoRecursive {
 			for _, subPath := range fileAllDirs(path) {
 				if fileIsDir(subPath) {
@@ -108,7 +108,7 @@ func (w *Watcher) addWithCallbackFunc(
 		recursive: !watchOption.NoRecursive,
 	}
 	// Register the callback to watcher.
-	w.callbacks.LockFunc(func(m map[string]any) {
+	w.callbacks.LockFunc(func(m map[string]interface{}) {
 		list := (*glist.List)(nil)
 		if v, ok := m[path]; !ok {
 			list = glist.New(true)

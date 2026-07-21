@@ -17,7 +17,7 @@ import (
 )
 
 // RuleRequiredIf implements `required-if` rule:
-// Required if any of given field and its value are equal.
+// Required if interface{} of given field and its value are equal.
 //
 // Format:  required-if:field,value,...
 // Example: required-if:id,1,age,18
@@ -39,7 +39,7 @@ func (r RuleRequiredIf) Run(in RunInput) error {
 	var (
 		required   = false
 		array      = strings.Split(in.RulePattern, ",")
-		foundValue any
+		foundValue interface{}
 		dataMap    = in.Data.Map()
 	)
 	if len(array)%2 != 0 {

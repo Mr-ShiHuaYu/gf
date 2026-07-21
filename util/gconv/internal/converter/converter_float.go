@@ -17,8 +17,8 @@ import (
 	"github.com/gogf/gf/v2/util/gconv/internal/localinterface"
 )
 
-// Float32 converts `any` to float32.
-func (c *Converter) Float32(anyInput any) (float32, error) {
+// Float32 converts `interface{}` to float32.
+func (c *Converter) Float32(anyInput interface{}) (float32, error) {
 	if empty.IsNil(anyInput) {
 		return 0, nil
 	}
@@ -52,7 +52,7 @@ func (c *Converter) Float32(anyInput any) (float32, error) {
 				)
 			}
 			return float32(f), nil
-		case reflect.Pointer:
+		case reflect.Ptr:
 			if rv.IsNil() {
 				return 0, nil
 			}
@@ -79,8 +79,8 @@ func (c *Converter) Float32(anyInput any) (float32, error) {
 	}
 }
 
-// Float64 converts `any` to float64.
-func (c *Converter) Float64(anyInput any) (float64, error) {
+// Float64 converts `interface{}` to float64.
+func (c *Converter) Float64(anyInput interface{}) (float64, error) {
 	if empty.IsNil(anyInput) {
 		return 0, nil
 	}
@@ -119,7 +119,7 @@ func (c *Converter) Float64(anyInput any) (float64, error) {
 				)
 			}
 			return f, nil
-		case reflect.Pointer:
+		case reflect.Ptr:
 			if rv.IsNil() {
 				return 0, nil
 			}

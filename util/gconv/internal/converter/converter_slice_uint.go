@@ -16,8 +16,8 @@ import (
 	"github.com/gogf/gf/v2/util/gconv/internal/localinterface"
 )
 
-// SliceUint converts `any` to []uint.
-func (c *Converter) SliceUint(anyInput any, option ...SliceOption) ([]uint, error) {
+// SliceUint converts `interface{}` to []uint.
+func (c *Converter) SliceUint(anyInput interface{}, option ...SliceOption) ([]uint, error) {
 	if empty.IsNil(anyInput) {
 		return nil, nil
 	}
@@ -128,7 +128,7 @@ func (c *Converter) SliceUint(anyInput any, option ...SliceOption) ([]uint, erro
 			}
 			array[k] = ui
 		}
-	case []any:
+	case []interface{}:
 		array = make([]uint, len(value))
 		for k, v := range value {
 			ui, err = c.Uint(v)
@@ -177,7 +177,7 @@ func (c *Converter) SliceUint(anyInput any, option ...SliceOption) ([]uint, erro
 		return slice, err
 
 	default:
-		if originValueAndKind.OriginValue.IsZero() {
+		if reflection.IsZero(originValueAndKind.OriginValue) {
 			return []uint{}, err
 		}
 		ui, err = c.Uint(anyInput)
@@ -188,8 +188,8 @@ func (c *Converter) SliceUint(anyInput any, option ...SliceOption) ([]uint, erro
 	}
 }
 
-// SliceUint32 converts `any` to []uint32.
-func (c *Converter) SliceUint32(anyInput any, option ...SliceOption) ([]uint32, error) {
+// SliceUint32 converts `interface{}` to []uint32.
+func (c *Converter) SliceUint32(anyInput interface{}, option ...SliceOption) ([]uint32, error) {
 	if empty.IsNil(anyInput) {
 		return nil, nil
 	}
@@ -300,7 +300,7 @@ func (c *Converter) SliceUint32(anyInput any, option ...SliceOption) ([]uint32, 
 			}
 			array[k] = ui
 		}
-	case []any:
+	case []interface{}:
 		array = make([]uint32, len(value))
 		for k, v := range value {
 			ui, err = c.Uint32(v)
@@ -348,7 +348,7 @@ func (c *Converter) SliceUint32(anyInput any, option ...SliceOption) ([]uint32, 
 		return slice, err
 
 	default:
-		if originValueAndKind.OriginValue.IsZero() {
+		if reflection.IsZero(originValueAndKind.OriginValue) {
 			return []uint32{}, err
 		}
 		ui, err = c.Uint32(anyInput)
@@ -359,8 +359,8 @@ func (c *Converter) SliceUint32(anyInput any, option ...SliceOption) ([]uint32, 
 	}
 }
 
-// SliceUint64 converts `any` to []uint64.
-func (c *Converter) SliceUint64(anyInput any, option ...SliceOption) ([]uint64, error) {
+// SliceUint64 converts `interface{}` to []uint64.
+func (c *Converter) SliceUint64(anyInput interface{}, option ...SliceOption) ([]uint64, error) {
 	if empty.IsNil(anyInput) {
 		return nil, nil
 	}
@@ -471,7 +471,7 @@ func (c *Converter) SliceUint64(anyInput any, option ...SliceOption) ([]uint64, 
 			}
 			array[k] = ui
 		}
-	case []any:
+	case []interface{}:
 		array = make([]uint64, len(value))
 		for k, v := range value {
 			ui, err = c.Uint64(v)
@@ -518,7 +518,7 @@ func (c *Converter) SliceUint64(anyInput any, option ...SliceOption) ([]uint64, 
 		return slice, err
 
 	default:
-		if originValueAndKind.OriginValue.IsZero() {
+		if reflection.IsZero(originValueAndKind.OriginValue) {
 			return []uint64{}, err
 		}
 		ui, err = c.Uint64(anyInput)

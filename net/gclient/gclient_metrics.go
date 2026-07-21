@@ -8,6 +8,7 @@ package gclient
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/gogf/gf/v2"
 	"github.com/gogf/gf/v2/os/gmetric"
@@ -242,7 +243,7 @@ func (c *Client) handleMetricsAfterRequestDone(r *http.Request, requestStartTime
 	var (
 		ctx             = r.Context()
 		attrMap         = metricManager.GetMetricAttributeMap(r)
-		duration        = float64(gtime.Now().Sub(requestStartTime).Milliseconds())
+		duration        = float64(int64(gtime.Now().Sub(requestStartTime) / time.Millisecond))
 		requestOption   = metricManager.GetMetricOptionForRequestByMap(attrMap)
 		responseOption  = metricManager.GetMetricOptionForResponseByMap(attrMap)
 		histogramOption = metricManager.GetMetricOptionForHistogramByMap(attrMap)

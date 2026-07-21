@@ -43,7 +43,7 @@ type Discovery interface {
 // Watcher interface for service.
 type Watcher interface {
 	// Proceed proceeds watch in blocking way.
-	// It returns all complete services that watched by `key` if any change.
+	// It returns all complete services that watched by `key` if interface{} change.
 	Proceed() (services []Service, err error)
 
 	// Close closes the watcher.
@@ -103,7 +103,7 @@ type Endpoint interface {
 type Endpoints []Endpoint
 
 // Metadata stores custom key-value pairs.
-type Metadata map[string]any
+type Metadata map[string]interface{}
 
 // SearchInput is the input for service searching.
 type SearchInput struct {

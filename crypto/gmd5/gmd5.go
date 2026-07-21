@@ -17,16 +17,16 @@ import (
 	"github.com/gogf/gf/v2/util/gconv"
 )
 
-// Encrypt encrypts any type of variable using MD5 algorithms.
+// Encrypt encrypts interface{} type of variable using MD5 algorithms.
 // It uses gconv package to convert `v` to its bytes type.
-func Encrypt(data any) (encrypt string, err error) {
+func Encrypt(data interface{}) (encrypt string, err error) {
 	return EncryptBytes(gconv.Bytes(data))
 }
 
-// MustEncrypt encrypts any type of variable using MD5 algorithms.
+// MustEncrypt encrypts interface{} type of variable using MD5 algorithms.
 // It uses gconv package to convert `v` to its bytes type.
-// It panics if any error occurs.
-func MustEncrypt(data any) string {
+// It panics if interface{} error occurs.
+func MustEncrypt(data interface{}) string {
 	result, err := Encrypt(data)
 	if err != nil {
 		panic(err)
@@ -45,7 +45,7 @@ func EncryptBytes(data []byte) (encrypt string, err error) {
 }
 
 // MustEncryptBytes encrypts `data` using MD5 algorithms.
-// It panics if any error occurs.
+// It panics if interface{} error occurs.
 func MustEncryptBytes(data []byte) string {
 	result, err := EncryptBytes(data)
 	if err != nil {
@@ -60,7 +60,7 @@ func EncryptString(data string) (encrypt string, err error) {
 }
 
 // MustEncryptString encrypts string `data` using MD5 algorithms.
-// It panics if any error occurs.
+// It panics if interface{} error occurs.
 func MustEncryptString(data string) string {
 	result, err := EncryptString(data)
 	if err != nil {
@@ -87,7 +87,7 @@ func EncryptFile(path string) (encrypt string, err error) {
 }
 
 // MustEncryptFile encrypts file content of `path` using MD5 algorithms.
-// It panics if any error occurs.
+// It panics if interface{} error occurs.
 func MustEncryptFile(path string) string {
 	result, err := EncryptFile(path)
 	if err != nil {

@@ -75,8 +75,8 @@ func New() *Client {
 				ResponseHeaderTimeout: 30 * time.Second,
 				ExpectContinueTimeout: 1 * time.Second,
 				TLSHandshakeTimeout:   10 * time.Second,
-				ForceAttemptHTTP2:     true,
-				DisableCompression:    false,
+				// ForceAttemptHTTP2:     true, // go1.13+
+				DisableCompression: false,
 				DialContext: (&net.Dialer{
 					Timeout:   30 * time.Second,
 					KeepAlive: 30 * time.Second,

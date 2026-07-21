@@ -20,7 +20,7 @@ type User struct {
 	Url  string
 }
 
-var testData = map[string]any{
+var testData = map[string]interface{}{
 	//"nil":         nil,
 	"int":         int(123),
 	"int8":        int8(-99),

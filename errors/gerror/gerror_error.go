@@ -33,7 +33,7 @@ var goRootForFilter = runtime.GOROOT()
 
 func init() {
 	if goRootForFilter != "" {
-		goRootForFilter = strings.ReplaceAll(goRootForFilter, "\\", "/")
+		goRootForFilter = strings.Replace(goRootForFilter, "\\", "/", -1)
 	}
 }
 

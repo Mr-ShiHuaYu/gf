@@ -5,6 +5,7 @@
 // You can obtain one at https://github.com/gogf/gf.
 
 //go:build windows
+// +build windows
 
 package gproc
 

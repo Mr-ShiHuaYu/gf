@@ -30,14 +30,14 @@ import (
 )
 
 // Run calls custom function in os.Args that bound to this command.
-// It exits this process with exit code 1 if any error occurs.
+// It exits this process with exit code 1 if interface{} error occurs.
 func (c *Command) Run(ctx context.Context) {
 	_ = c.RunWithValue(ctx)
 }
 
 // RunWithValue calls custom function in os.Args that bound to this command with value output.
-// It exits this process with exit code 1 if any error occurs.
-func (c *Command) RunWithValue(ctx context.Context) (value any) {
+// It exits this process with exit code 1 if interface{} error occurs.
+func (c *Command) RunWithValue(ctx context.Context) (value interface{}) {
 	value, err := c.RunWithValueError(ctx)
 	if err != nil {
 		var (
@@ -71,12 +71,12 @@ func (c *Command) RunWithError(ctx context.Context) (err error) {
 }
 
 // RunWithValueError calls custom function in os.Args that bound to this command with value and error output.
-func (c *Command) RunWithValueError(ctx context.Context) (value any, err error) {
+func (c *Command) RunWithValueError(ctx context.Context) (value interface{}, err error) {
 	return c.RunWithSpecificArgs(ctx, os.Args)
 }
 
 // RunWithSpecificArgs calls custom function in specific args that bound to this command with value and error output.
-func (c *Command) RunWithSpecificArgs(ctx context.Context, args []string) (value any, err error) {
+func (c *Command) RunWithSpecificArgs(ctx context.Context, args []string) (value interface{}, err error) {
 	if len(args) == 0 {
 		return nil, gerror.NewCode(gcode.CodeInvalidParameter, "args can not be empty!")
 	}
@@ -112,7 +112,7 @@ func (c *Command) RunWithSpecificArgs(ctx context.Context, args []string) (value
 	return
 }
 
-func (c *Command) doRun(ctx context.Context, args []string, parser *Parser) (value any, err error) {
+func (c *Command) doRun(ctx context.Context, args []string, parser *Parser) (value interface{}, err error) {
 	defer func() {
 		if exception := recover(); exception != nil {
 			if v, ok := exception.(error); ok && gerror.HasStack(v) {

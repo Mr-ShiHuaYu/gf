@@ -48,14 +48,14 @@ destination file name storing automatically generated go files, cases are as fol
 | Snake           | any_kind_of_string | default
 | SnakeScreaming  | ANY_KIND_OF_STRING |
 | SnakeFirstUpper | rgb_code_md5       |
-| Kebab           | any-kind-of-string |
+| Kebab           | interface{}-kind-of-string |
 | KebabScreaming  | ANY-KIND-OF-STRING |
 `
 	CGenServiceBriefWatchFile    = `used in file watcher, it re-generates all service go files only if given file is under srcFolder`
 	CGenServiceBriefStPattern    = `regular expression matching struct name for generating service. default: ^s([A-Z]\\\\w+)$`
 	CGenServiceBriefPackages     = `produce go files only for given source packages(source folders)`
 	CGenServiceBriefImportPrefix = `custom import prefix to calculate import path for generated importing go file of logic`
-	CGenServiceBriefClear        = `delete all generated go files that are not used any further`
+	CGenServiceBriefClear        = `delete all generated go files that are not used interface{} further`
 )
 
 func init() {

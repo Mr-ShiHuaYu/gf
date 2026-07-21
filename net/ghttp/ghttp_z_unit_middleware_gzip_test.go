@@ -10,6 +10,7 @@ import (
 	"compress/gzip"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"strings"
 	"testing"
 	"time"
@@ -60,7 +61,7 @@ func Test_Middleware_Gzip(t *testing.T) {
 		t.AssertNil(err)
 		defer reader.Close()
 
-		content, err := io.ReadAll(reader)
+		content, err := ioutil.ReadAll(reader)
 		t.AssertNil(err)
 		expected := strings.Repeat("Hello World! ", 1000)
 		t.Assert(len(content), len(expected))
@@ -70,7 +71,7 @@ func Test_Middleware_Gzip(t *testing.T) {
 		resp, err = client.Header(map[string]string{}).Get(ctx, "/")
 		t.AssertNil(err)
 		t.Assert(resp.Header.Get("Content-Encoding"), "")
-		content, err = io.ReadAll(resp.Body)
+		content, err = ioutil.ReadAll(resp.Body)
 		t.AssertNil(err)
 		t.Assert(len(content), len(expected))
 		t.Assert(string(content), expected)
@@ -81,7 +82,7 @@ func Test_Middleware_Gzip(t *testing.T) {
 		}).Get(ctx, "/small")
 		t.AssertNil(err)
 		t.Assert(resp.Header.Get("Content-Encoding"), "")
-		content, err = io.ReadAll(resp.Body)
+		content, err = ioutil.ReadAll(resp.Body)
 		t.AssertNil(err)
 		t.Assert(string(content), "Small response")
 
@@ -91,7 +92,7 @@ func Test_Middleware_Gzip(t *testing.T) {
 		}).Get(ctx, "/no-gzip/")
 		t.AssertNil(err)
 		t.Assert(resp.Header.Get("Content-Encoding"), "")
-		content, err = io.ReadAll(resp.Body)
+		content, err = ioutil.ReadAll(resp.Body)
 		t.AssertNil(err)
 		t.Assert(string(content), expected)
 	})

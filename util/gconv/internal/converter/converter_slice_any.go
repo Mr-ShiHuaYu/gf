@@ -29,50 +29,50 @@ func (c *Converter) getSliceOption(option ...SliceOption) SliceOption {
 	return SliceOption{}
 }
 
-// SliceAny converts `any` to []any.
-func (c *Converter) SliceAny(anyInput any, _ ...SliceOption) ([]any, error) {
+// SliceAny converts `interface{}` to []interface{}.
+func (c *Converter) SliceAny(anyInput interface{}, _ ...SliceOption) ([]interface{}, error) {
 	if empty.IsNil(anyInput) {
 		return nil, nil
 	}
 	var (
 		err   error
-		array []any
+		array []interface{}
 	)
 	switch value := anyInput.(type) {
-	case []any:
+	case []interface{}:
 		array = value
 	case []string:
-		array = make([]any, len(value))
+		array = make([]interface{}, len(value))
 		for k, v := range value {
 			array[k] = v
 		}
 	case []int:
-		array = make([]any, len(value))
+		array = make([]interface{}, len(value))
 		for k, v := range value {
 			array[k] = v
 		}
 	case []int8:
-		array = make([]any, len(value))
+		array = make([]interface{}, len(value))
 		for k, v := range value {
 			array[k] = v
 		}
 	case []int16:
-		array = make([]any, len(value))
+		array = make([]interface{}, len(value))
 		for k, v := range value {
 			array[k] = v
 		}
 	case []int32:
-		array = make([]any, len(value))
+		array = make([]interface{}, len(value))
 		for k, v := range value {
 			array[k] = v
 		}
 	case []int64:
-		array = make([]any, len(value))
+		array = make([]interface{}, len(value))
 		for k, v := range value {
 			array[k] = v
 		}
 	case []uint:
-		array = make([]any, len(value))
+		array = make([]interface{}, len(value))
 		for k, v := range value {
 			array[k] = v
 		}
@@ -82,7 +82,7 @@ func (c *Converter) SliceAny(anyInput any, _ ...SliceOption) ([]any, error) {
 				return array, err
 			}
 		}
-		array = make([]any, len(value))
+		array = make([]interface{}, len(value))
 		for k, v := range value {
 			array[k] = v
 		}
@@ -95,7 +95,7 @@ func (c *Converter) SliceAny(anyInput any, _ ...SliceOption) ([]any, error) {
 		}
 
 	case []uint16:
-		array = make([]any, len(value))
+		array = make([]interface{}, len(value))
 		for k, v := range value {
 			array[k] = v
 		}
@@ -104,22 +104,22 @@ func (c *Converter) SliceAny(anyInput any, _ ...SliceOption) ([]any, error) {
 			array = append(array, v)
 		}
 	case []uint64:
-		array = make([]any, len(value))
+		array = make([]interface{}, len(value))
 		for k, v := range value {
 			array[k] = v
 		}
 	case []bool:
-		array = make([]any, len(value))
+		array = make([]interface{}, len(value))
 		for k, v := range value {
 			array[k] = v
 		}
 	case []float32:
-		array = make([]any, len(value))
+		array = make([]interface{}, len(value))
 		for k, v := range value {
 			array[k] = v
 		}
 	case []float64:
-		array = make([]any, len(value))
+		array = make([]interface{}, len(value))
 		for k, v := range value {
 			array[k] = v
 		}
@@ -137,7 +137,7 @@ func (c *Converter) SliceAny(anyInput any, _ ...SliceOption) ([]any, error) {
 	case reflect.Slice, reflect.Array:
 		var (
 			length = originValueAndKind.OriginValue.Len()
-			slice  = make([]any, length)
+			slice  = make([]interface{}, length)
 		)
 		for i := 0; i < length; i++ {
 			slice[i] = originValueAndKind.OriginValue.Index(i).Interface()
@@ -145,6 +145,6 @@ func (c *Converter) SliceAny(anyInput any, _ ...SliceOption) ([]any, error) {
 		return slice, err
 
 	default:
-		return []any{anyInput}, err
+		return []interface{}{anyInput}, err
 	}
 }

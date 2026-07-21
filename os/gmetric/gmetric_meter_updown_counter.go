@@ -43,7 +43,7 @@ func (meter *localMeter) UpDownCounter(name string, option MetricOption) (UpDown
 }
 
 // MustUpDownCounter creates and returns a new Counter.
-// It panics if any error occurs.
+// It panics if interface{} error occurs.
 func (meter *localMeter) MustUpDownCounter(name string, option MetricOption) UpDownCounter {
 	m, err := meter.UpDownCounter(name, option)
 	if err != nil {
@@ -67,6 +67,6 @@ func (l *localUpDownCounter) Init(provider Provider) (err error) {
 
 // Performer implements interface PerformerExporter, which exports internal Performer of Metric.
 // This is usually used by metric implements.
-func (l *localUpDownCounter) Performer() any {
+func (l *localUpDownCounter) Performer() interface{} {
 	return l.UpDownCounterPerformer
 }

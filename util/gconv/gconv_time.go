@@ -12,26 +12,26 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 )
 
-// Time converts `any` to time.Time.
-func Time(anyInput any, format ...string) time.Time {
+// Time converts `interface{}` to time.Time.
+func Time(anyInput interface{}, format ...string) time.Time {
 	t, _ := defaultConverter.Time(anyInput, format...)
 	return t
 }
 
-// Duration converts `any` to time.Duration.
-// If `any` is string, then it uses time.ParseDuration to convert it.
-// If `any` is numeric, then it converts `any` as nanoseconds.
-func Duration(anyInput any) time.Duration {
+// Duration converts `interface{}` to time.Duration.
+// If `interface{}` is string, then it uses time.ParseDuration to convert it.
+// If `interface{}` is numeric, then it converts `interface{}` as nanoseconds.
+func Duration(anyInput interface{}) time.Duration {
 	d, _ := defaultConverter.Duration(anyInput)
 	return d
 }
 
-// GTime converts `any` to *gtime.Time.
-// The parameter `format` can be used to specify the format of `any`.
+// GTime converts `interface{}` to *gtime.Time.
+// The parameter `format` can be used to specify the format of `interface{}`.
 // It returns the converted value that matched the first format of the formats slice.
-// If no `format` given, it converts `any` using gtime.NewFromTimeStamp if `any` is numeric,
-// or using gtime.StrToTime if `any` is string.
-func GTime(anyInput any, format ...string) *gtime.Time {
+// If no `format` given, it converts `interface{}` using gtime.NewFromTimeStamp if `interface{}` is numeric,
+// or using gtime.StrToTime if `interface{}` is string.
+func GTime(anyInput interface{}, format ...string) *gtime.Time {
 	t, _ := defaultConverter.GTime(anyInput, format...)
 	return t
 }

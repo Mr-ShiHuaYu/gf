@@ -10,7 +10,102 @@ import "sync"
 
 // RWMutex is a high level RWMutex, which implements more rich features for mutex.
 type RWMutex struct {
-	sync.RWMutex
+	mu          sync.Mutex
+	readers     int
+	writerActive bool
+	writable    chan struct{}
+	readable    chan struct{}
+	once        sync.Once
+}
+
+func (m *RWMutex) init() {
+	m.once.Do(func() {
+		m.writable = make(chan struct{}, 1)
+		m.readable = make(chan struct{}, 1)
+		m.writable <- struct{}{}
+		m.readable <- struct{}{}
+	})
+}
+
+func (m *RWMutex) Lock() {
+	m.init()
+	<-m.writable
+	m.mu.Lock()
+	m.writerActive = true
+	m.mu.Unlock()
+	<-m.readable
+}
+
+func (m *RWMutex) Unlock() {
+	m.mu.Lock()
+	m.writerActive = false
+	m.mu.Unlock()
+	m.readable <- struct{}{}
+	m.writable <- struct{}{}
+}
+
+func (m *RWMutex) RLock() {
+	m.init()
+	m.mu.Lock()
+	if m.readers == 0 && !m.writerActive {
+		<-m.readable
+	}
+	m.readers++
+	m.mu.Unlock()
+}
+
+func (m *RWMutex) RUnlock() {
+	m.mu.Lock()
+	m.readers--
+	if m.readers == 0 && !m.writerActive {
+		m.readable <- struct{}{}
+	}
+	m.mu.Unlock()
+}
+
+func (m *RWMutex) TryLock() bool {
+	m.init()
+	select {
+	case <-m.writable:
+		m.mu.Lock()
+		if m.readers > 0 {
+			m.mu.Unlock()
+			m.writable <- struct{}{}
+			return false
+		}
+		m.writerActive = true
+		m.mu.Unlock()
+		select {
+		case <-m.readable:
+			return true
+		default:
+			m.mu.Lock()
+			m.writerActive = false
+			m.mu.Unlock()
+			m.writable <- struct{}{}
+			return false
+		}
+	default:
+		return false
+	}
+}
+
+func (m *RWMutex) TryRLock() bool {
+	m.init()
+	m.mu.Lock()
+	defer m.mu.Unlock()
+	if m.writerActive {
+		return false
+	}
+	if m.readers == 0 {
+		select {
+		case <-m.readable:
+		default:
+			return false
+		}
+	}
+	m.readers++
+	return true
 }
 
 // LockFunc locks the mutex for writing with given callback function `f`.

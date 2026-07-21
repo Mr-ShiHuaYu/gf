@@ -19,7 +19,7 @@ var (
 )
 
 var boolTests = []struct {
-	value  any
+	value  interface{}
 	expect bool
 }{
 	{true, true},

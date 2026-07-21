@@ -6,40 +6,40 @@
 
 package gconv
 
-// Byte converts `any` to byte.
-func Byte(anyInput any) byte {
+// Byte converts `interface{}` to byte.
+func Byte(anyInput interface{}) byte {
 	v, _ := defaultConverter.Uint8(anyInput)
 	return v
 }
 
-// Bytes converts `any` to []byte.
-func Bytes(anyInput any) []byte {
+// Bytes converts `interface{}` to []byte.
+func Bytes(anyInput interface{}) []byte {
 	v, _ := defaultConverter.Bytes(anyInput)
 	return v
 }
 
-// Rune converts `any` to rune.
-func Rune(anyInput any) rune {
+// Rune converts `interface{}` to rune.
+func Rune(anyInput interface{}) rune {
 	v, _ := defaultConverter.Rune(anyInput)
 	return v
 }
 
-// Runes converts `any` to []rune.
-func Runes(anyInput any) []rune {
+// Runes converts `interface{}` to []rune.
+func Runes(anyInput interface{}) []rune {
 	v, _ := defaultConverter.Runes(anyInput)
 	return v
 }
 
-// String converts `any` to string.
+// String converts `interface{}` to string.
 // It's most commonly used converting function.
-func String(anyInput any) string {
+func String(anyInput interface{}) string {
 	v, _ := defaultConverter.String(anyInput)
 	return v
 }
 
-// Bool converts `any` to bool.
-// It returns false if `any` is: false, "", 0, "false", "off", "no", empty slice/map.
-func Bool(anyInput any) bool {
+// Bool converts `interface{}` to bool.
+// It returns false if `interface{}` is: false, "", 0, "false", "off", "no", empty slice/map.
+func Bool(anyInput interface{}) bool {
 	v, _ := defaultConverter.Bool(anyInput)
 	return v
 }

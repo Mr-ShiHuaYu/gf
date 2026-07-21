@@ -373,7 +373,7 @@ func ExampleIntSet_UnmarshalJSON() {
 	// {1 john [100,99,98]}
 }
 
-// UnmarshalValue is an interface implement which sets any type of value for set.
+// UnmarshalValue is an interface implement which sets interface{} type of value for set.
 func ExampleIntSet_UnmarshalValue() {
 	b := []byte(`{"Id":1,"Name":"john","Scores":100,99,98}`)
 	type Student struct {

@@ -118,11 +118,11 @@ func GetArgAll() []string {
 // 1. Command line arguments are in lowercase format, eg: gf.package.variable;
 // 2. Environment arguments are in uppercase format, eg: GF_PACKAGE_VARIABLE；
 func GetOptWithEnv(key string, def ...string) string {
-	cmdKey := strings.ToLower(strings.ReplaceAll(key, "_", "."))
+	cmdKey := strings.ToLower(strings.Replace(key, "_", ".", -1))
 	if ContainsOpt(cmdKey) {
 		return GetOpt(cmdKey)
 	} else {
-		envKey := strings.ToUpper(strings.ReplaceAll(key, ".", "_"))
+		envKey := strings.ToUpper(strings.Replace(key, ".", "_", -1))
 		if r, ok := os.LookupEnv(envKey); ok {
 			return r
 		} else {

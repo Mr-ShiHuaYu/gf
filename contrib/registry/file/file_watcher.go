@@ -23,7 +23,7 @@ type Watcher struct {
 }
 
 // Proceed proceeds watch in blocking way.
-// It returns all complete services that watched by `key` if any change.
+// It returns all complete services that watched by `key` if interface{} change.
 func (w *Watcher) Proceed() (services []gsvc.Service, err error) {
 	if w.closed.Val() {
 		return nil, gerror.New("discovery service was closed")

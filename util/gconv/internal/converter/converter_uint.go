@@ -18,8 +18,8 @@ import (
 	"github.com/gogf/gf/v2/util/gconv/internal/localinterface"
 )
 
-// Uint converts `any` to uint.
-func (c *Converter) Uint(anyInput any) (uint, error) {
+// Uint converts `interface{}` to uint.
+func (c *Converter) Uint(anyInput interface{}) (uint, error) {
 	if empty.IsNil(anyInput) {
 		return 0, nil
 	}
@@ -30,8 +30,8 @@ func (c *Converter) Uint(anyInput any) (uint, error) {
 	return uint(v), err
 }
 
-// Uint8 converts `any` to uint8.
-func (c *Converter) Uint8(anyInput any) (uint8, error) {
+// Uint8 converts `interface{}` to uint8.
+func (c *Converter) Uint8(anyInput interface{}) (uint8, error) {
 	if empty.IsNil(anyInput) {
 		return 0, nil
 	}
@@ -42,8 +42,8 @@ func (c *Converter) Uint8(anyInput any) (uint8, error) {
 	return uint8(v), err
 }
 
-// Uint16 converts `any` to uint16.
-func (c *Converter) Uint16(anyInput any) (uint16, error) {
+// Uint16 converts `interface{}` to uint16.
+func (c *Converter) Uint16(anyInput interface{}) (uint16, error) {
 	if empty.IsNil(anyInput) {
 		return 0, nil
 	}
@@ -54,8 +54,8 @@ func (c *Converter) Uint16(anyInput any) (uint16, error) {
 	return uint16(v), err
 }
 
-// Uint32 converts `any` to uint32.
-func (c *Converter) Uint32(anyInput any) (uint32, error) {
+// Uint32 converts `interface{}` to uint32.
+func (c *Converter) Uint32(anyInput interface{}) (uint32, error) {
 	if empty.IsNil(anyInput) {
 		return 0, nil
 	}
@@ -66,8 +66,8 @@ func (c *Converter) Uint32(anyInput any) (uint32, error) {
 	return uint32(v), err
 }
 
-// Uint64 converts `any` to uint64.
-func (c *Converter) Uint64(anyInput any) (uint64, error) {
+// Uint64 converts `interface{}` to uint64.
+func (c *Converter) Uint64(anyInput interface{}) (uint64, error) {
 	if empty.IsNil(anyInput) {
 		return 0, nil
 	}
@@ -105,7 +105,7 @@ func (c *Converter) Uint64(anyInput any) (uint64, error) {
 			return 1, nil
 		}
 		return 0, nil
-	case reflect.Pointer:
+	case reflect.Ptr:
 		if rv.IsNil() {
 			return 0, nil
 		}

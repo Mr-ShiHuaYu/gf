@@ -156,7 +156,7 @@ func Test_SetConfigWithMap(t *testing.T) {
 	defaultLog := glog.DefaultLogger().Clone()
 	defer glog.SetDefaultLogger(defaultLog)
 	gtest.C(t, func(t *gtest.T) {
-		t.Assert(glog.SetConfigWithMap(map[string]any{
+		t.Assert(glog.SetConfigWithMap(map[string]interface{}{
 			"level": "all",
 		}), nil)
 	})
@@ -442,10 +442,10 @@ func Test_Ctx_Config(t *testing.T) {
 	gtest.C(t, func(t *gtest.T) {
 		w := bytes.NewBuffer(nil)
 		l := glog.NewWithWriter(w)
-		m := map[string]any{
+		m := map[string]interface{}{
 			"CtxKeys": g.SliceStr{"Trace-Id", "Span-Id", "Test"},
 		}
-		var nilMap map[string]any
+		var nilMap map[string]interface{}
 
 		err := l.SetConfigWithMap(m)
 		t.AssertNil(err)

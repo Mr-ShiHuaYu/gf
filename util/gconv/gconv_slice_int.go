@@ -7,38 +7,38 @@
 package gconv
 
 // SliceInt is alias of Ints.
-func SliceInt(anyInput any) []int {
+func SliceInt(anyInput interface{}) []int {
 	return Ints(anyInput)
 }
 
 // SliceInt32 is alias of Int32s.
-func SliceInt32(anyInput any) []int32 {
+func SliceInt32(anyInput interface{}) []int32 {
 	return Int32s(anyInput)
 }
 
 // SliceInt64 is alias of Int64s.
-func SliceInt64(anyInput any) []int64 {
+func SliceInt64(anyInput interface{}) []int64 {
 	return Int64s(anyInput)
 }
 
-// Ints converts `any` to []int.
-func Ints(anyInput any) []int {
+// Ints converts `interface{}` to []int.
+func Ints(anyInput interface{}) []int {
 	result, _ := defaultConverter.SliceInt(anyInput, SliceOption{
 		ContinueOnError: true,
 	})
 	return result
 }
 
-// Int32s converts `any` to []int32.
-func Int32s(anyInput any) []int32 {
+// Int32s converts `interface{}` to []int32.
+func Int32s(anyInput interface{}) []int32 {
 	result, _ := defaultConverter.SliceInt32(anyInput, SliceOption{
 		ContinueOnError: true,
 	})
 	return result
 }
 
-// Int64s converts `any` to []int64.
-func Int64s(anyInput any) []int64 {
+// Int64s converts `interface{}` to []int64.
+func Int64s(anyInput interface{}) []int64 {
 	result, _ := defaultConverter.SliceInt64(anyInput, SliceOption{
 		ContinueOnError: true,
 	})

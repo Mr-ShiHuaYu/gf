@@ -7,9 +7,8 @@
 package gmlock
 
 import (
-	"sync"
-
 	"github.com/gogf/gf/v2/container/gmap"
+	"github.com/gogf/gf/v2/os/gmutex"
 )
 
 // Locker is a memory based locker.
@@ -43,7 +42,7 @@ func (l *Locker) TryLock(key string) bool {
 // Unlock unlocks the writing lock of the `key`.
 func (l *Locker) Unlock(key string) {
 	if v := l.m.Get(key); v != nil {
-		v.(*sync.RWMutex).Unlock()
+		v.(*gmutex.RWMutex).Unlock()
 	}
 }
 
@@ -63,7 +62,7 @@ func (l *Locker) TryRLock(key string) bool {
 // RUnlock unlocks the reading lock of the `key`.
 func (l *Locker) RUnlock(key string) {
 	if v := l.m.Get(key); v != nil {
-		v.(*sync.RWMutex).RUnlock()
+		v.(*gmutex.RWMutex).RUnlock()
 	}
 }
 
@@ -127,8 +126,8 @@ func (l *Locker) Clear() {
 
 // getOrNewMutex returns the mutex of given `key` if it exists,
 // or else creates and returns a new one.
-func (l *Locker) getOrNewMutex(key string) *sync.RWMutex {
-	return l.m.GetOrSetFuncLock(key, func() any {
-		return &sync.RWMutex{}
-	}).(*sync.RWMutex)
+func (l *Locker) getOrNewMutex(key string) *gmutex.RWMutex {
+	return l.m.GetOrSetFuncLock(key, func() interface{} {
+		return &gmutex.RWMutex{}
+	}).(*gmutex.RWMutex)
 }

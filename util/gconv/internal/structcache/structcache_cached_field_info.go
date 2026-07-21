@@ -124,7 +124,7 @@ func (cfi *CachedFieldInfo) fieldReflectValue(v reflect.Value, fieldIndexes []in
 		if i > 0 {
 			// it means nested struct.
 			switch v.Kind() {
-			case reflect.Pointer:
+			case reflect.Ptr:
 				if v.IsNil() {
 					// Initialization.
 					v.Set(reflect.New(v.Type().Elem()))
@@ -135,7 +135,7 @@ func (cfi *CachedFieldInfo) fieldReflectValue(v reflect.Value, fieldIndexes []in
 				// Compatible with previous code
 				// Interface => struct
 				v = v.Elem()
-				if v.Kind() == reflect.Pointer {
+				if v.Kind() == reflect.Ptr {
 					// maybe *struct or other types
 					v = v.Elem()
 				}

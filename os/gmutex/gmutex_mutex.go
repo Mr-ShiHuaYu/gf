@@ -10,7 +10,34 @@ import "sync"
 
 // Mutex is a high level Mutex, which implements more rich features for mutex.
 type Mutex struct {
-	sync.Mutex
+	lockChan chan struct{}
+	once     sync.Once
+}
+
+func (m *Mutex) init() {
+	m.once.Do(func() {
+		m.lockChan = make(chan struct{}, 1)
+		m.lockChan <- struct{}{}
+	})
+}
+
+func (m *Mutex) Lock() {
+	m.init()
+	<-m.lockChan
+}
+
+func (m *Mutex) Unlock() {
+	m.lockChan <- struct{}{}
+}
+
+func (m *Mutex) TryLock() bool {
+	m.init()
+	select {
+	case <-m.lockChan:
+		return true
+	default:
+		return false
+	}
 }
 
 // LockFunc locks the mutex for writing with given callback function `f`.

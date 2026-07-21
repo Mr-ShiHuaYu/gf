@@ -30,7 +30,7 @@ type cPack struct {
 
 const (
 	cPackUsage = `gf pack SRC DST`
-	cPackBrief = `packing any file/directory to a resource file, or a go file`
+	cPackBrief = `packing interface{} file/directory to a resource file, or a go file`
 	cPackEg    = `
 gf pack public data.bin
 gf pack public,template data.bin

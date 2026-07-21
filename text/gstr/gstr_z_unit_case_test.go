@@ -98,7 +98,7 @@ func Test_CaseDelimited(t *testing.T) {
 		{"", ""},
 		{"ManyManyWords", "many@many@words"},
 		{"manyManyWords", "many@many@words"},
-		{"AnyKind of_string", "any@kind@of@string"},
+		{"AnyKind of_string", "interface{}@kind@of@string"},
 		{"numbers2and55with000", "numbers@2@and@55@with@000"},
 		{"JSONData", "json@data"},
 		{"userID", "user@id"},
@@ -239,16 +239,16 @@ func Test_CaseConvert(t *testing.T) {
 		"",     // invalid case type
 	}
 	testCaseTypes := []string{
-		"AnyKindOfString",    // Camel
-		"anyKindOfString",    // CamelLower
-		"any_kind_of_string", // Snake
-		"any_kind_of_string", // SnakeFirstUpper
-		"ANY_KIND_OF_STRING", // SnakeScreaming
-		"any-kind-of-string", // Kebab
-		"ANY-KIND-OF-STRING", // KebabScreaming
-		"any_kind_of_string", // Lower
-		"any_kind_of_string", // invalid case type
-		"any_kind_of_string", // invalid case type
+		"AnyKindOfString",            // Camel
+		"anyKindOfString",            // CamelLower
+		"any_kind_of_string",         // Snake
+		"any_kind_of_string",         // SnakeFirstUpper
+		"ANY_KIND_OF_STRING",         // SnakeScreaming
+		"interface{}-kind-of-string", // Kebab
+		"ANY-KIND-OF-STRING",         // KebabScreaming
+		"any_kind_of_string",         // Lower
+		"any_kind_of_string",         // invalid case type
+		"any_kind_of_string",         // invalid case type
 	}
 	gtest.C(t, func(t *gtest.T) {
 		for i := 0; i < len(caseTypes); i++ {

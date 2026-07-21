@@ -11,7 +11,7 @@ import "github.com/gogf/gf/v2/os/gtime"
 
 // IVal is used for type assert api for Val().
 type IVal interface {
-	Val() any
+	Val() interface{}
 }
 
 // IString is used for type assert api for String().
@@ -56,12 +56,12 @@ type IBytes interface {
 
 // IInterface is used for type assert api for Interface().
 type IInterface interface {
-	Interface() any
+	Interface() interface{}
 }
 
 // IInterfaces is used for type assert api for Interfaces().
 type IInterfaces interface {
-	Interfaces() []any
+	Interfaces() []interface{}
 }
 
 // IFloats is used for type assert api for Floats().
@@ -86,7 +86,7 @@ type IUints interface {
 
 // IMapStrAny is the interface support for converting struct parameter to map.
 type IMapStrAny interface {
-	MapStrAny() map[string]any
+	MapStrAny() map[string]interface{}
 }
 
 // IUnmarshalText is the interface for custom defined types customizing value assignment.
@@ -104,12 +104,12 @@ type IUnmarshalJSON interface {
 // IUnmarshalValue is the interface for custom defined types customizing value assignment.
 // Note that only pointer can implement interface IUnmarshalValue.
 type IUnmarshalValue interface {
-	UnmarshalValue(any) error
+	UnmarshalValue(interface{}) error
 }
 
 // ISet is the interface for custom value assignment.
 type ISet interface {
-	Set(value any) (old any)
+	Set(value interface{}) (old interface{})
 }
 
 // IGTime is the interface for gtime.Time converting.

@@ -9,6 +9,7 @@ package gfile
 import (
 	"bufio"
 	"io"
+	"io/ioutil"
 	"os"
 
 	"github.com/gogf/gf/v2/errors/gerror"
@@ -28,7 +29,7 @@ func GetContents(path string) string {
 // GetBytes returns the file content of `path` as []byte.
 // It returns nil if it fails reading.
 func GetBytes(path string) []byte {
-	data, err := os.ReadFile(path)
+	data, err := ioutil.ReadFile(path)
 	if err != nil {
 		return nil
 	}
@@ -171,7 +172,7 @@ func GetBytesByTwoOffsetsByPath(path string, start int64, end int64) []byte {
 }
 
 // ReadLines reads file content line by line, which is passed to the callback function `callback` as string.
-// It matches each line of text, separated by chars '\r' or '\n', stripped any trailing end-of-line marker.
+// It matches each line of text, separated by chars '\r' or '\n', stripped interface{} trailing end-of-line marker.
 //
 // Note that the parameter passed to callback function might be an empty value, and the last non-empty line
 // will be passed to callback function `callback` even if it has no newline marker.
@@ -192,7 +193,7 @@ func ReadLines(file string, callback func(line string) error) error {
 }
 
 // ReadLinesBytes reads file content line by line, which is passed to the callback function `callback` as []byte.
-// It matches each line of text, separated by chars '\r' or '\n', stripped any trailing end-of-line marker.
+// It matches each line of text, separated by chars '\r' or '\n', stripped interface{} trailing end-of-line marker.
 //
 // Note that the parameter passed to callback function might be an empty value, and the last non-empty line
 // will be passed to callback function `callback` even if it has no newline marker.

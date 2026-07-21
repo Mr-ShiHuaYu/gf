@@ -81,7 +81,7 @@ func (r *Redis) GetAdapter() Adapter {
 }
 
 // Conn retrieves and returns a connection object for continuous operations.
-// Note that you should call Close function manually if you do not use this connection any further.
+// Note that you should call Close function manually if you do not use this connection interface{} further.
 func (r *Redis) Conn(ctx context.Context) (Conn, error) {
 	if r == nil {
 		return nil, gerror.NewCode(gcode.CodeInvalidParameter, errorNilRedis)
@@ -94,7 +94,7 @@ func (r *Redis) Conn(ctx context.Context) (Conn, error) {
 
 // Do send a command to the server and returns the received reply.
 // It uses json.Marshal for struct/slice/map type values before committing them to redis.
-func (r *Redis) Do(ctx context.Context, command string, args ...any) (*gvar.Var, error) {
+func (r *Redis) Do(ctx context.Context, command string, args ...interface{}) (*gvar.Var, error) {
 	if r == nil {
 		return nil, gerror.NewCode(gcode.CodeInvalidParameter, errorNilRedis)
 	}
@@ -104,7 +104,7 @@ func (r *Redis) Do(ctx context.Context, command string, args ...any) (*gvar.Var,
 	return r.localAdapter.Do(ctx, command, args...)
 }
 
-// MustConn performs as function Conn, but it panics if any error occurs internally.
+// MustConn performs as function Conn, but it panics if interface{} error occurs internally.
 func (r *Redis) MustConn(ctx context.Context) Conn {
 	c, err := r.Conn(ctx)
 	if err != nil {
@@ -113,8 +113,8 @@ func (r *Redis) MustConn(ctx context.Context) Conn {
 	return c
 }
 
-// MustDo performs as function Do, but it panics if any error occurs internally.
-func (r *Redis) MustDo(ctx context.Context, command string, args ...any) *gvar.Var {
+// MustDo performs as function Do, but it panics if interface{} error occurs internally.
+func (r *Redis) MustDo(ctx context.Context, command string, args ...interface{}) *gvar.Var {
 	v, err := r.Do(ctx, command, args...)
 	if err != nil {
 		panic(err)

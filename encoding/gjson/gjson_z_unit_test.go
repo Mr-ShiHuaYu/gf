@@ -102,7 +102,7 @@ func Test_Decode(t *testing.T) {
 		})
 	})
 	gtest.C(t, func(t *gtest.T) {
-		var v any
+		var v interface{}
 		err := gjson.DecodeTo(data, &v)
 		t.AssertNil(err)
 		t.Assert(v, g.Map{
@@ -558,7 +558,7 @@ func TestJson_Options(t *testing.T) {
 		s := S{
 			Id: 53687091200,
 		}
-		m := make(map[string]any)
+		m := make(map[string]interface{})
 		t.AssertNil(gjson.DecodeTo(gjson.MustEncode(s), &m, gjson.Options{
 			StrNumber: false,
 		}))

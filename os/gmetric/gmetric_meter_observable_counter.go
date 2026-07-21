@@ -43,7 +43,7 @@ func (meter *localMeter) ObservableCounter(name string, option MetricOption) (Ob
 }
 
 // MustObservableCounter creates and returns a new ObservableCounter.
-// It panics if any error occurs.
+// It panics if interface{} error occurs.
 func (meter *localMeter) MustObservableCounter(name string, option MetricOption) ObservableCounter {
 	m, err := meter.ObservableCounter(name, option)
 	if err != nil {
@@ -67,6 +67,6 @@ func (l *localObservableCounter) Init(provider Provider) (err error) {
 
 // Performer implements interface PerformerExporter, which exports internal Performer of Metric.
 // This is usually used by metric implements.
-func (l *localObservableCounter) Performer() any {
+func (l *localObservableCounter) Performer() interface{} {
 	return l.ObservableCounterPerformer
 }

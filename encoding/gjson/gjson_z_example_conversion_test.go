@@ -124,7 +124,7 @@ func ExampleValid() {
 }
 
 func ExampleMarshal() {
-	data := map[string]any{
+	data := map[string]interface{}{
 		"name":  "john",
 		"score": 100,
 	}

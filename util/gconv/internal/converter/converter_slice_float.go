@@ -16,8 +16,8 @@ import (
 	"github.com/gogf/gf/v2/util/gconv/internal/localinterface"
 )
 
-// SliceFloat32 converts `any` to []float32.
-func (c *Converter) SliceFloat32(anyInput any, option ...SliceOption) ([]float32, error) {
+// SliceFloat32 converts `interface{}` to []float32.
+func (c *Converter) SliceFloat32(anyInput interface{}, option ...SliceOption) ([]float32, error) {
 	if empty.IsNil(anyInput) {
 		return nil, nil
 	}
@@ -169,7 +169,7 @@ func (c *Converter) SliceFloat32(anyInput any, option ...SliceOption) ([]float32
 			}
 			array[k] = f
 		}
-	case []any:
+	case []interface{}:
 		array = make([]float32, len(value))
 		for k, v := range value {
 			f, err = c.Float32(v)
@@ -206,7 +206,7 @@ func (c *Converter) SliceFloat32(anyInput any, option ...SliceOption) ([]float32
 		return slice, err
 
 	default:
-		if originValueAndKind.OriginValue.IsZero() {
+		if reflection.IsZero(originValueAndKind.OriginValue) {
 			return []float32{}, err
 		}
 		f, err = c.Float32(anyInput)
@@ -217,8 +217,8 @@ func (c *Converter) SliceFloat32(anyInput any, option ...SliceOption) ([]float32
 	}
 }
 
-// SliceFloat64 converts `any` to []float64.
-func (c *Converter) SliceFloat64(anyInput any, option ...SliceOption) ([]float64, error) {
+// SliceFloat64 converts `interface{}` to []float64.
+func (c *Converter) SliceFloat64(anyInput interface{}, option ...SliceOption) ([]float64, error) {
 	if empty.IsNil(anyInput) {
 		return nil, nil
 	}
@@ -370,7 +370,7 @@ func (c *Converter) SliceFloat64(anyInput any, option ...SliceOption) ([]float64
 		}
 	case []float64:
 		array = value
-	case []any:
+	case []interface{}:
 		array = make([]float64, len(value))
 		for k, v := range value {
 			f, err = c.Float64(v)
@@ -407,7 +407,7 @@ func (c *Converter) SliceFloat64(anyInput any, option ...SliceOption) ([]float64
 		return slice, err
 
 	default:
-		if originValueAndKind.OriginValue.IsZero() {
+		if reflection.IsZero(originValueAndKind.OriginValue) {
 			return []float64{}, err
 		}
 		f, err = c.Float64(anyInput)

@@ -13,8 +13,8 @@ import (
 	"github.com/gogf/gf/v2/container/gvar"
 )
 
-// MustGet acts like Get, but it panics if any error occurs.
-func (c *Cache) MustGet(ctx context.Context, key any) *gvar.Var {
+// MustGet acts like Get, but it panics if interface{} error occurs.
+func (c *Cache) MustGet(ctx context.Context, key interface{}) *gvar.Var {
 	v, err := c.Get(ctx, key)
 	if err != nil {
 		panic(err)
@@ -22,8 +22,8 @@ func (c *Cache) MustGet(ctx context.Context, key any) *gvar.Var {
 	return v
 }
 
-// MustGetOrSet acts like GetOrSet, but it panics if any error occurs.
-func (c *Cache) MustGetOrSet(ctx context.Context, key any, value any, duration time.Duration) *gvar.Var {
+// MustGetOrSet acts like GetOrSet, but it panics if interface{} error occurs.
+func (c *Cache) MustGetOrSet(ctx context.Context, key interface{}, value interface{}, duration time.Duration) *gvar.Var {
 	v, err := c.GetOrSet(ctx, key, value, duration)
 	if err != nil {
 		panic(err)
@@ -31,8 +31,8 @@ func (c *Cache) MustGetOrSet(ctx context.Context, key any, value any, duration t
 	return v
 }
 
-// MustGetOrSetFunc acts like GetOrSetFunc, but it panics if any error occurs.
-func (c *Cache) MustGetOrSetFunc(ctx context.Context, key any, f Func, duration time.Duration) *gvar.Var {
+// MustGetOrSetFunc acts like GetOrSetFunc, but it panics if interface{} error occurs.
+func (c *Cache) MustGetOrSetFunc(ctx context.Context, key interface{}, f Func, duration time.Duration) *gvar.Var {
 	v, err := c.GetOrSetFunc(ctx, key, f, duration)
 	if err != nil {
 		panic(err)
@@ -40,8 +40,8 @@ func (c *Cache) MustGetOrSetFunc(ctx context.Context, key any, f Func, duration 
 	return v
 }
 
-// MustGetOrSetFuncLock acts like GetOrSetFuncLock, but it panics if any error occurs.
-func (c *Cache) MustGetOrSetFuncLock(ctx context.Context, key any, f Func, duration time.Duration) *gvar.Var {
+// MustGetOrSetFuncLock acts like GetOrSetFuncLock, but it panics if interface{} error occurs.
+func (c *Cache) MustGetOrSetFuncLock(ctx context.Context, key interface{}, f Func, duration time.Duration) *gvar.Var {
 	v, err := c.GetOrSetFuncLock(ctx, key, f, duration)
 	if err != nil {
 		panic(err)
@@ -49,8 +49,8 @@ func (c *Cache) MustGetOrSetFuncLock(ctx context.Context, key any, f Func, durat
 	return v
 }
 
-// MustContains acts like Contains, but it panics if any error occurs.
-func (c *Cache) MustContains(ctx context.Context, key any) bool {
+// MustContains acts like Contains, but it panics if interface{} error occurs.
+func (c *Cache) MustContains(ctx context.Context, key interface{}) bool {
 	v, err := c.Contains(ctx, key)
 	if err != nil {
 		panic(err)
@@ -58,8 +58,8 @@ func (c *Cache) MustContains(ctx context.Context, key any) bool {
 	return v
 }
 
-// MustGetExpire acts like GetExpire, but it panics if any error occurs.
-func (c *Cache) MustGetExpire(ctx context.Context, key any) time.Duration {
+// MustGetExpire acts like GetExpire, but it panics if interface{} error occurs.
+func (c *Cache) MustGetExpire(ctx context.Context, key interface{}) time.Duration {
 	v, err := c.GetExpire(ctx, key)
 	if err != nil {
 		panic(err)
@@ -67,7 +67,7 @@ func (c *Cache) MustGetExpire(ctx context.Context, key any) time.Duration {
 	return v
 }
 
-// MustSize acts like Size, but it panics if any error occurs.
+// MustSize acts like Size, but it panics if interface{} error occurs.
 func (c *Cache) MustSize(ctx context.Context) int {
 	v, err := c.Size(ctx)
 	if err != nil {
@@ -76,8 +76,8 @@ func (c *Cache) MustSize(ctx context.Context) int {
 	return v
 }
 
-// MustData acts like Data, but it panics if any error occurs.
-func (c *Cache) MustData(ctx context.Context) map[any]any {
+// MustData acts like Data, but it panics if interface{} error occurs.
+func (c *Cache) MustData(ctx context.Context) map[interface{}]interface{} {
 	v, err := c.Data(ctx)
 	if err != nil {
 		panic(err)
@@ -85,8 +85,8 @@ func (c *Cache) MustData(ctx context.Context) map[any]any {
 	return v
 }
 
-// MustKeys acts like Keys, but it panics if any error occurs.
-func (c *Cache) MustKeys(ctx context.Context) []any {
+// MustKeys acts like Keys, but it panics if interface{} error occurs.
+func (c *Cache) MustKeys(ctx context.Context) []interface{} {
 	v, err := c.Keys(ctx)
 	if err != nil {
 		panic(err)
@@ -94,7 +94,7 @@ func (c *Cache) MustKeys(ctx context.Context) []any {
 	return v
 }
 
-// MustKeyStrings acts like KeyStrings, but it panics if any error occurs.
+// MustKeyStrings acts like KeyStrings, but it panics if interface{} error occurs.
 func (c *Cache) MustKeyStrings(ctx context.Context) []string {
 	v, err := c.KeyStrings(ctx)
 	if err != nil {
@@ -103,8 +103,8 @@ func (c *Cache) MustKeyStrings(ctx context.Context) []string {
 	return v
 }
 
-// MustValues acts like Values, but it panics if any error occurs.
-func (c *Cache) MustValues(ctx context.Context) []any {
+// MustValues acts like Values, but it panics if interface{} error occurs.
+func (c *Cache) MustValues(ctx context.Context) []interface{} {
 	v, err := c.Values(ctx)
 	if err != nil {
 		panic(err)

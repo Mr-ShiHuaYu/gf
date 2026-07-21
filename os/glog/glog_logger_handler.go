@@ -73,7 +73,7 @@ type HandlerInput struct {
 	Content string
 
 	// The passed un-formatted values array to logger.
-	Values []any
+	Values []interface{}
 
 	// Stack string produced by logger, only available if Config.StStatus configured.
 	// Note that there are usually multiple lines in stack content.
@@ -92,7 +92,7 @@ type internalHandlerInfo struct {
 var defaultHandler Handler
 
 // doFinalPrint is a handler for logging content printing.
-// This handler outputs logging content to file/stdout/write if any of them configured.
+// This handler outputs logging content to file/stdout/write if interface{} of them configured.
 func doFinalPrint(ctx context.Context, in *HandlerInput) {
 	buffer := in.Logger.doFinalPrint(ctx, in)
 	if in.Buffer.Len() == 0 {

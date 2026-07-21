@@ -126,7 +126,7 @@ func (csi *CachedStructInfo) makeCachedFieldInfo(
 
 func (csi *CachedStructInfo) genFieldConvertFunc(fieldType reflect.Type) (convertFunc AnyConvertFunc) {
 	ptr := 0
-	for fieldType.Kind() == reflect.Pointer {
+	for fieldType.Kind() == reflect.Ptr {
 		fieldType = fieldType.Elem()
 		ptr++
 	}
@@ -173,7 +173,7 @@ func (csi *CachedStructInfo) genPriorityTagAndFieldName(
 }
 
 func genPtrConvertFunc(convertFunc AnyConvertFunc) AnyConvertFunc {
-	return func(from any, to reflect.Value) error {
+	return func(from interface{}, to reflect.Value) error {
 		if to.IsNil() {
 			to.Set(reflect.New(to.Type().Elem()))
 		}
@@ -182,7 +182,7 @@ func genPtrConvertFunc(convertFunc AnyConvertFunc) AnyConvertFunc {
 }
 
 func (csi *CachedStructInfo) checkTypeHasCustomConvert(fieldType reflect.Type) bool {
-	if fieldType.Kind() == reflect.Pointer {
+	if fieldType.Kind() == reflect.Ptr {
 		fieldType = fieldType.Elem()
 	}
 	_, ok := csi.converter.typeConverterFuncMarkMap[fieldType]

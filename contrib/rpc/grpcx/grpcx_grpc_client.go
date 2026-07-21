@@ -78,7 +78,7 @@ func (c modClient) NewGrpcClientConn(serviceNameOrAddress string, opts ...grpc.D
 }
 
 // MustNewGrpcClientConn creates and returns a client connection for given service `appId`.
-// It panics if any error occurs.
+// It panics if interface{} error occurs.
 func (c modClient) MustNewGrpcClientConn(serviceNameOrAddress string, opts ...grpc.DialOption) *grpc.ClientConn {
 	conn, err := c.NewGrpcClientConn(serviceNameOrAddress, opts...)
 	if err != nil {
@@ -106,7 +106,7 @@ func (c modClient) ChainStream(interceptors ...grpc.StreamClientInterceptor) grp
 // isServiceName checks and returns whether given input parameter is service name or not.
 // It checks by whether the parameter is address by containing port delimiter character ':'.
 //
-// It does not contain any port number if using service discovery.
+// It does not contain interface{} port number if using service discovery.
 func isServiceName(serviceNameOrAddress string) bool {
 	return !gstr.Contains(serviceNameOrAddress, gsvc.EndpointHostPortDelimiter)
 }

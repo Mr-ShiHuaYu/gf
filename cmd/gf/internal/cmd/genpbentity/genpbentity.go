@@ -140,7 +140,7 @@ case for message attribute names, default is "Camel":
 | Snake           | any_kind_of_string |
 | SnakeScreaming  | ANY_KIND_OF_STRING |
 | SnakeFirstUpper | rgb_code_md5       |
-| Kebab           | any-kind-of-string |
+| Kebab           | interface{}-kind-of-string |
 | KebabScreaming  | ANY-KIND-OF-STRING |
 `
 

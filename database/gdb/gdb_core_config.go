@@ -301,7 +301,7 @@ func GetDefaultGroup() string {
 }
 
 // IsConfigured checks and returns whether the database configured.
-// It returns true if any configuration exists.
+// It returns true if interface{} configuration exists.
 func IsConfigured() bool {
 	configs.RLock()
 	defer configs.RUnlock()

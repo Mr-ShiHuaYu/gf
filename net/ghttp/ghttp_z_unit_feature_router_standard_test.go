@@ -304,14 +304,14 @@ func Test_Router_Handler_Standard_WithGeneric(t *testing.T) {
 	type TestReq struct {
 		Age int
 	}
-	type TestGeneric[T any] struct {
+	type TestGeneric[T interface{}] struct {
 		Test T
 	}
 	type Test1Res struct {
 		Age TestGeneric[int]
 	}
 	type Test2Res TestGeneric[int]
-	type TestGenericRes[T any] struct {
+	type TestGenericRes[T interface{}] struct {
 		Test T
 	}
 
@@ -458,18 +458,18 @@ func Test_JsonRawMessage_Issue3449(t *testing.T) {
 	gtest.C(t, func(t *gtest.T) {
 		client := g.Client()
 		client.SetPrefix(fmt.Sprintf("http://127.0.0.1:%d", s.GetListenedPort()))
-		v1 := map[string]any{
+		v1 := map[string]interface{}{
 			"jkey1": "11",
 			"jkey2": "12",
 		}
 
-		v2 := map[string]any{
+		v2 := map[string]interface{}{
 			"jkey1": "21",
 			"jkey2": "22",
 		}
-		data := map[string]any{
+		data := map[string]interface{}{
 			"Name": "test",
-			"jsonRaw": []any{
+			"jsonRaw": []interface{}{
 				v1, v2,
 			},
 		}
@@ -478,7 +478,7 @@ func Test_JsonRawMessage_Issue3449(t *testing.T) {
 		t.Assert(client.PostContent(ctx, "/test", data), expect1)
 
 		expect2 := `{"code":0,"message":"OK","data":{"name":"test","jsonRaw":{"jkey1":"11","jkey2":"12"}}}`
-		t.Assert(client.PostContent(ctx, "/test", map[string]any{
+		t.Assert(client.PostContent(ctx, "/test", map[string]interface{}{
 			"Name":    "test",
 			"jsonRaw": v1,
 		}), expect2)
@@ -519,14 +519,14 @@ func Test_NullString_Issue3465(t *testing.T) {
 		client := g.Client()
 		client.SetPrefix(fmt.Sprintf("http://127.0.0.1:%d", s.GetListenedPort()))
 
-		data1 := map[string]any{
+		data1 := map[string]interface{}{
 			"name": "null",
 		}
 
 		expect1 := `{"code":0,"message":"OK","data":{"name":["null"]}}`
 		t.Assert(client.GetContent(ctx, "/test", data1), expect1)
 
-		data2 := map[string]any{
+		data2 := map[string]interface{}{
 			"name": []string{"null", "null"},
 		}
 		expect2 := `{"code":0,"message":"OK","data":{"name":["null","null"]}}`

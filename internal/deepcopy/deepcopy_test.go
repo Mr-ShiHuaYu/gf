@@ -112,19 +112,19 @@ CopyFloat32s:
 	}
 
 CopyInterfaces:
-	Interfaces := []any{"a", 42, true, 4.32}
-	cpyIf := Copy(Interfaces).([]any)
+	Interfaces := []interface{}{"a", 42, true, 4.32}
+	cpyIf := Copy(Interfaces).([]interface{})
 	if (*reflect.SliceHeader)(unsafe.Pointer(&Strings)).Data == (*reflect.SliceHeader)(unsafe.Pointer(&cpyIf)).Data {
 		t.Error("[]interfaces: expected SliceHeader data pointers to point to different locations, they didn't")
 		return
 	}
 	if len(cpyIf) != len(Interfaces) {
-		t.Errorf("[]any: len was %d; want %d", len(cpyIf), len(Interfaces))
+		t.Errorf("[]interface{}: len was %d; want %d", len(cpyIf), len(Interfaces))
 		return
 	}
 	for i, v := range Interfaces {
 		if v != cpyIf[i] {
-			t.Errorf("[]any: got %v at index %d of the copy; want %v", cpyIf[i], i, v)
+			t.Errorf("[]interface{}: got %v at index %d of the copy; want %v", cpyIf[i], i, v)
 		}
 	}
 }
@@ -165,8 +165,8 @@ type Basics struct {
 	Complex64s  []complex64
 	Complex128  complex128
 	Complex128s []complex128
-	Interface   any
-	Interfaces  []any
+	Interface   interface{}
+	Interfaces  []interface{}
 }
 
 // These tests test that all supported basic types are copied correctly.  This
@@ -208,7 +208,7 @@ func TestMostTypes(t *testing.T) {
 		Complex64s:  []complex64{complex64(-65 + 11i), complex64(66 + 10i)},
 		Complex128:  complex128(-128 + 12i),
 		Complex128s: []complex128{complex128(-128 + 11i), complex128(129 + 10i)},
-		Interfaces:  []any{42, true, "pan-galactic"},
+		Interfaces:  []interface{}{42, true, "pan-galactic"},
 	}
 
 	cpy := Copy(test).(Basics)
@@ -1087,7 +1087,7 @@ type I struct {
 	A string
 }
 
-func (i *I) DeepCopy() any {
+func (i *I) DeepCopy() interface{} {
 	return &I{A: "custom copy"}
 }
 

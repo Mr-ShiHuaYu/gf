@@ -9,7 +9,7 @@ package gbase64
 
 import (
 	"encoding/base64"
-	"os"
+	"io/ioutil"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 )
@@ -33,16 +33,16 @@ func EncodeToString(src []byte) string {
 
 // EncodeFile encodes file content of `path` using BASE64 algorithms.
 func EncodeFile(path string) ([]byte, error) {
-	content, err := os.ReadFile(path)
+	content, err := ioutil.ReadFile(path)
 	if err != nil {
-		err = gerror.Wrapf(err, `os.ReadFile failed for filename "%s"`, path)
+		err = gerror.Wrapf(err, `ioutil.ReadFile failed for filename "%s"`, path)
 		return nil, err
 	}
 	return Encode(content), nil
 }
 
 // MustEncodeFile encodes file content of `path` using BASE64 algorithms.
-// It panics if any error occurs.
+// It panics if interface{} error occurs.
 func MustEncodeFile(path string) []byte {
 	result, err := EncodeFile(path)
 	if err != nil {
@@ -61,7 +61,7 @@ func EncodeFileToString(path string) (string, error) {
 }
 
 // MustEncodeFileToString encodes file content of `path` to string using BASE64 algorithms.
-// It panics if any error occurs.
+// It panics if interface{} error occurs.
 func MustEncodeFileToString(path string) string {
 	result, err := EncodeFileToString(path)
 	if err != nil {
@@ -83,7 +83,7 @@ func Decode(data []byte) ([]byte, error) {
 }
 
 // MustDecode decodes bytes with BASE64 algorithm.
-// It panics if any error occurs.
+// It panics if interface{} error occurs.
 func MustDecode(data []byte) []byte {
 	result, err := Decode(data)
 	if err != nil {
@@ -98,7 +98,7 @@ func DecodeString(data string) ([]byte, error) {
 }
 
 // MustDecodeString decodes string with BASE64 algorithm.
-// It panics if any error occurs.
+// It panics if interface{} error occurs.
 func MustDecodeString(data string) []byte {
 	result, err := DecodeString(data)
 	if err != nil {
@@ -114,7 +114,7 @@ func DecodeToString(data string) (string, error) {
 }
 
 // MustDecodeToString decodes string with BASE64 algorithm.
-// It panics if any error occurs.
+// It panics if interface{} error occurs.
 func MustDecodeToString(data string) string {
 	result, err := DecodeToString(data)
 	if err != nil {

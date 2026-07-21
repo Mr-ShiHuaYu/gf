@@ -42,7 +42,7 @@ func init() {
 }
 
 // DefaultCORSOptions returns the default CORS options,
-// which allows any cross-domain request.
+// which allows interface{} cross-domain request.
 func (r *Response) DefaultCORSOptions() CORSOptions {
 	options := CORSOptions{
 		AllowOrigin:      "*",
@@ -128,7 +128,7 @@ func (r *Response) CORSAllowedOrigin(options CORSOptions) bool {
 }
 
 // CORSDefault sets CORS with default CORS options,
-// which allows any cross-domain request.
+// which allows interface{} cross-domain request.
 func (r *Response) CORSDefault() {
 	r.CORS(r.DefaultCORSOptions())
 }

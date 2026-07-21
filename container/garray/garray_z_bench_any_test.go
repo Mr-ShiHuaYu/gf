@@ -14,12 +14,12 @@ import (
 
 type anySortedArrayItem struct {
 	priority int64
-	value    any
+	value    interface{}
 }
 
 var (
 	anyArray       = garray.NewArray()
-	anySortedArray = garray.NewSortedArray(func(a, b any) int {
+	anySortedArray = garray.NewSortedArray(func(a, b interface{}) int {
 		return int(a.(anySortedArrayItem).priority - b.(anySortedArrayItem).priority)
 	})
 )

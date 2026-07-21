@@ -87,7 +87,7 @@ func (c CGenPb) parseControllers(filePath string) ([]generateCtrl, error) {
 		func(match []string) string {
 			ctrl := generateCtrl{
 				Name:    match[1],
-				Package: strings.ReplaceAll(gfile.Basename(gfile.Dir(gfile.Dir(filePath))), "-", "_"),
+				Package: strings.Replace(gfile.Basename(gfile.Dir(gfile.Dir(filePath))), "-", "_", -1),
 				Version: gfile.Basename(gfile.Dir(filePath)),
 				Methods: make([]generateCtrlMethod, 0),
 			}

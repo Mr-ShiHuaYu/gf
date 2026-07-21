@@ -13,9 +13,9 @@ import (
 	"github.com/gogf/gf/v2/errors/gerror"
 )
 
-// MapToMap converts any map type variable `params` to another map type variable `pointer`.
+// MapToMap converts interface{} map type variable `params` to another map type variable `pointer`.
 //
-// The parameter `params` can be any type of map, like:
+// The parameter `params` can be interface{} type of map, like:
 // map[string]string, map[string]struct, map[string]*struct, reflect.Value, etc.
 //
 // The parameter `pointer` should be type of *map, like:
@@ -24,7 +24,7 @@ import (
 // The optional parameter `mapping` is used for struct attribute to map key mapping, which makes
 // sense only if the items of original map `params` is type struct.
 func (c *Converter) MapToMap(
-	params, pointer any, mapping map[string]string, option ...MapOption,
+	params, pointer interface{}, mapping map[string]string, option ...MapOption,
 ) (err error) {
 	var (
 		paramsRv   reflect.Value
@@ -36,7 +36,7 @@ func (c *Converter) MapToMap(
 		paramsRv = reflect.ValueOf(params)
 	}
 	paramsKind = paramsRv.Kind()
-	if paramsKind == reflect.Pointer {
+	if paramsKind == reflect.Ptr {
 		paramsRv = paramsRv.Elem()
 		paramsKind = paramsRv.Kind()
 	}
@@ -58,7 +58,7 @@ func (c *Converter) MapToMap(
 		pointerRv = reflect.ValueOf(pointer)
 	}
 	pointerKind := pointerRv.Kind()
-	for pointerKind == reflect.Pointer {
+	for pointerKind == reflect.Ptr {
 		pointerRv = pointerRv.Elem()
 		pointerKind = pointerRv.Kind()
 	}
@@ -93,7 +93,7 @@ func (c *Converter) MapToMap(
 		}
 	)
 	// Retrieve the true element type of target map.
-	if pointerValueKind == reflect.Pointer {
+	if pointerValueKind == reflect.Ptr {
 		pointerValueKind = pointerValueType.Elem().Kind()
 	}
 	for _, key := range paramsKeys {

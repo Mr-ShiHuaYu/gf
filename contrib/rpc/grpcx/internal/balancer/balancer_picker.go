@@ -24,7 +24,7 @@ type Picker struct {
 
 // Pick returns the connection to use for this RPC and related information.
 //
-// Pick should not block.  If the balancer needs to do I/O or any blocking
+// Pick should not block.  If the balancer needs to do I/O or interface{} blocking
 // or time-consuming work to service this call, it should return
 // ErrNoSubConnAvailable, and the Pick call will be repeated by gRPC when
 // the Picker is updated (using ClientConn.UpdateState).

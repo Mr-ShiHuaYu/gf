@@ -6,8 +6,8 @@
 
 package converter
 
-// Rune converts `any` to rune.
-func (c *Converter) Rune(anyInput any) (rune, error) {
+// Rune converts `interface{}` to rune.
+func (c *Converter) Rune(anyInput interface{}) (rune, error) {
 	if v, ok := anyInput.(rune); ok {
 		return v, nil
 	}
@@ -18,8 +18,8 @@ func (c *Converter) Rune(anyInput any) (rune, error) {
 	return v, nil
 }
 
-// Runes converts `any` to []rune.
-func (c *Converter) Runes(anyInput any) ([]rune, error) {
+// Runes converts `interface{}` to []rune.
+func (c *Converter) Runes(anyInput interface{}) ([]rune, error) {
 	if v, ok := anyInput.([]rune); ok {
 		return v, nil
 	}

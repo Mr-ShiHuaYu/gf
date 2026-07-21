@@ -78,7 +78,7 @@ func Test_Int32_UnmarshalValue(t *testing.T) {
 	}
 	gtest.C(t, func(t *gtest.T) {
 		var v *V
-		err := gconv.Struct(map[string]any{
+		err := gconv.Struct(map[string]interface{}{
 			"name": "john",
 			"var":  "123",
 		}, &v)

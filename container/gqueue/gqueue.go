@@ -26,11 +26,11 @@ import (
 
 // Queue is a concurrent-safe queue built on doubly linked list and channel.
 type Queue struct {
-	limit  int           // Limit for queue size.
-	list   *glist.List   // Underlying list structure for data maintaining.
-	closed *gtype.Bool   // Whether queue is closed.
-	events chan struct{} // Events for data writing.
-	C      chan any      // Underlying channel for data reading.
+	limit  int              // Limit for queue size.
+	list   *glist.List      // Underlying list structure for data maintaining.
+	closed *gtype.Bool      // Whether queue is closed.
+	events chan struct{}    // Events for data writing.
+	C      chan interface{} // Underlying channel for data reading.
 }
 
 const (
@@ -47,11 +47,11 @@ func New(limit ...int) *Queue {
 	}
 	if len(limit) > 0 && limit[0] > 0 {
 		q.limit = limit[0]
-		q.C = make(chan any, limit[0])
+		q.C = make(chan interface{}, limit[0])
 	} else {
 		q.list = glist.New(true)
 		q.events = make(chan struct{}, math.MaxInt32)
-		q.C = make(chan any, defaultQueueSize)
+		q.C = make(chan interface{}, defaultQueueSize)
 		go q.asyncLoopFromListToChannel()
 	}
 	return q
@@ -59,7 +59,7 @@ func New(limit ...int) *Queue {
 
 // Push pushes the data `v` into the queue.
 // Note that it would panic if Push is called after the queue is closed.
-func (q *Queue) Push(v any) {
+func (q *Queue) Push(v interface{}) {
 	if q.limit > 0 {
 		q.C <- v
 	} else {
@@ -72,7 +72,7 @@ func (q *Queue) Push(v any) {
 
 // Pop pops an item from the queue in FIFO way.
 // Note that it would return nil immediately if Pop is called after the queue is closed.
-func (q *Queue) Pop() any {
+func (q *Queue) Pop() interface{} {
 	return <-q.C
 }
 
@@ -89,7 +89,7 @@ func (q *Queue) Close() {
 	if q.limit > 0 {
 		close(q.C)
 	} else {
-		for range defaultBatchSize {
+		for i := 0; i < defaultBatchSize; i++ {
 			q.Pop()
 		}
 	}
@@ -131,8 +131,8 @@ func (q *Queue) asyncLoopFromListToChannel() {
 		for !q.closed.Val() {
 			if bufferLength := q.list.Len(); bufferLength > 0 {
 				// When q.C is closed, it will panic here, especially q.C is being blocked for writing.
-				// If any error occurs here, it will be caught by recover and be ignored.
-				for range bufferLength {
+				// If interface{} error occurs here, it will be caught by recover and be ignored.
+				for i := 0; i < bufferLength; i++ {
 					q.C <- q.list.PopFront()
 				}
 			} else {

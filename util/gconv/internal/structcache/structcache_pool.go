@@ -12,7 +12,7 @@ import (
 
 var (
 	poolUsedParamsKeyOrTagNameMap = &sync.Pool{
-		New: func() any {
+		New: func() interface{} {
 			return make(map[string]struct{})
 		},
 	}

@@ -116,8 +116,8 @@ type Issue1653TestReq struct {
 }
 
 type Issue1653TestRes struct {
-	UUID     string `json:"uuid"`
-	FeedBack any    `json:"feed_back"`
+	UUID     string      `json:"uuid"`
+	FeedBack interface{} `json:"feed_back"`
 }
 
 type cIssue1653Foo struct{}
@@ -486,7 +486,7 @@ type ListMessageRes struct {
 	Title   string
 	Content string
 }
-type BaseRes[T any] struct {
+type BaseRes[T interface{}] struct {
 	g.Meta
 	Code int
 	Data T
@@ -534,7 +534,7 @@ type Issue3245Req struct {
 	XHeaderAge  uint8  `p:"Header-Age" in:"cookie" json:"X-Header-Age"`
 }
 type Issue3245Res struct {
-	Reply any
+	Reply interface{}
 }
 
 type Issue3245V1 struct{}

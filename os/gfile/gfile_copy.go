@@ -8,6 +8,7 @@ package gfile
 
 import (
 	"io"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 
@@ -217,7 +218,7 @@ func CopyDir(src string, dst string, option ...CopyOption) (err error) {
 			return
 		}
 	}
-	entries, err := os.ReadDir(src)
+	entries, err := ioutil.ReadDir(src)
 	if err != nil {
 		err = gerror.Wrapf(err, `read directory failed for path "%s"`, src)
 		return
@@ -231,7 +232,7 @@ func CopyDir(src string, dst string, option ...CopyOption) (err error) {
 			}
 		} else {
 			// Skip symlinks.
-			if entry.Type()&os.ModeSymlink != 0 {
+			if entry.Mode()&os.ModeSymlink != 0 {
 				continue
 			}
 			if err = CopyFile(srcPath, dstPath, option...); err != nil {

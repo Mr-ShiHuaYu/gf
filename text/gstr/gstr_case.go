@@ -9,9 +9,9 @@
 //   | CaseSnake(s)                      | any_kind_of_string |
 //   | CaseSnakeScreaming(s)             | ANY_KIND_OF_STRING |
 //   | CaseSnakeFirstUpper("RGBCodeMd5") | rgb_code_md5       |
-//   | CaseKebab(s)                      | any-kind-of-string |
+//   | CaseKebab(s)                      | interface{}-kind-of-string |
 //   | CaseKebabScreaming(s)             | ANY-KIND-OF-STRING |
-//   | CaseDelimited(s, '.')             | any.kind.of.string |
+//   | CaseDelimited(s, '.')             | interface{}.kind.of.string |
 //   | CaseDelimitedScreaming(s, '.')    | ANY.KIND.OF.STRING |
 //   | CaseCamel(s)                      | AnyKindOfString    |
 //   | CaseCamelLower(s)                 | anyKindOfString    |
@@ -177,7 +177,7 @@ func CaseSnakeFirstUpper(word string, underscore ...string) string {
 // CaseKebab converts a string to kebab-case.
 //
 // Example:
-// CaseKebab("AnyKindOfString") -> any-kind-of-string
+// CaseKebab("AnyKindOfString") -> interface{}-kind-of-string
 func CaseKebab(s string) string {
 	return CaseDelimited(s, '-')
 }
@@ -193,7 +193,7 @@ func CaseKebabScreaming(s string) string {
 // CaseDelimited converts a string to snake.case.delimited.
 //
 // Example:
-// CaseDelimited("AnyKindOfString", '.') -> any.kind.of.string
+// CaseDelimited("AnyKindOfString", '.') -> interface{}.kind.of.string
 func CaseDelimited(s string, del byte) string {
 	return CaseDelimitedScreaming(s, del, false)
 }

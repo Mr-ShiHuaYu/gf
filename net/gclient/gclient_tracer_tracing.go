@@ -10,7 +10,7 @@ import (
 	"context"
 	"crypto/tls"
 	"fmt"
-	"io"
+	"io/ioutil"
 	"net/http"
 	"net/http/httptrace"
 	"net/textproto"
@@ -32,7 +32,7 @@ type clientTracerTracing struct {
 	span        trace.Span
 	request     *http.Request
 	requestBody []byte
-	headers     map[string]any
+	headers     map[string]interface{}
 	mtx         sync.Mutex
 }
 
@@ -46,10 +46,10 @@ func newClientTracerTracing(
 		Context: ctx,
 		span:    span,
 		request: request,
-		headers: make(map[string]any),
+		headers: make(map[string]interface{}),
 	}
 
-	reqBodyContent, _ := io.ReadAll(ct.request.Body)
+	reqBodyContent, _ := ioutil.ReadAll(ct.request.Body)
 	ct.requestBody = reqBodyContent
 	ct.request.Body = utils.NewReadCloser(reqBodyContent, false)
 
@@ -211,7 +211,7 @@ func (ct *clientTracerTracing) WroteHeaders() {}
 func (ct *clientTracerTracing) Wait100Continue() {}
 
 // WroteRequest is called with the result of writing the
-// request and any body. It may be called multiple times
+// request and interface{} body. It may be called multiple times
 // in the case of retried requests.
 func (ct *clientTracerTracing) WroteRequest(info httptrace.WroteRequestInfo) {
 	if info.Err != nil {

@@ -16,7 +16,7 @@ import (
 
 // Do send a command to the server and returns the received reply.
 // It uses json.Marshal for struct/slice/map type values before committing them to redis.
-func (r *Redis) Do(ctx context.Context, command string, args ...any) (*gvar.Var, error) {
+func (r *Redis) Do(ctx context.Context, command string, args ...interface{}) (*gvar.Var, error) {
 	conn, err := r.Conn(ctx)
 	if err != nil {
 		return nil, err
@@ -37,7 +37,7 @@ func (r *Redis) Close(ctx context.Context) (err error) {
 }
 
 // Conn retrieves and returns a connection object for continuous operations.
-// Note that you should call Close function manually if you do not use this connection any further.
+// Note that you should call Close function manually if you do not use this connection interface{} further.
 func (r *Redis) Conn(ctx context.Context) (gredis.Conn, error) {
 	return &Conn{
 		redis: r,

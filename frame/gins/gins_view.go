@@ -19,14 +19,14 @@ import (
 
 // View returns an instance of View with default settings.
 // The parameter `name` is the name for the instance.
-// Note that it panics if any error occurs duration instance creating.
+// Note that it panics if interface{} error occurs duration instance creating.
 func View(name ...string) *gview.View {
 	instanceName := gview.DefaultName
 	if len(name) > 0 && name[0] != "" {
 		instanceName = name[0]
 	}
 	instanceKey := fmt.Sprintf("%s.%s", frameCoreComponentNameViewer, instanceName)
-	return instance.GetOrSetFuncLock(instanceKey, func() any {
+	return instance.GetOrSetFuncLock(instanceKey, func() interface{} {
 		return getViewInstance(instanceName)
 	}).(*gview.View)
 }
@@ -43,7 +43,7 @@ func getViewInstance(name ...string) *gview.View {
 	view := gview.Instance(instanceName)
 	if Config().Available(ctx) {
 		var (
-			configMap      map[string]any
+			configMap      map[string]interface{}
 			configNodeName = consts.ConfigNodeNameViewer
 		)
 		if configMap, err = Config().Data(ctx); err != nil {

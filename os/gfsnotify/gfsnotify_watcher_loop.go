@@ -29,7 +29,7 @@ func (w *Watcher) watchLoop() {
 				return
 			}
 			// filter the repeated event in custom duration.
-			var cacheFunc = func(ctx context.Context) (value any, err error) {
+			var cacheFunc = func(ctx context.Context) (value interface{}, err error) {
 				w.events.Push(&Event{
 					event:   ev,
 					Path:    ev.Name,
@@ -64,7 +64,7 @@ func (w *Watcher) eventLoop() {
 	for {
 		if v := w.events.Pop(); v != nil {
 			event := v.(*Event)
-			// If there's no any callback of this path, it removes it from monitor,
+			// If there's no interface{} callback of this path, it removes it from monitor,
 			// as a path watching without callback is meaningless.
 			callbacks := w.getCallbacksForPath(event.Path)
 			if len(callbacks) == 0 {
@@ -120,7 +120,7 @@ func (w *Watcher) eventLoop() {
 
 			case event.IsCreate():
 				// =================================================================================
-				// Note that it here just adds the path to monitor without any callback registering,
+				// Note that it here just adds the path to monitor without interface{} callback registering,
 				// because its parent already has the callbacks.
 				// =================================================================================
 				if w.checkRecursiveWatchingInCreatingEvent(event.Path) {

@@ -22,7 +22,7 @@ import (
 type Handler interface {
 	// HandleResponse handles the http response and transforms its body to the specified object.
 	// The parameter `out` specifies the object that the response body is transformed to.
-	HandleResponse(ctx context.Context, res *gclient.Response, out any) error
+	HandleResponse(ctx context.Context, res *gclient.Response, out interface{}) error
 }
 
 // DefaultHandler handle ghttp.DefaultHandlerResponse of json format.
@@ -41,7 +41,7 @@ func NewDefaultHandler(logger *glog.Logger, rawRump bool) *DefaultHandler {
 	}
 }
 
-func (h DefaultHandler) HandleResponse(ctx context.Context, res *gclient.Response, out any) error {
+func (h DefaultHandler) HandleResponse(ctx context.Context, res *gclient.Response, out interface{}) error {
 	defer res.Close()
 	if h.RawDump {
 		h.Logger.Debugf(ctx, "raw request&response:\n%s", res.Raw())

@@ -82,7 +82,7 @@ func TestTableFields(t *testing.T) {
 	tables := "A_tables"
 	createInitTable(tables)
 	gtest.C(t, func(t *gtest.T) {
-		var expect = map[string][]any{
+		var expect = map[string][]interface{}{
 			"ID":           {"BIGINT", false},
 			"ACCOUNT_NAME": {"VARCHAR", false},
 			"PWD_RESET":    {"TINYINT", false},
@@ -372,7 +372,7 @@ func Test_DB_BatchInsert(t *testing.T) {
 	})
 
 	gtest.C(t, func(t *gtest.T) {
-		// []any
+		// []interface{}
 		r, err := db.Insert(ctx, table, g.Slice{
 			g.Map{
 				"ID":           500,

@@ -33,7 +33,7 @@ func (p *Pool) Add(ctx context.Context, f Func) error {
 
 // AddWithRecover pushes a new job to the pool with specified recover function.
 //
-// The optional `recoverFunc` is called when any panic during executing of `userFunc`.
+// The optional `recoverFunc` is called when interface{} panic during executing of `userFunc`.
 // If `recoverFunc` is not passed or given nil, it ignores the panic from `userFunc`.
 // The job will be executed asynchronously.
 func (p *Pool) AddWithRecover(ctx context.Context, userFunc Func, recoverFunc RecoverFunc) error {
@@ -106,7 +106,7 @@ func (p *Pool) asynchronousWorker() {
 	defer p.count.Add(-1)
 
 	var (
-		listItem any
+		listItem interface{}
 		poolItem *localPoolItem
 	)
 	// Harding working, one by one, job never empty, worker never die.

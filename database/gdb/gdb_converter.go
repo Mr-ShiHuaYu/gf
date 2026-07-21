@@ -16,7 +16,7 @@ import (
 
 // iVal is used for type assert api for Val().
 type iVal interface {
-	Val() any
+	Val() interface{}
 }
 
 var (
@@ -44,7 +44,7 @@ func GetConverter() gconv.Converter {
 	return converter
 }
 
-func sliceTypeConverterFunc(from any, to reflect.Value) (err error) {
+func sliceTypeConverterFunc(from interface{}, to reflect.Value) (err error) {
 	v, ok := from.(iVal)
 	if !ok {
 		return nil
