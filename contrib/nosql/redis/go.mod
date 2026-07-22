@@ -3,7 +3,7 @@ module github.com/Mr-ShiHuaYu/gf/contrib/nosql/redis/v2
 go 1.11
 
 require (
-	github.com/Mr-ShiHuaYu/gf/v2 v2.9.4
+	github.com/Mr-ShiHuaYu/gf/v2 v2.9.4-go111
 	github.com/go-redis/redis/v7 v7.4.1
 	github.com/redis/go-redis/v9 v9.21.0
 )

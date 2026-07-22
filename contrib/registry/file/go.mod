@@ -2,7 +2,7 @@ module github.com/Mr-ShiHuaYu/gf/contrib/registry/file/v2
 
 go 1.11
 
-require github.com/Mr-ShiHuaYu/gf/v2 v2.9.4
+require github.com/Mr-ShiHuaYu/gf/v2 v2.9.4-go111
 
 replace (
 	github.com/BurntSushi/toml => github.com/BurntSushi/toml v0.3.1
