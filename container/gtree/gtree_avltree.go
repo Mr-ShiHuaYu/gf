@@ -7,6 +7,7 @@
 package gtree
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/emirpasic/gods/trees/avltree"
@@ -294,7 +295,7 @@ func (tree *AVLTree) String() string {
 func (tree *AVLTree) MarshalJSON() (jsonBytes []byte, err error) {
 	tree.mu.RLock()
 	defer tree.mu.RUnlock()
-	return tree.tree.MarshalJSON()
+	return json.Marshal(tree.Map())
 }
 
 // Map returns all key-value pairs as map.

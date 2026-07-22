@@ -7,6 +7,7 @@
 package gtree
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/emirpasic/gods/trees/btree"
@@ -314,7 +315,7 @@ func (tree *BTree) String() string {
 func (tree *BTree) MarshalJSON() (jsonBytes []byte, err error) {
 	tree.mu.RLock()
 	defer tree.mu.RUnlock()
-	return tree.tree.MarshalJSON()
+	return json.Marshal(tree.Map())
 }
 
 // Iterator is alias of IteratorAsc.

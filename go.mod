@@ -15,6 +15,7 @@ require (
 	github.com/mattn/go-isatty v0.0.23 // indirect
 	github.com/olekukonko/tablewriter v0.0.5
 	golang.org/x/net v0.0.0-20200202094626-16171245cfb2
+	golang.org/x/sys v0.0.0-20200202164722-d101bd2416d5 // indirect
 	golang.org/x/text v0.3.2
 	gopkg.in/yaml.v3 v3.0.1
 )
