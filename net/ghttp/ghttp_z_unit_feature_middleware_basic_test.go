@@ -16,7 +16,6 @@ import (
 
 	"github.com/Mr-ShiHuaYu/otel-go111"
 	"github.com/Mr-ShiHuaYu/otel-go111/trace"
-	"github.com/Mr-ShiHuaYu/otel-go111/trace/noop"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/container/garray"
 	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
@@ -817,12 +816,10 @@ func Test_MiddlewareHandlerStreamResponse(t *testing.T) {
 	})
 }
 
-type testTracerProvider struct {
-	noop.TracerProvider
-}
+type testTracerProvider struct{}
 
 var _ trace.TracerProvider = &testTracerProvider{}
 
 func (*testTracerProvider) Tracer(_ string, _ ...trace.TracerOption) trace.Tracer {
-	return noop.NewTracerProvider().Tracer("")
+	return otel.Tracer("")
 }

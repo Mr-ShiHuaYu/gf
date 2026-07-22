@@ -7,7 +7,6 @@
 package utils_test
 
 import (
-	"io"
 	"io/ioutil"
 	"reflect"
 	"testing"

@@ -24,7 +24,7 @@ func TestQueue_Len(t *testing.T) {
 		)
 		for n := 10; n < maxTries; n++ {
 			q1 := gqueue.New(maxNum)
-			for i := range maxNum {
+			for i := 0; i < maxNum; i++ {
 				q1.Push(i)
 			}
 			t.Assert(q1.Len(), maxNum)
@@ -38,7 +38,7 @@ func TestQueue_Len(t *testing.T) {
 		)
 		for n := 10; n < maxTries; n++ {
 			q1 := gqueue.New()
-			for i := range maxNum {
+			for i := 0; i < maxNum; i++ {
 				q1.Push(i)
 			}
 			t.AssertLE(q1.Len(), maxNum)
@@ -51,7 +51,7 @@ func TestQueue_Basic(t *testing.T) {
 	gtest.C(t, func(t *gtest.T) {
 		q := gqueue.New()
 		defer q.Close()
-		for i := range 100 {
+		for i := 0; i < 100; i++ {
 			q.Push(i)
 		}
 		t.Assert(q.Pop(), 0)
@@ -118,7 +118,7 @@ func TestIssue4376(t *testing.T) {
 		cq := make(chan int, 100000)
 		defer close(cq)
 
-		for i := range 11603 {
+		for i := 0; i < 11603; i++ {
 			gq.Push(i)
 			cq <- i
 		}

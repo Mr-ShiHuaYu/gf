@@ -12,7 +12,7 @@
 package mssql
 
 import (
-	_ "github.com/microsoft/go-mssqldb"
+	_ "github.com/denisenkom/go-mssqldb"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/database/gdb"
 )

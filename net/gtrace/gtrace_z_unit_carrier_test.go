@@ -8,6 +8,7 @@ package gtrace_test
 
 import (
 	"context"
+	"encoding/hex"
 	"testing"
 
 	"github.com/Mr-ShiHuaYu/otel-go111"
@@ -37,11 +38,11 @@ func mustTraceIDFromHex(s string) (t trace.TraceID) {
 }
 
 func mustSpanIDFromHex(s string) (t trace.SpanID) {
-	var err error
-	t, err = trace.SpanIDFromHex(s)
+	b, err := hex.DecodeString(s)
 	if err != nil {
 		panic(err)
 	}
+	copy(t[:], b)
 	return
 }
 

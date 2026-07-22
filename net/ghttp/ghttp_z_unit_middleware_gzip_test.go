@@ -9,7 +9,6 @@ package ghttp_test
 import (
 	"compress/gzip"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"strings"
 	"testing"

@@ -22,7 +22,7 @@ import (
 
 func createTestFile(filename, content string) error {
 	TempDir := testpath()
-	err := os.WriteFile(TempDir+filename, []byte(content), 0666)
+	err := ioutil.WriteFile(TempDir+filename, []byte(content), 0666)
 	return err
 }
 

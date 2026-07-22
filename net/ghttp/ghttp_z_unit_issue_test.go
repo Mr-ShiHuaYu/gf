@@ -486,16 +486,16 @@ type ListMessageRes struct {
 	Title   string
 	Content string
 }
-type BaseRes[T interface{}] struct {
+type BaseRes struct {
 	g.Meta
 	Code int
-	Data T
+	Data *ListMessageRes
 	Msg  string
 }
 type cMessage struct{}
 
-func (c *cMessage) List(ctx context.Context, req *ListMessageReq) (res *BaseRes[*ListMessageRes], err error) {
-	res = &BaseRes[*ListMessageRes]{
+func (c *cMessage) List(ctx context.Context, req *ListMessageReq) (res *BaseRes, err error) {
+	res = &BaseRes{
 		Code: 100,
 		Data: &ListMessageRes{
 			Title:   "title",

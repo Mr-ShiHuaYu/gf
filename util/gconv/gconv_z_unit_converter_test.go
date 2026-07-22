@@ -106,25 +106,28 @@ func testAnyToSqlNullType(_ interface{}, to reflect.Value) error {
 }
 
 func TestNewConverter(t *testing.T) {
-	type Dst[T interface{}] struct {
-		A T
-	}
 	gtest.C(t, func(t *gtest.T) {
 		conv := gconv.NewConverter()
 		conv.RegisterAnyConverterFunc(testAnyToMyInt, reflect.TypeOf((*myInt)(nil)))
-		var dst Dst[myInt]
+		type dstInt struct {
+			A myInt
+		}
+		var dst dstInt
 		err := conv.Struct(map[string]interface{}{
 			"a": 1200,
 		}, &dst, gconv.StructOption{})
 		t.AssertNil(err)
-		t.Assert(dst, Dst[myInt]{
+		t.Assert(dst, dstInt{
 			A: 123456,
 		})
 	})
 	gtest.C(t, func(t *gtest.T) {
 		conv := gconv.NewConverter()
 		conv.RegisterAnyConverterFunc(testAnyToMyInt, reflect.TypeOf((myInt)(0)))
-		var dst Dst[*myInt]
+		type dstIntPtr struct {
+			A *myInt
+		}
+		var dst dstIntPtr
 		err := conv.Struct(map[string]interface{}{
 			"a": 1200,
 		}, &dst, gconv.StructOption{})
@@ -136,36 +139,24 @@ func TestNewConverter(t *testing.T) {
 		conv := gconv.NewConverter()
 		conv.RegisterAnyConverterFunc(testAnyToSqlNullType, reflect.TypeOf((*sql.Scanner)(nil)))
 		type sqlNullDst struct {
-			A sql.Null[int]
-			B sql.Null[float32]
 			C sql.NullInt64
 			D sql.NullString
 
-			E *sql.Null[int]
-			F *sql.Null[float32]
 			G *sql.NullInt64
 			H *sql.NullString
 		}
 		var dst sqlNullDst
 		err := conv.Struct(map[string]interface{}{
-			"a": 12,
-			"b": 34,
 			"c": 56,
 			"d": "sqlNullString",
-			"e": 12,
-			"f": 34,
 			"g": 56,
 			"h": "sqlNullString",
 		}, &dst, gconv.StructOption{})
 		t.AssertNil(err)
 		t.Assert(dst, sqlNullDst{
-			A: sql.Null[int]{V: 123456, Valid: true},
-			B: sql.Null[float32]{V: 123456, Valid: true},
 			C: sql.NullInt64{Int64: 123456, Valid: true},
 			D: sql.NullString{String: "123456", Valid: true},
 
-			E: &sql.Null[int]{V: 123456, Valid: true},
-			F: &sql.Null[float32]{V: 123456, Valid: true},
 			G: &sql.NullInt64{Int64: 123456, Valid: true},
 			H: &sql.NullString{String: "123456", Valid: true},
 		})

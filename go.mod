@@ -4,6 +4,7 @@ go 1.11
 
 require (
 	github.com/BurntSushi/toml v0.3.1
+	github.com/Mr-ShiHuaYu/otel-go111 v0.20.0
 	github.com/clbanning/mxj/v2 v2.5.0
 	github.com/emirpasic/gods v1.12.0
 	github.com/fatih/color v1.7.0
@@ -13,7 +14,6 @@ require (
 	github.com/magiconair/properties v1.8.0
 	github.com/mattn/go-colorable v0.1.15 // indirect
 	github.com/mattn/go-isatty v0.0.23 // indirect
-	github.com/Mr-ShiHuaYu/otel-go111 v0.20.0
 	github.com/olekukonko/tablewriter v0.0.5
 	golang.org/x/net v0.0.0-20200202094626-16171245cfb2
 	golang.org/x/text v0.3.2

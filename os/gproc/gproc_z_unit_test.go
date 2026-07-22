@@ -9,6 +9,7 @@
 package gproc_test
 
 import (
+	"io/ioutil"
 	"os"
 	"path/filepath"
 	"testing"
@@ -84,7 +85,9 @@ func Test_Uptime(t *testing.T) {
 
 func Test_SearchBinary_FoundInPath(t *testing.T) {
 	gtest.C(t, func(t *gtest.T) {
-		tempDir := t.TempDir()
+		tempDir, err := ioutil.TempDir("", "gproc-test-")
+		t.AssertNil(err)
+		defer os.RemoveAll(tempDir)
 		tempFile := filepath.Join(tempDir, "testbinary")
 		gfile.Create(tempFile)
 		os.Chmod(tempFile, 0755)
@@ -107,7 +110,9 @@ func Test_SearchBinary_NotFound(t *testing.T) {
 
 func Test_SearchBinaryPath_FoundInPath(t *testing.T) {
 	gtest.C(t, func(t *gtest.T) {
-		tempDir := t.TempDir()
+		tempDir, err := ioutil.TempDir("", "gproc-test-")
+		t.AssertNil(err)
+		defer os.RemoveAll(tempDir)
 		tempFile := filepath.Join(tempDir, "testbinary")
 		gfile.Create(tempFile)
 		os.Chmod(tempFile, 0755)
