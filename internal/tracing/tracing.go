@@ -11,7 +11,7 @@ import (
 	"math"
 	"time"
 
-	"github.com/Mr-ShiHuaYu/otel-go111/trace"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/trace"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/container/gtype"
 	"github.com/Mr-ShiHuaYu/gf/v2/encoding/gbinary"

@@ -7,7 +7,7 @@
 package provider
 
 import (
-	sdkTrace "github.com/Mr-ShiHuaYu/otel-go111/sdk/trace"
+	sdkTrace "github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/sdk/trace"
 )
 
 // TracerProvider is a wrapper around sdkTrace.TracerProvider.

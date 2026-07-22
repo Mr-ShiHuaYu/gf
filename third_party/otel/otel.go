@@ -3,10 +3,10 @@ package otel
 import (
 	"context"
 
-	"github.com/Mr-ShiHuaYu/otel-go111/attribute"
-	"github.com/Mr-ShiHuaYu/otel-go111/codes"
-	"github.com/Mr-ShiHuaYu/otel-go111/propagation"
-	"github.com/Mr-ShiHuaYu/otel-go111/trace"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/attribute"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/codes"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/propagation"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/trace"
 )
 
 var (

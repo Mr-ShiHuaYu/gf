@@ -4,8 +4,8 @@ import (
 	"context"
 	"encoding/hex"
 
-	"github.com/Mr-ShiHuaYu/otel-go111/attribute"
-	"github.com/Mr-ShiHuaYu/otel-go111/codes"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/attribute"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/codes"
 )
 
 type TraceID [16]byte

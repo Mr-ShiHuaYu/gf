@@ -4,7 +4,6 @@ go 1.11
 
 require (
 	github.com/BurntSushi/toml v0.3.1
-	github.com/Mr-ShiHuaYu/otel-go111 v0.20.0
 	github.com/clbanning/mxj/v2 v2.5.0
 	github.com/emirpasic/gods v1.12.0
 	github.com/fatih/color v1.7.0

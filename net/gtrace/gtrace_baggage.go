@@ -9,7 +9,7 @@ package gtrace
 import (
 	"context"
 
-	"github.com/Mr-ShiHuaYu/otel-go111/baggage"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/baggage"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/container/gmap"
 	"github.com/Mr-ShiHuaYu/gf/v2/container/gvar"

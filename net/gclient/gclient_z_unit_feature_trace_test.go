@@ -13,9 +13,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Mr-ShiHuaYu/otel-go111"
-	sdkTrace "github.com/Mr-ShiHuaYu/otel-go111/sdk/trace"
-	"github.com/Mr-ShiHuaYu/otel-go111/trace"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel"
+	sdkTrace "github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/sdk/trace"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/trace"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
 	"github.com/Mr-ShiHuaYu/gf/v2/internal/tracing"

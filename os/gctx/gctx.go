@@ -12,8 +12,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/Mr-ShiHuaYu/otel-go111"
-	"github.com/Mr-ShiHuaYu/otel-go111/propagation"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/propagation"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/net/gtrace"
 )

@@ -11,8 +11,8 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"github.com/Mr-ShiHuaYu/otel-go111"
-	"github.com/Mr-ShiHuaYu/otel-go111/trace"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/trace"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/net/gtrace"
 	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"

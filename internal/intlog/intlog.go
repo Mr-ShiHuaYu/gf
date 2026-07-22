@@ -14,7 +14,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/Mr-ShiHuaYu/otel-go111/trace"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/trace"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/debug/gdebug"
 	"github.com/Mr-ShiHuaYu/gf/v2/internal/utils"

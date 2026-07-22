@@ -17,9 +17,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/Mr-ShiHuaYu/otel-go111/attribute"
-	"github.com/Mr-ShiHuaYu/otel-go111/codes"
-	"github.com/Mr-ShiHuaYu/otel-go111/trace"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/attribute"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/codes"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/trace"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/internal/utils"
 	"github.com/Mr-ShiHuaYu/gf/v2/net/gtrace"
