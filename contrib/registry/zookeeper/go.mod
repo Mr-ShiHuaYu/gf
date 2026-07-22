@@ -8,30 +8,11 @@ require (
 	golang.org/x/sync v0.7.0
 )
 
-require (
-	github.com/BurntSushi/toml v1.5.0 // indirect
-	github.com/clbanning/mxj/v2 v2.7.0 // indirect
-	github.com/emirpasic/gods v1.18.1 // indirect
-	github.com/fatih/color v1.18.0 // indirect
-	github.com/fsnotify/fsnotify v1.9.0 // indirect
-	github.com/gorilla/websocket v1.5.3 // indirect
-	github.com/magiconair/properties v1.8.10 // indirect
-	github.com/mattn/go-runewidth v0.0.16 // indirect
-	github.com/olekukonko/errors v1.1.0 // indirect
-	github.com/olekukonko/ll v0.0.9 // indirect
-	github.com/olekukonko/tablewriter v1.1.0 // indirect
-	github.com/rivo/uniseg v0.4.7 // indirect
-	go.opentelemetry.io/otel/sdk v1.38.0 // indirect
-	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
-	golang.org/x/net v0.43.0 // indirect
-	golang.org/x/text v0.28.0 // indirect
-)
-
 replace (
 	github.com/BurntSushi/toml => github.com/BurntSushi/toml v0.3.1
-	github.com/Mr-ShiHuaYu/gf/v2 => ../../../
 	github.com/clbanning/mxj/v2 => github.com/clbanning/mxj/v2 v2.5.0
 	github.com/emirpasic/gods => github.com/emirpasic/gods v1.18.1
+	github.com/fatih/color => github.com/fatih/color v1.7.0
 	github.com/fsnotify/fsnotify => github.com/fsnotify/fsnotify v1.4.7
 	github.com/gorilla/websocket => github.com/gorilla/websocket v1.4.2
 	github.com/grokify/html-strip-tags-go => github.com/grokify/html-strip-tags-go v0.0.1

@@ -10,7 +10,6 @@ require (
 
 replace (
 	github.com/BurntSushi/toml => github.com/BurntSushi/toml v0.3.1
-	github.com/Mr-ShiHuaYu/gf/v2 => ../../../
 	github.com/clbanning/mxj/v2 => github.com/clbanning/mxj/v2 v2.5.0
 	github.com/emirpasic/gods => github.com/emirpasic/gods v1.18.1
 	github.com/fsnotify/fsnotify => github.com/fsnotify/fsnotify v1.4.7
