@@ -315,7 +315,12 @@ func (tree *BTree) String() string {
 func (tree *BTree) MarshalJSON() (jsonBytes []byte, err error) {
 	tree.mu.RLock()
 	defer tree.mu.RUnlock()
-	return json.Marshal(tree.Map())
+	elements := make(map[string]interface{})
+	tree.IteratorAsc(func(key, value interface{}) bool {
+		elements[gconv.String(key)] = value
+		return true
+	})
+	return json.Marshal(elements)
 }
 
 // Iterator is alias of IteratorAsc.

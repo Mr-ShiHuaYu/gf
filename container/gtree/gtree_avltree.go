@@ -295,7 +295,12 @@ func (tree *AVLTree) String() string {
 func (tree *AVLTree) MarshalJSON() (jsonBytes []byte, err error) {
 	tree.mu.RLock()
 	defer tree.mu.RUnlock()
-	return json.Marshal(tree.Map())
+	elements := make(map[string]interface{})
+	tree.IteratorAsc(func(key, value interface{}) bool {
+		elements[gconv.String(key)] = value
+		return true
+	})
+	return json.Marshal(elements)
 }
 
 // Map returns all key-value pairs as map.
