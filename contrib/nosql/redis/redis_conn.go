@@ -11,11 +11,11 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/redis/go-redis/v9"
-	"github.com/Mr-ShiHuaYu/otel-go111"
-	"github.com/Mr-ShiHuaYu/otel-go111/attribute"
-	"github.com/Mr-ShiHuaYu/otel-go111/codes"
-	"github.com/Mr-ShiHuaYu/otel-go111/trace"
+	"github.com/go-redis/redis/v7"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/attribute"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/codes"
+	"github.com/Mr-ShiHuaYu/gf/v2/third_party/otel/trace"
 
 	"github.com/Mr-ShiHuaYu/gf/v2"
 	"github.com/Mr-ShiHuaYu/gf/v2/container/gvar"
@@ -103,14 +103,14 @@ func (c *Conn) doCommand(ctx context.Context, command string, args ...interface{
 	argStrSlice := gconv.Strings(args)
 	switch gstr.ToLower(command) {
 	case `subscribe`:
-		c.ps = c.redis.client.Subscribe(ctx, argStrSlice...)
+		c.ps = c.redis.client.Subscribe(argStrSlice...)
 
 	case `psubscribe`:
-		c.ps = c.redis.client.PSubscribe(ctx, argStrSlice...)
+		c.ps = c.redis.client.PSubscribe(argStrSlice...)
 
 	case `unsubscribe`:
 		if c.ps != nil {
-			err = c.ps.Unsubscribe(ctx, argStrSlice...)
+			err = c.ps.Unsubscribe(argStrSlice...)
 			if err != nil {
 				err = gerror.Wrapf(err, `Redis PubSub Unsubscribe failed with arguments "%v"`, argStrSlice)
 			}
@@ -118,7 +118,7 @@ func (c *Conn) doCommand(ctx context.Context, command string, args ...interface{
 
 	case `punsubscribe`:
 		if c.ps != nil {
-			err = c.ps.PUnsubscribe(ctx, argStrSlice...)
+			err = c.ps.PUnsubscribe(argStrSlice...)
 			if err != nil {
 				err = gerror.Wrapf(err, `Redis PubSub PUnsubscribe failed with arguments "%v"`, argStrSlice)
 			}
@@ -128,7 +128,7 @@ func (c *Conn) doCommand(ctx context.Context, command string, args ...interface{
 		arguments := make([]interface{}, len(args)+1)
 		copy(arguments, []interface{}{command})
 		copy(arguments[1:], args)
-		reply, err = c.resultToVar(c.redis.client.Do(ctx, arguments...).Result())
+		reply, err = c.resultToVar(c.redis.client.DoContext(ctx, arguments...).Result())
 		if err != nil {
 			err = gerror.Wrapf(err, `Redis Client Do failed with arguments "%v"`, arguments)
 		}
@@ -151,10 +151,9 @@ func (c *Conn) resultToVar(result interface{}, err error) (*gvar.Var, error) {
 
 		case *redis.Message:
 			result = &gredis.Message{
-				Channel:      v.Channel,
-				Pattern:      v.Pattern,
-				Payload:      v.Payload,
-				PayloadSlice: v.PayloadSlice,
+				Channel: v.Channel,
+				Pattern: v.Pattern,
+				Payload: v.Payload,
 			}
 
 		case *redis.Subscription:
@@ -172,7 +171,7 @@ func (c *Conn) resultToVar(result interface{}, err error) (*gvar.Var, error) {
 // Receive receives a single reply as gvar.Var from the Redis server.
 func (c *Conn) Receive(ctx context.Context) (*gvar.Var, error) {
 	if c.ps != nil {
-		v, err := c.resultToVar(c.ps.Receive(ctx))
+		v, err := c.resultToVar(c.ps.Receive())
 		if err != nil {
 			err = gerror.Wrapf(err, `Redis PubSub Receive failed`)
 		}

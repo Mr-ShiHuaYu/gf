@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	goredis "github.com/redis/go-redis/v9"
+	goredis "github.com/go-redis/redis/v7"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/container/gvar"
 	"github.com/Mr-ShiHuaYu/gf/v2/database/gredis"
@@ -40,62 +40,51 @@ func Test_Client(t *testing.T) {
 		t.AssertNE(redis, nil)
 		defer redis.Close(ctx)
 
-		// Test getting the client
 		client := redis.Client()
 		t.AssertNE(client, nil)
 
-		// Test type assertion to goredis.UniversalClient
 		universalClient, ok := client.(goredis.UniversalClient)
 		t.Assert(ok, true)
 		t.AssertNE(universalClient, nil)
 
-		// Test that we can use the client directly for redis operations
-		// This demonstrates that the returned client is properly configured
-		result := universalClient.Set(ctx, "test-client-key", "test-value", 0)
+		result := universalClient.Set("test-client-key", "test-value", 0)
 		t.AssertNil(result.Err())
 
-		getResult := universalClient.Get(ctx, "test-client-key")
+		getResult := universalClient.Get("test-client-key")
 		t.AssertNil(getResult.Err())
 		t.Assert(getResult.Val(), "test-value")
 
-		// Clean up
-		delResult := universalClient.Del(ctx, "test-client-key")
+		delResult := universalClient.Del("test-client-key")
 		t.AssertNil(delResult.Err())
 
-		// Test Pipeline functionality
 		pipe := universalClient.Pipeline()
 		t.AssertNE(pipe, nil)
 
-		// Add multiple commands to the pipeline
-		pipe.Set(ctx, "pipeline-key1", "value1", 0)
-		pipe.Set(ctx, "pipeline-key2", "value2", 0)
-		pipe.Set(ctx, "pipeline-key3", "value3", 0)
-		pipe.Get(ctx, "pipeline-key1")
-		pipe.Get(ctx, "pipeline-key2")
-		pipe.Get(ctx, "pipeline-key3")
+		pipe.Set("pipeline-key1", "value1", 0)
+		pipe.Set("pipeline-key2", "value2", 0)
+		pipe.Set("pipeline-key3", "value3", 0)
+		pipe.Get("pipeline-key1")
+		pipe.Get("pipeline-key2")
+		pipe.Get("pipeline-key3")
 
-		// Execute the pipeline
-		results, err := pipe.Exec(ctx)
+		results, err := pipe.Exec()
 		t.AssertNil(err)
-		t.Assert(len(results), 6) // 3 SET commands + 3 GET commands
+		t.Assert(len(results), 6)
 
-		// Verify the SET results
-		for i := range 3 {
+		for i := 0; i < 3; i++ {
 			t.AssertNil(results[i].Err())
 		}
 
-		// Verify the GET results
 		getResults := results[3:]
 		t.Assert(getResults[0].(*goredis.StringCmd).Val(), "value1")
 		t.Assert(getResults[1].(*goredis.StringCmd).Val(), "value2")
 		t.Assert(getResults[2].(*goredis.StringCmd).Val(), "value3")
 
-		// Clean up pipeline test keys
 		cleanupPipe := universalClient.Pipeline()
-		cleanupPipe.Del(ctx, "pipeline-key1")
-		cleanupPipe.Del(ctx, "pipeline-key2")
-		cleanupPipe.Del(ctx, "pipeline-key3")
-		_, err = cleanupPipe.Exec(ctx)
+		cleanupPipe.Del("pipeline-key1")
+		cleanupPipe.Del("pipeline-key2")
+		cleanupPipe.Del("pipeline-key3")
+		_, err = cleanupPipe.Exec()
 		t.AssertNil(err)
 	})
 }
