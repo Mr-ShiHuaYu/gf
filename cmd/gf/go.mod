@@ -42,4 +42,11 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/olekukonko/tablewriter => github.com/olekukonko/tablewriter v0.0.5
+replace (
+	github.com/Mr-ShiHuaYu/gf/contrib/drivers/mssql/v2 => ../../contrib/drivers/mssql
+	github.com/Mr-ShiHuaYu/gf/contrib/drivers/mysql/v2 => ../../contrib/drivers/mysql
+	github.com/Mr-ShiHuaYu/gf/contrib/drivers/pgsql/v2 => ../../contrib/drivers/pgsql
+	github.com/Mr-ShiHuaYu/gf/contrib/drivers/sqlitecgo/v2 => ../../contrib/drivers/sqlitecgo
+	github.com/Mr-ShiHuaYu/gf/v2 => ../..
+	github.com/olekukonko/tablewriter => github.com/olekukonko/tablewriter v0.0.5
+)

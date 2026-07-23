@@ -21,7 +21,7 @@ import (
 	"github.com/Mr-ShiHuaYu/gf/v2/os/gtime"
 	"github.com/Mr-ShiHuaYu/gf/v2/test/gtest"
 
-	"github.com/gogf/gf/contrib/drivers/mssql/v2"
+	"github.com/Mr-ShiHuaYu/gf/contrib/drivers/mssql/v2"
 )
 
 func TestTables(t *testing.T) {

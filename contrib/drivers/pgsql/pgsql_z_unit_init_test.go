@@ -10,7 +10,7 @@ import (
 	"context"
 	"fmt"
 
-	_ "github.com/gogf/gf/contrib/drivers/pgsql/v2"
+	_ "github.com/Mr-ShiHuaYu/gf/contrib/drivers/pgsql/v2"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/container/garray"
 	"github.com/Mr-ShiHuaYu/gf/v2/database/gdb"

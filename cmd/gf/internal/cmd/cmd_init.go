@@ -45,8 +45,8 @@ const (
 	cInitForkVersion = `v2.9.4-go111`
 	// cInitGoVersion is the go version used in generated projects.
 	cInitGoVersion = `1.11`
-	cInitBrief       = `create and initialize an empty GoFrame project`
-	cInitEg          = `
+	cInitBrief     = `create and initialize an empty GoFrame project`
+	cInitEg        = `
 gf init my-project
 gf init my-mono-repo -m
 gf init my-mono-repo -a
@@ -159,10 +159,37 @@ func (c cInit) Index(ctx context.Context, in cInitInput) (out *cInitOutput, err 
 		c = gstr.Replace(c, cInitForkRepo+`/v2 v2.7.1`, cInitForkRepo+`/v2 `+cInitForkVersion)
 		// Replace go version in go.mod.
 		c = gstr.Replace(c, "\ngo 1.18\n", "\ngo "+cInitGoVersion+"\n")
+		// Add replace directives for compatibility with go 1.11
+		if gfile.Ext(path) == ".mod" {
+			replaceBlock := `
+
+replace (
+	github.com/BurntSushi/toml => github.com/BurntSushi/toml v0.3.1
+	github.com/clbanning/mxj/v2 => github.com/clbanning/mxj/v2 v2.5.0
+	github.com/fsnotify/fsnotify => github.com/fsnotify/fsnotify v1.4.7
+	github.com/gorilla/websocket => github.com/gorilla/websocket v1.4.2
+	github.com/grokify/html-strip-tags-go => github.com/grokify/html-strip-tags-go v0.0.1
+	github.com/magiconair/properties => github.com/magiconair/properties v1.8.0
+	golang.org/x/net => golang.org/x/net v0.0.0-20200202094626-16171245cfb2
+	golang.org/x/sys => golang.org/x/sys v0.0.0-20200202164722-d101bd2416d5
+	golang.org/x/text => golang.org/x/text v0.3.2
+)`
+			c += replaceBlock
+		}
 		return c
 	}, in.Name, "*", true)
 	if err != nil {
 		return
+	}
+
+	// Remove go.sum file since it contains references to the original gogf/gf module
+	// which will cause dependency mismatches after module path replacement.
+	// The go.sum will be regenerated automatically when the user runs go run/go build.
+	goSumPath := in.Name + "/go.sum"
+	if gfile.Exists(goSumPath) {
+		if err = gfile.Remove(goSumPath); err != nil {
+			return
+		}
 	}
 
 	// Update the GoFrame version.
