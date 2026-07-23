@@ -15,7 +15,7 @@ import (
 	"github.com/Mr-ShiHuaYu/gf/v2/util/guid"
 	"github.com/Mr-ShiHuaYu/gf/v2/util/gutil"
 
-	"github.com/gogf/gf/cmd/gf/v2/internal/cmd/genctrl"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/cmd/genctrl"
 )
 
 func Test_Gen_Ctrl_Default(t *testing.T) {

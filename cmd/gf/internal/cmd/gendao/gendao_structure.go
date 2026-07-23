@@ -41,8 +41,9 @@ func generateStructDefinition(ctx context.Context, in generateStructDefinitionIn
 			appendImports = append(appendImports, imports)
 		}
 	}
-	table := tablewriter.NewTable(buffer, twRenderer, twConfig)
-	table.Bulk(array)
+	table := tablewriter.NewWriter(buffer)
+	table.SetCenterSeparator("|")
+	table.AppendBulk(array)
 	table.Render()
 	stContent := buffer.String()
 	// Let's do this hack of table writer for indent!

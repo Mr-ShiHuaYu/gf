@@ -11,9 +11,6 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/olekukonko/tablewriter"
-	"github.com/olekukonko/tablewriter/renderer"
-	"github.com/olekukonko/tablewriter/tw"
 	"golang.org/x/mod/modfile"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/container/garray"
@@ -27,8 +24,8 @@ import (
 	"github.com/Mr-ShiHuaYu/gf/v2/text/gregex"
 	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/mlog"
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/utils"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/mlog"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/utils"
 )
 
 type (
@@ -102,20 +99,6 @@ var (
 			Type: "float64",
 		},
 	}
-
-	// tablewriter Options
-	twRenderer = tablewriter.WithRenderer(renderer.NewBlueprint(tw.Rendition{
-		Borders: tw.Border{Top: tw.Off, Bottom: tw.Off, Left: tw.Off, Right: tw.Off},
-		Settings: tw.Settings{
-			Separators: tw.Separators{BetweenRows: tw.Off, BetweenColumns: tw.Off},
-		},
-		Symbols: tw.NewSymbols(tw.StyleASCII),
-	}))
-	twConfig = tablewriter.WithConfig(tablewriter.Config{
-		Row: tw.CellConfig{
-			Formatting: tw.CellFormatting{AutoWrap: tw.WrapNone},
-		},
-	})
 )
 
 func (c CGenDao) Dao(ctx context.Context, in CGenDaoInput) (out *CGenDaoOutput, err error) {

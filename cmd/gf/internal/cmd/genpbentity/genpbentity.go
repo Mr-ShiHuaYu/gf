@@ -15,8 +15,6 @@ import (
 	"strings"
 
 	"github.com/olekukonko/tablewriter"
-	"github.com/olekukonko/tablewriter/renderer"
-	"github.com/olekukonko/tablewriter/tw"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/container/garray"
 	"github.com/Mr-ShiHuaYu/gf/v2/container/gset"
@@ -30,9 +28,9 @@ import (
 	"github.com/Mr-ShiHuaYu/gf/v2/util/gconv"
 	"github.com/Mr-ShiHuaYu/gf/v2/util/gtag"
 
-	"github.com/gogf/gf/cmd/gf/v2/internal/consts"
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/mlog"
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/utils"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/consts"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/mlog"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/utils"
 )
 
 type (
@@ -445,21 +443,10 @@ func generateEntityMessageDefinition(entityName string, fieldMap map[string]*gdb
 			appendImports = append(appendImports, imports)
 		}
 	}
-	table := tablewriter.NewTable(buffer,
-		tablewriter.WithRenderer(renderer.NewBlueprint(tw.Rendition{
-			Borders: tw.Border{Top: tw.Off, Bottom: tw.Off, Left: tw.On, Right: tw.Off},
-			Settings: tw.Settings{
-				Separators: tw.Separators{BetweenRows: tw.Off, BetweenColumns: tw.Off},
-			},
-			Symbols: tw.NewSymbolCustom("Proto").WithColumn(" "),
-		})),
-		tablewriter.WithConfig(tablewriter.Config{
-			Row: tw.CellConfig{
-				Formatting: tw.CellFormatting{AutoWrap: tw.WrapNone},
-			},
-		}),
-	)
-	table.Bulk(array)
+	table := tablewriter.NewWriter(buffer)
+	table.SetRowLine(true)
+	table.SetCenterSeparator("|")
+	table.AppendBulk(array)
 	table.Render()
 	stContent := buffer.String()
 	// Let's do this hack of table writer for indent!

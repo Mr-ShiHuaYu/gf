@@ -21,9 +21,9 @@ import (
 	"github.com/Mr-ShiHuaYu/gf/v2/os/gview"
 	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 
-	"github.com/gogf/gf/cmd/gf/v2/internal/consts"
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/mlog"
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/utils"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/consts"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/mlog"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/utils"
 )
 
 func generateDao(ctx context.Context, in CGenDaoInternalInput) {
@@ -211,8 +211,9 @@ func generateColumnNamesForDao(fieldMap map[string]*gdb.TableField, removeFieldP
 			fmt.Sprintf(` #"%s",`, field.Name),
 		}
 	}
-	table := tablewriter.NewTable(buffer, twRenderer, twConfig)
-	table.Bulk(array)
+	table := tablewriter.NewWriter(buffer)
+	table.SetCenterSeparator("|")
+	table.AppendBulk(array)
 	table.Render()
 	namesContent := buffer.String()
 	// Let's do this hack of table writer for indent!
@@ -248,8 +249,9 @@ func generateColumnDefinitionForDao(fieldMap map[string]*gdb.TableField, removeF
 			" #" + fmt.Sprintf(`// %s`, comment),
 		}
 	}
-	table := tablewriter.NewTable(buffer, twRenderer, twConfig)
-	table.Bulk(array)
+	table := tablewriter.NewWriter(buffer)
+	table.SetCenterSeparator("|")
+	table.AppendBulk(array)
 	table.Render()
 	defineContent := buffer.String()
 	// Let's do this hack of table writer for indent!

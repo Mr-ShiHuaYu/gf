@@ -9,9 +9,8 @@ package cmd
 import (
 	"context"
 	"fmt"
+	"os"
 	"runtime"
-
-	"github.com/gogf/selfupdate"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/container/gset"
 	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
@@ -21,8 +20,8 @@ import (
 	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 	"github.com/Mr-ShiHuaYu/gf/v2/util/gtag"
 
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/mlog"
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/utils"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/mlog"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/utils"
 )
 
 var (
@@ -61,7 +60,7 @@ type cUpInput struct {
 	CliDownloadingMethod string `name:"cli-download-method" short:"m" brief:"cli upgrade method: http=download binary via HTTP GET, install=upgrade via go install" d:"http"`
 	// CliModulePath specifies the module path for CLI installation via go install.
 	// This is used when CliDownloadingMethod is set to "install".
-	CliModulePath string `name:"cli-module-path" short:"p" brief:"custom cli module path for upgrade CLI tool with go install method" d:"github.com/gogf/gf/cmd/gf/v2@latest"`
+	CliModulePath string `name:"cli-module-path" short:"p" brief:"custom cli module path for upgrade CLI tool with go install method" d:"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2@latest"`
 }
 
 type cUpOutput struct{}
@@ -228,9 +227,15 @@ func (c cUp) doUpgradeCLIWithHttpDownload(ctx context.Context) (err error) {
 	if err != nil {
 		return err
 	}
-	// selfupdate
-	err = selfupdate.Apply(newFile, selfupdate.Options{})
+	// Simple self-update: replace current binary with the downloaded one.
+	execPath, err := os.Executable()
 	if err != nil {
+		return err
+	}
+	if err = newFile.Close(); err != nil {
+		return err
+	}
+	if err = gfile.Copy(localSaveFilePath, execPath); err != nil {
 		return err
 	}
 	return
@@ -263,9 +268,15 @@ func (c cUp) doUpgradeCLIWithGoInstall(ctx context.Context, in cUpInput) (err er
 	if err != nil {
 		return err
 	}
-	// selfupdate
-	err = selfupdate.Apply(newFile, selfupdate.Options{})
+	// Simple self-update: replace current binary with the newly installed one.
+	execPath, err := os.Executable()
 	if err != nil {
+		return err
+	}
+	if err = newFile.Close(); err != nil {
+		return err
+	}
+	if err = gfile.Copy(cliFilePath, execPath); err != nil {
 		return err
 	}
 	return

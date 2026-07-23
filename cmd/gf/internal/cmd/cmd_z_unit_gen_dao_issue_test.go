@@ -20,7 +20,7 @@ import (
 	"github.com/Mr-ShiHuaYu/gf/v2/util/guid"
 	"github.com/Mr-ShiHuaYu/gf/v2/util/gutil"
 
-	"github.com/gogf/gf/cmd/gf/v2/internal/cmd/gendao"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/cmd/gendao"
 )
 
 // https://github.com/gogf/gf/issues/2572

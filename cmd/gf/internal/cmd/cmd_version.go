@@ -23,7 +23,7 @@ import (
 	"github.com/Mr-ShiHuaYu/gf/v2/text/gregex"
 	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/mlog"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/mlog"
 )
 
 var (
@@ -111,7 +111,7 @@ func getGoFrameVersion(indentLevel int) (gfVersion string) {
 	}
 	pkgList := gstr.Split(pkgInfo, "\n")
 	for _, v := range pkgList {
-		if strings.HasPrefix(v, "github.com/gogf/gf") {
+		if strings.HasPrefix(v, "github.com/Mr-ShiHuaYu/gf") {
 			gfVersion += fmt.Sprintf("\n%s%s", strings.Repeat(defaultIndent, indentLevel), v)
 		}
 	}
@@ -139,13 +139,13 @@ func (c cVersion) getGFVersionOfCurrentProject() (string, error) {
 			line = gstr.TrimLeftStr(line, "require ")
 			line = gstr.Trim(line)
 			// Version 1.
-			match, err := gregex.MatchString(`^github\.com/gogf/gf\s+(.+)$`, line)
+			match, err := gregex.MatchString(`^github\.com/Mr-ShiHuaYu/gf\s+(.+)$`, line)
 			if err != nil {
 				return "", err
 			}
 			if len(match) <= 1 {
 				// Version > 1.
-				match, err = gregex.MatchString(`^github\.com/gogf/gf/v\d\s+(.+)$`, line)
+				match, err = gregex.MatchString(`^github\.com/Mr-ShiHuaYu/gf/v\d\s+(.+)$`, line)
 				if err != nil {
 					return "", err
 				}

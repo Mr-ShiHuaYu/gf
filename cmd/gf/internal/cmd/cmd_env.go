@@ -11,15 +11,13 @@ import (
 	"context"
 
 	"github.com/olekukonko/tablewriter"
-	"github.com/olekukonko/tablewriter/renderer"
-	"github.com/olekukonko/tablewriter/tw"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/frame/g"
 	"github.com/Mr-ShiHuaYu/gf/v2/os/gproc"
 	"github.com/Mr-ShiHuaYu/gf/v2/text/gregex"
 	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/mlog"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/mlog"
 )
 
 var (
@@ -63,22 +61,10 @@ func (c cEnv) Index(ctx context.Context, in cEnvInput) (out *cEnvOutput, err err
 		}
 		array = append(array, []string{gstr.Trim(match[1]), gstr.Trim(match[2])})
 	}
-	table := tablewriter.NewTable(buffer,
-		tablewriter.WithRenderer(renderer.NewBlueprint(tw.Rendition{
-			Settings: tw.Settings{
-				Separators: tw.Separators{BetweenRows: tw.Off, BetweenColumns: tw.On},
-			},
-			Symbols: tw.NewSymbols(tw.StyleASCII),
-		})),
-		tablewriter.WithConfig(tablewriter.Config{
-			Row: tw.CellConfig{
-				Formatting:   tw.CellFormatting{AutoWrap: tw.WrapNone},
-				Alignment:    tw.CellAlignment{PerColumn: []tw.Align{tw.AlignLeft, tw.AlignLeft}},
-				ColMaxWidths: tw.CellWidth{Global: 84},
-			},
-		}),
-	)
-	table.Bulk(array)
+	table := tablewriter.NewWriter(buffer)
+	table.SetRowLine(true)
+	table.SetCenterSeparator("|")
+	table.AppendBulk(array)
 	table.Render()
 	mlog.Print(buffer.String())
 	return

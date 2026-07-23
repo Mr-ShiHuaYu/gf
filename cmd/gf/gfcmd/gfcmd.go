@@ -11,7 +11,7 @@ import (
 	"context"
 	"runtime"
 
-	_ "github.com/gogf/gf/cmd/gf/v2/internal/packed"
+	_ "github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/packed"
 
 	"github.com/Mr-ShiHuaYu/gf/v2/errors/gcode"
 	"github.com/Mr-ShiHuaYu/gf/v2/errors/gerror"
@@ -21,9 +21,9 @@ import (
 	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
 	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 
-	"github.com/gogf/gf/cmd/gf/v2/internal/cmd"
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/allyes"
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/mlog"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/cmd"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/allyes"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/mlog"
 )
 
 const cliFolderName = `hack`

@@ -17,8 +17,8 @@ import (
 	"github.com/Mr-ShiHuaYu/gf/v2/text/gregex"
 	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 
-	"github.com/gogf/gf/cmd/gf/v2/internal/consts"
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/mlog"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/consts"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/mlog"
 )
 
 // GoFmt formats the source file and adds or removes import statements as necessary.
@@ -69,7 +69,7 @@ func ReplaceGeneratedContentGFV2(folderPath string) (err error) {
 		if gstr.Contains(content, `"github.com/gogf/gf`) && !gstr.Contains(content, `"github.com/Mr-ShiHuaYu/gf/v2`) {
 			content = gstr.Replace(content, `"github.com/gogf/gf"`, `"github.com/Mr-ShiHuaYu/gf/v2"`)
 			content = gstr.Replace(content, `"github.com/gogf/gf/`, `"github.com/Mr-ShiHuaYu/gf/v2/`)
-			content = gstr.Replace(content, `"github.com/Mr-ShiHuaYu/gf/v2/contrib/`, `"github.com/gogf/gf/contrib/`)
+			content = gstr.Replace(content, `"github.com/Mr-ShiHuaYu/gf/v2/contrib/`, `"github.com/Mr-ShiHuaYu/gf/contrib/`)
 			return content
 		}
 		return content

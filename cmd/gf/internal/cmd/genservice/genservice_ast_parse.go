@@ -198,7 +198,7 @@ func (c CGenService) parseImportPackages(node *ast.ImportSpec) (packages pkgItem
 }
 
 // getRealAlias retrieves the real alias of the package.
-// If package is "github.com/gogf/gf", the alias is "gf".
+// If package is "github.com/Mr-ShiHuaYu/gf", the alias is "gf".
 // If package is "github.com/Mr-ShiHuaYu/gf/v2", the alias is "gf" instead of "v2".
 func (c CGenService) getRealAlias(importPath string) (pkgName string) {
 	importPath = gstr.Trim(importPath, `"`)

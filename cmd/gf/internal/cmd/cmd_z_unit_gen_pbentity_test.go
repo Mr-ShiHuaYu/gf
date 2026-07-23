@@ -17,7 +17,7 @@ import (
 	"github.com/Mr-ShiHuaYu/gf/v2/util/guid"
 	"github.com/Mr-ShiHuaYu/gf/v2/util/gutil"
 
-	"github.com/gogf/gf/cmd/gf/v2/internal/cmd/genpbentity"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/cmd/genpbentity"
 )
 
 func Test_Gen_Pbentity_Default(t *testing.T) {

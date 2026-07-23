@@ -15,9 +15,9 @@ import (
 	"github.com/Mr-ShiHuaYu/gf/v2/os/gfile"
 	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 
-	"github.com/gogf/gf/cmd/gf/v2/internal/consts"
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/mlog"
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/utils"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/consts"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/mlog"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/utils"
 )
 
 type generateServiceFilesInput struct {

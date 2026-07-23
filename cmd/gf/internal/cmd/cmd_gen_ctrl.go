@@ -7,7 +7,7 @@
 package cmd
 
 import (
-	"github.com/gogf/gf/cmd/gf/v2/internal/cmd/genctrl"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/cmd/genctrl"
 )
 
 type (

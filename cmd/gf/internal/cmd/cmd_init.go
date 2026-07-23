@@ -20,9 +20,9 @@ import (
 	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 	"github.com/Mr-ShiHuaYu/gf/v2/util/gtag"
 
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/allyes"
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/mlog"
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/utils"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/allyes"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/mlog"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/utils"
 )
 
 var (
@@ -39,6 +39,12 @@ const (
 	cInitMonoRepo    = `template-mono`
 	cInitMonoRepoApp = `template-mono-app`
 	cInitSingleRepo  = `template-single`
+	// cInitForkRepo is the fork repository prefix used in generated projects.
+	cInitForkRepo = `github.com/Mr-ShiHuaYu/gf`
+	// cInitForkVersion is the fork version used in generated projects.
+	cInitForkVersion = `v2.9.4-go111`
+	// cInitGoVersion is the go version used in generated projects.
+	cInitGoVersion = `1.11`
 	cInitBrief       = `create and initialize an empty GoFrame project`
 	cInitEg          = `
 gf init my-project
@@ -136,14 +142,24 @@ func (c cInit) Index(ctx context.Context, in cInitInput) (out *cInitOutput, err 
 		in.Module = utils.GetImportPath(pwd)
 	}
 
-	// Replace template name to project name.
+	// Replace template name to project name and switch to fork repository.
 	err = gfile.ReplaceDirFunc(func(path, content string) string {
 		for _, ignoreFile := range ignoreFiles {
 			if strings.Contains(path, ignoreFile) {
 				return content
 			}
 		}
-		return gstr.Replace(gfile.GetContents(path), cInitRepoPrefix+templateRepoName, in.Module)
+		c := gfile.GetContents(path)
+		// Replace template module name with user's module name.
+		c = gstr.Replace(c, cInitRepoPrefix+templateRepoName, in.Module)
+		// Replace gogf references with fork repository.
+		c = gstr.Replace(c, `github.com/gogf/gf/v2`, cInitForkRepo+`/v2`)
+		c = gstr.Replace(c, `github.com/gogf/gf/`, cInitForkRepo+`/`)
+		// Replace gogf version with fork version in go.mod.
+		c = gstr.Replace(c, cInitForkRepo+`/v2 v2.7.1`, cInitForkRepo+`/v2 `+cInitForkVersion)
+		// Replace go version in go.mod.
+		c = gstr.Replace(c, "\ngo 1.18\n", "\ngo "+cInitGoVersion+"\n")
+		return c
 	}, in.Name, "*", true)
 	if err != nil {
 		return
@@ -152,8 +168,8 @@ func (c cInit) Index(ctx context.Context, in cInitInput) (out *cInitOutput, err 
 	// Update the GoFrame version.
 	if in.Update {
 		mlog.Print("update goframe...")
-		// go get -u github.com/Mr-ShiHuaYu/gf/v2@latest
-		updateCommand := `go get -u github.com/Mr-ShiHuaYu/gf/v2@latest`
+		// go get -u github.com/Mr-ShiHuaYu/gf/v2@v2.9.4-go111
+		updateCommand := `go get -u github.com/Mr-ShiHuaYu/gf/v2@` + cInitForkVersion
 		if in.Name != "." {
 			updateCommand = fmt.Sprintf(`cd %s && %s`, in.Name, updateCommand)
 		}

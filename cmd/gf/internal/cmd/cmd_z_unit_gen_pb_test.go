@@ -15,7 +15,7 @@ import (
 	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 	"github.com/Mr-ShiHuaYu/gf/v2/util/guid"
 
-	"github.com/gogf/gf/cmd/gf/v2/internal/cmd/genpb"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/cmd/genpb"
 )
 
 func TestGenPbIssue3882(t *testing.T) {

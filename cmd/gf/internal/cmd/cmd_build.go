@@ -27,7 +27,7 @@ import (
 	"github.com/Mr-ShiHuaYu/gf/v2/text/gstr"
 	"github.com/Mr-ShiHuaYu/gf/v2/util/gtag"
 
-	"github.com/gogf/gf/cmd/gf/v2/internal/utility/mlog"
+	"github.com/Mr-ShiHuaYu/gf/cmd/gf/v2/internal/utility/mlog"
 )
 
 var (
