@@ -1,4 +1,20 @@
 
+### gf CLI 工具安装说明
+
+`gf` CLI 工具（`cmd/gf`）由于使用了 Go 泛型，编译需要 **Go >= 1.23**，但通过 `gf init` 初始化生成的项目可以使用 **Go 1.11.13** 编译和运行。
+
+**注意：本 fork 的 `gf` CLI 工具不能通过 `go install` 远程安装**，因为 `cmd/gf/go.mod` 中使用了本地 `replace` 指令。请使用以下方式从源码安装：
+
+```shell
+git clone https://github.com/Mr-ShiHuaYu/gf.git
+cd gf/cmd/gf
+go install .
+```
+
+编译完成后，`gf` 二进制文件会被安装到 `$GOPATH/bin` 目录下。
+
+---
+
 ## Go 1.11.13 兼容性说明
 
 本分支基于 **GoFrame v2.9.4** 版本修改，兼容 **Go 1.11.13**。
@@ -25,16 +41,15 @@
 
 ### 使用方式
 
-在你的项目 `go.mod` 中添加：
+在你的项目 `go.mod` 中直接添加依赖：
 
 ```go
-replace (
-    github.com/gogf/gf/v2 => /path/to/your/local/gf
-    go.opentelemetry.io/otel => /path/to/your/local/gf/third_party/otel
-)
+require github.com/Mr-ShiHuaYu/gf/v2 v2.9.4-go111.1
 ```
 
-更多依赖降级的 replace 指令请参考项目根目录的 `go.mod`。
+然后执行 `go mod tidy` 即可。
+
+> **提示**：如果遇到依赖版本兼容性问题，可参考项目根目录 `go.mod` 中的 `replace` 指令，将相关依赖锁定到兼容 Go 1.11 的版本。
 
 ---
 

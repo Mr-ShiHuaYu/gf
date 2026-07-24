@@ -4,6 +4,23 @@
 
 ## 1. Install
 
+### Important Notice
+
+**This fork of `gf` CLI tool cannot be installed remotely via `go install`** because the `go.mod` uses local `replace` directives for development compatibility. You must clone the repository and build from source.
+
+- **Build requirement**: Go >= 1.23 (the CLI tool itself uses Go generics)
+- **Generated projects**: Projects created by `gf init` can be compiled and run with Go 1.11.13
+
+### Install from Source (Recommended for this fork)
+
+```shell
+git clone https://github.com/Mr-ShiHuaYu/gf.git
+cd gf/cmd/gf
+go install .
+```
+
+This will compile and install the `gf` binary to your `$GOPATH/bin` directory.
+
 ## 1) PreCompiled Binary
 
 You can also install `gf` tool using pre-built binaries: <https://github.com/Mr-ShiHuaYu/gf/releases>
@@ -40,6 +57,8 @@ You can also install `gf` tool using pre-built binaries: <https://github.com/Mr-
 go install github.com/Mr-ShiHuaYu/gf/cmd/gf/v2@latest # latest version
 go install github.com/Mr-ShiHuaYu/gf/cmd/gf/v2@v2.5.5 # certain version(should be >= v2.5.5)
 ```
+
+> **Note**: The above `go install` remote installation method does not work for this fork due to local `replace` directives in `go.mod`. Please use "Install from Source" instead.
 
 ## 2. Commands
 
