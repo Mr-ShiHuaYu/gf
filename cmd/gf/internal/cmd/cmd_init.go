@@ -42,7 +42,7 @@ const (
 	// cInitForkRepo is the fork repository prefix used in generated projects.
 	cInitForkRepo = `github.com/Mr-ShiHuaYu/gf`
 	// cInitForkVersion is the fork version used in generated projects.
-	cInitForkVersion = `v2.9.4-go111`
+	cInitForkVersion = `v2.9.4-go111.1`
 	// cInitGoVersion is the go version used in generated projects.
 	cInitGoVersion = `1.11`
 	cInitBrief     = `create and initialize an empty GoFrame project`

@@ -4,7 +4,7 @@ go 1.11
 
 require (
 	github.com/Mr-ShiHuaYu/gf/contrib/registry/polaris/v2 v2.8.3
-	github.com/Mr-ShiHuaYu/gf/v2 v2.8.3
+	github.com/Mr-ShiHuaYu/gf/v2 v2.9.4-go111.1
 	github.com/polarismesh/polaris-go v1.6.0
 )
 
@@ -59,13 +59,7 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-
-
-
 replace (
-	github.com/Mr-ShiHuaYu/gf/v2 => /workspace
-	github.com/Mr-ShiHuaYu/gf/contrib/nosql/redis/v2 => /workspace/contrib/nosql/redis
-	github.com/Mr-ShiHuaYu/gf/contrib/registry/file/v2 => /workspace/contrib/registry/file
 	github.com/grokify/html-strip-tags-go => github.com/grokify/html-strip-tags-go v0.0.1
 	golang.org/x/crypto => golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2
 	golang.org/x/net => golang.org/x/net v0.0.0-20200202094626-16171245cfb2

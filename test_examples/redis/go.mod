@@ -1,6 +1,8 @@
 module test-redis
 
-go 1.11
+go 1.24
+
+toolchain go1.24.13
 
 require (
 	github.com/Mr-ShiHuaYu/gf/contrib/nosql/redis/v2 v2.10.2

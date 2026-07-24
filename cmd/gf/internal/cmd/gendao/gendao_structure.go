@@ -42,7 +42,10 @@ func generateStructDefinition(ctx context.Context, in generateStructDefinitionIn
 		}
 	}
 	table := tablewriter.NewWriter(buffer)
-	table.SetCenterSeparator("|")
+	table.SetBorder(false)
+	table.SetRowLine(false)
+	table.SetAutoWrapText(false)
+	table.SetColumnSeparator("")
 	table.AppendBulk(array)
 	table.Render()
 	stContent := buffer.String()

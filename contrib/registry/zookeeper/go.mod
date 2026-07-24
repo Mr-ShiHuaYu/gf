@@ -3,7 +3,7 @@ module github.com/Mr-ShiHuaYu/gf/contrib/registry/zookeeper/v2
 go 1.11
 
 require (
-	github.com/Mr-ShiHuaYu/gf/v2 v2.9.4-go111
+	github.com/Mr-ShiHuaYu/gf/v2 v2.9.4-go111.1
 	github.com/go-zookeeper/zk v1.0.0
 	golang.org/x/sync v0.7.0
 )

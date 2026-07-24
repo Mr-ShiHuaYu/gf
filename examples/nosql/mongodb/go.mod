@@ -3,7 +3,7 @@ module main
 go 1.11
 
 require (
-	github.com/Mr-ShiHuaYu/gf/v2 v2.8.3
+	github.com/Mr-ShiHuaYu/gf/v2 v2.9.4-go111.1
 	go.mongodb.org/mongo-driver v1.17.2
 )
 
@@ -20,8 +20,6 @@ require (
 	github.com/grokify/html-strip-tags-go v0.1.0 // indirect
 	github.com/klauspost/compress v1.16.7 // indirect
 	github.com/magiconair/properties v1.8.9 // indirect
-	github.com/mattn/go-colorable v0.1.13 // indirect
-	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
 	github.com/montanaflynn/stats v0.7.1 // indirect
 	github.com/olekukonko/tablewriter v0.0.5 // indirect
@@ -37,18 +35,11 @@ require (
 	golang.org/x/crypto v0.30.0 // indirect
 	golang.org/x/net v0.32.0 // indirect
 	golang.org/x/sync v0.10.0 // indirect
-	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-
-
-
 replace (
-	github.com/Mr-ShiHuaYu/gf/v2 => /workspace
-	github.com/Mr-ShiHuaYu/gf/contrib/nosql/redis/v2 => /workspace/contrib/nosql/redis
-	github.com/Mr-ShiHuaYu/gf/contrib/registry/file/v2 => /workspace/contrib/registry/file
 	github.com/grokify/html-strip-tags-go => github.com/grokify/html-strip-tags-go v0.0.1
 	golang.org/x/crypto => golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2
 	golang.org/x/net => golang.org/x/net v0.0.0-20200202094626-16171245cfb2

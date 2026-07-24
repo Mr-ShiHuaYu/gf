@@ -1,5 +1,6 @@
 github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
+github.com/Mr-ShiHuaYu/gf/v2 v2.9.4-go111.1/go.mod h1:euCwp8GqDYrbTGaezOl1oPK6r3S8b4Nk97+iixybAZM=
 github.com/clbanning/mxj/v2 v2.5.0 h1:zaopjwYFHhR+sRs6DDrt3fvxQRpCJATS3gQ8U4gglPk=
 github.com/clbanning/mxj/v2 v2.5.0/go.mod h1:hNiWqW14h+kc+MdF9C6/YoRfjEJoR3ou6tn/Qo+ve2s=
 github.com/emirpasic/gods v1.12.0 h1:QAUIPSaCu4G+POclxeqb3F+WPpdKqFGlw36+yOzGlrg=

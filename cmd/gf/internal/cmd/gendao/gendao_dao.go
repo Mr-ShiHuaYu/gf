@@ -212,7 +212,10 @@ func generateColumnNamesForDao(fieldMap map[string]*gdb.TableField, removeFieldP
 		}
 	}
 	table := tablewriter.NewWriter(buffer)
-	table.SetCenterSeparator("|")
+	table.SetBorder(false)
+	table.SetRowLine(false)
+	table.SetAutoWrapText(false)
+	table.SetColumnSeparator("")
 	table.AppendBulk(array)
 	table.Render()
 	namesContent := buffer.String()
@@ -250,7 +253,10 @@ func generateColumnDefinitionForDao(fieldMap map[string]*gdb.TableField, removeF
 		}
 	}
 	table := tablewriter.NewWriter(buffer)
-	table.SetCenterSeparator("|")
+	table.SetBorder(false)
+	table.SetRowLine(false)
+	table.SetAutoWrapText(false)
+	table.SetColumnSeparator("")
 	table.AppendBulk(array)
 	table.Render()
 	defineContent := buffer.String()
